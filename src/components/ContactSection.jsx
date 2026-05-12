@@ -8,8 +8,8 @@ import { useState } from "react";
 import {
   Send,
   MessageCircle,
-  Linkedin,
-  Github,
+  LinkedinIcon,
+  GitHub,
   Mail,
   CheckCircle,
 } from "lucide-react";
@@ -28,13 +28,13 @@ const socialLinks = [
     color: "#25D366",
   },
   {
-    icon: <Linkedin size={20} />,
+    icon: <LinkedinIcon size={20} />,
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/khayruzzaman-himel/",
     color: "#0A66C2",
   },
   {
-    icon: <Github size={20} />,
+    icon: <GitHub size={20} />,
     label: "GitHub",
     href: "https://github.com/Kz-Himel",
     color: "#E5E7EB",
