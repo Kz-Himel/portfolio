@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Target, Zap, Heart } from "lucide-react";
+import { FiZap, FiHeart, FiTarget } from "react-icons/fi";
+import { PiGraduationCap } from "react-icons/pi";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -21,22 +22,22 @@ const stats = [
 
 const highlights = [
   {
-    icon: <GraduationCap size={20} />,
+    icon: <PiGraduationCap size={20} />,
     title: "Self-Taught Developer",
     desc: "Passionate about learning and building modern web applications.",
   },
   {
-    icon: <Target size={20} />,
+    icon: <FiTarget size={20} />,
     title: "Goal-Oriented",
     desc: "Focused on delivering pixel-perfect, performant digital experiences.",
   },
   {
-    icon: <Zap size={20} />,
+    icon: <FiZap size={20} />,
     title: "Modern Stack",
     desc: "Specialized in Next.js, React, Tailwind, and animation libraries.",
   },
   {
-    icon: <Heart size={20} />,
+    icon: <FiHeart size={20} />,
     title: "Design-Driven",
     desc: "Love bridging the gap between clean design and functional code.",
   },
@@ -167,7 +168,7 @@ export default function AboutSection() {
               className="glass border border-white/8 rounded-xl p-5"
             >
               <div className="flex items-center gap-3 mb-3">
-                <GraduationCap size={18} className="text-accent" />
+                <PiGraduationCap size={18} className="text-accent" />
                 <span className="text-text-main font-semibold text-sm">Education</span>
               </div>
               <div className="text-muted text-sm">
