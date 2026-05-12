@@ -1,14 +1,14 @@
-"use client";
+import AboutSection from "@/components/AboutSection";
 
-import { HeroUIProvider } from "@heroui/react";
-import { ThemeProvider } from "next-themes";
+export const metadata = {
+  title: "About | Himel",
+  description: "Frontend development services including UI/UX implementation, performance optimization, and more.",
+};
 
-export function Providers({ children }) {
+export default function AboutPage() {
   return (
-    <HeroUIProvider>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-        {children}
-      </ThemeProvider>
-    </HeroUIProvider>
+    <div className="pt-20">
+      <AboutSection />
+    </div>
   );
 }

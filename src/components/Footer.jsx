@@ -2,12 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  Github,
-  Linkedin,
-  MessageCircle,
-  ArrowUp,
-} from "lucide-react";
+import { FiMessageCircle, FiArrowUp } from "react-icons/fi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -20,9 +16,9 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: <Github size={18} />, href: "https://github.com/kamrulhimel", label: "GitHub" },
-  { icon: <Linkedin size={18} />, href: "https://linkedin.com/in/yourusername", label: "LinkedIn" },
-  { icon: <MessageCircle size={18} />, href: "https://wa.me/8801XXXXXXXXX", label: "WhatsApp" },
+  { icon: <FaGithub size={18} />, href: "https://github.com/kamrulhimel", label: "GitHub" },
+  { icon: <FaLinkedin size={18} />, href: "https://linkedin.com/in/yourusername", label: "LinkedIn" },
+  { icon: <FiMessageCircle size={18} />, href: "https://wa.me/8801XXXXXXXXX", label: "WhatsApp" },
 ];
 
 export default function Footer() {
@@ -98,7 +94,7 @@ export default function Footer() {
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 px-3 py-2 rounded-lg glass border border-white/8 text-muted text-xs hover:text-accent hover:border-accent/20 transition-all"
           >
-            <ArrowUp size={13} />
+            <FiArrowUp size={13} />
             Back to top
           </motion.button>
         </div>

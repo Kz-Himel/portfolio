@@ -4,13 +4,8 @@ import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ExternalLink,
-  Github,
-  ArrowLeft,
-  CheckCircle,
-} from "lucide-react";
-import { use } from "react";
+import { FiExternalLink, FiArrowLeft, FiCheckCircle } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
 
 export default function ProjectDetailPage({ params }) {
   const { id } = use(params);
@@ -31,7 +26,7 @@ export default function ProjectDetailPage({ params }) {
             href="/projects"
             className="inline-flex items-center gap-2 text-muted hover:text-accent transition-colors text-sm mb-8 group"
           >
-            <ArrowLeft size={15} className="group-hover:-translate-x-1 transition-transform" />
+            <FiArrowLeft size={15} className="group-hover:-translate-x-1 transition-transform" />
             All Projects
           </Link>
         </motion.div>
@@ -68,7 +63,7 @@ export default function ProjectDetailPage({ params }) {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-accent text-bg text-sm font-semibold"
               >
-                <ExternalLink size={14} />
+                <FiExternalLink size={14} />
                 Live Demo
               </motion.a>
               <motion.a
@@ -79,7 +74,7 @@ export default function ProjectDetailPage({ params }) {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl glass border border-white/10 text-text-main text-sm font-semibold"
               >
-                <Github size={14} />
+                <FaGithub size={14} />
                 GitHub
               </motion.a>
             </div>
@@ -110,7 +105,7 @@ export default function ProjectDetailPage({ params }) {
               <ul className="space-y-3">
                 {project.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
-                    <CheckCircle size={16} className="text-accent mt-0.5 shrink-0" />
+                    <FiCheckCircle size={16} className="text-accent mt-0.5 shrink-0" />
                     <span className="text-muted text-sm">{feature}</span>
                   </li>
                 ))}
@@ -173,11 +168,11 @@ export default function ProjectDetailPage({ params }) {
             >
               <a href={project.live} target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-accent text-bg text-sm font-semibold hover:bg-soft-accent transition-all">
-                <ExternalLink size={15} /> Live Demo
+                <FiExternalLink size={15} /> Live Demo
               </a>
               <a href={project.github} target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full py-3 rounded-xl glass border border-white/10 text-text-main text-sm font-semibold hover:border-accent/30 transition-all">
-                <Github size={15} /> View Source
+                <FaGithub size={15} /> View Source
               </a>
             </motion.div>
           </div>

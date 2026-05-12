@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Download } from "lucide-react";
+import { FiMenu, FiX, FiDownload } from "react-icons/fi";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -108,7 +108,7 @@ export default function Navbar() {
               className="flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg shadow-lg shadow-accent/20 transition-all duration-300 hover:bg-soft-accent"
               style={{ fontFamily: "'Satoshi', sans-serif" }}
             >
-              <Download size={14} />
+              <FiDownload size={14} />
               Resume
             </motion.a>
           </div>
@@ -128,7 +128,7 @@ export default function Navbar() {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X size={22} />
+                  <FiX size={22} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -138,7 +138,7 @@ export default function Navbar() {
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu size={22} />
+                  <FiMenu size={22} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -193,7 +193,7 @@ export default function Navbar() {
                   download
                   className="mt-2 flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-bg transition-all hover:bg-soft-accent"
                 >
-                  <Download size={14} />
+                  <FiDownload size={14} />
                   Download Resume
                 </a>
               </motion.li>

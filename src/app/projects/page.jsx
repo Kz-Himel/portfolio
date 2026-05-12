@@ -2,11 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  ExternalLink,
-  Github,
-  ArrowRight,
-} from "lucide-react";
+import { FiExternalLink, FiArrowRight } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
 import { projects } from "@/data/projects";
 import { useState } from "react";
 
@@ -91,12 +88,12 @@ export default function ProjectsPage() {
                   <a href={project.live} target="_blank" rel="noopener noreferrer"
                     className="p-2 rounded-lg bg-accent/90 text-bg hover:bg-accent"
                     onClick={(e) => e.stopPropagation()}>
-                    <ExternalLink size={13} />
+                    <FiExternalLink size={13} />
                   </a>
                   <a href={project.github} target="_blank" rel="noopener noreferrer"
                     className="p-2 rounded-lg glass border border-white/20 text-text-main"
                     onClick={(e) => e.stopPropagation()}>
-                    <Github size={13} />
+                    <FaGithub size={13} />
                   </a>
                 </div>
 
@@ -123,7 +120,7 @@ export default function ProjectsPage() {
                 </div>
                 <Link href={`/projects/${project.id}`}
                   className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-accent transition-colors group/link">
-                  Case Study <ArrowRight size={11} className="group-hover/link:translate-x-1 transition-transform" />
+                  Case Study <FiArrowRight size={11} className="group-hover/link:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </motion.div>

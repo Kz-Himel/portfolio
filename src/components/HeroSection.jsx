@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
+import { FiArrowRight, FiMessageCircle } from "react-icons/fi";
+import { BsStars } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -43,7 +44,7 @@ export default function HeroSection() {
               custom={0}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-accent/20 text-accent text-sm font-medium"
             >
-              <Sparkles size={14} />
+              <BsStars size={14} />
               Available for freelance work
             </motion.div>
 
@@ -92,7 +93,7 @@ export default function HeroSection() {
                   whileTap={{ scale: 0.96 }}
                   className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
                 >
-                  <MessageCircle size={16} />
+                  <FiMessageCircle size={16} />
                   Contact Me
                 </motion.button>
               </Link>
@@ -103,7 +104,7 @@ export default function HeroSection() {
                   className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass border border-white/10 text-text-main font-semibold text-sm hover:border-accent/30 transition-all duration-300"
                 >
                   View Projects
-                  <ArrowRight size={16} />
+                  <FiArrowRight size={16} />
                 </motion.button>
               </Link>
             </motion.div>

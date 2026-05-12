@@ -5,14 +5,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
-import {
-  Send,
-  MessageCircle,
-  Linkedin,
-  Github,
-  Mail,
-  CheckCircle,
-} from "lucide-react";
+import { FiSend, FiMessageCircle, FiMail, FiCheckCircle } from "react-icons/fi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -22,25 +17,25 @@ const schema = z.object({
 
 const socialLinks = [
   {
-    icon: <MessageCircle size={20} />,
+    icon: <FiMessageCircle size={20} />,
     label: "WhatsApp",
     href: "https://wa.me/8801307161360",
     color: "#25D366",
   },
   {
-    icon: <Linkedin size={20} />,
+    icon: <FaLinkedin size={20} />,
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/khayruzzaman-himel/",
     color: "#0A66C2",
   },
   {
-    icon: <Github size={20} />,
+    icon: <FaGithub size={20} />,
     label: "GitHub",
     href: "https://github.com/Kz-Himel",
     color: "#E5E7EB",
   },
   {
-    icon: <Mail size={20} />,
+    icon: <FiMail size={20} />,
     label: "Email",
     href: "mailto:kzhimel129@gmail.com",
     color: "#38BDF8",
@@ -175,7 +170,7 @@ export default function ContactSection() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-12 text-center space-y-4"
                 >
-                  <CheckCircle size={48} className="text-green-400" />
+                  <FiCheckCircle size={48} className="text-green-400" />
                   <h3 className="text-text-main font-bold text-xl">Message Sent!</h3>
                   <p className="text-muted text-sm">
                     Thanks for reaching out. I&apos;ll get back to you within 24 hours.
@@ -244,7 +239,7 @@ export default function ContactSection() {
                       </>
                     ) : (
                       <>
-                        <Send size={16} />
+                        <FiSend size={16} />
                         Send Message
                       </>
                     )}

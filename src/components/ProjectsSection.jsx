@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { FiExternalLink, FiArrowRight } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
 import { projects } from "@/data/projects";
 
 export default function ProjectsSection() {
@@ -35,7 +36,7 @@ export default function ProjectsSection() {
               whileTap={{ scale: 0.96 }}
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl glass border border-white/10 text-text-main text-sm font-medium hover:border-accent/30 transition-all"
             >
-              View All <ArrowRight size={15} />
+              View All <FiArrowRight size={15} />
             </motion.button>
           </Link>
         </motion.div>
@@ -73,7 +74,7 @@ export default function ProjectsSection() {
                     className="p-2.5 rounded-lg bg-accent text-bg hover:bg-soft-accent transition-colors"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <ExternalLink size={16} />
+                    <FiExternalLink size={16} />
                   </a>
                   <a
                     href={project.github}
@@ -82,7 +83,7 @@ export default function ProjectsSection() {
                     className="p-2.5 rounded-lg glass border border-white/20 text-text-main hover:border-accent/40 transition-colors"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <Github size={16} />
+                    <FaGithub size={16} />
                   </a>
                 </div>
               </div>
@@ -118,7 +119,7 @@ export default function ProjectsSection() {
                   className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-accent transition-colors pt-1 group/link"
                 >
                   View Details
-                  <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
+                  <FiArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </motion.div>

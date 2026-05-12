@@ -1,53 +1,47 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Code2,
-  Smartphone,
-  Palette,
-  Zap,
-  Globe,
-  GitMerge,
-} from "lucide-react";
+import { FiCode, FiSmartphone, FiZap, FiGlobe, FiGitMerge } from "react-icons/fi";
+import { IoColorPaletteOutline } from "react-icons/io5";
 
 const services = [
   {
-    icon: <Code2 size={28} />,
+    icon: <FiCode size={28} />,
     title: "Frontend Development",
     desc: "Building fast, modern web apps with Next.js and React. Clean code, great architecture, and top performance.",
     tags: ["Next.js", "React", "TypeScript"],
     color: "#38BDF8",
   },
   {
-    icon: <Smartphone size={28} />,
+    icon: <FiSmartphone size={28} />,
     title: "Responsive Design",
     desc: "Pixel-perfect interfaces that look stunning on any device — mobile, tablet, or desktop.",
     tags: ["Mobile-First", "Tailwind CSS"],
     color: "#7DD3FC",
   },
   {
-    icon: <Palette size={28} />,
+    icon: <IoColorPaletteOutline size={28} />,
     title: "UI/UX Implementation",
     desc: "Translating Figma designs into reality with meticulous attention to detail and smooth interactions.",
     tags: ["Figma", "Framer Motion"],
     color: "#a78bfa",
   },
   {
-    icon: <Globe size={28} />,
+    icon: <FiGlobe size={28} />,
     title: "API Integration",
     desc: "Connecting frontends to any backend — REST APIs, GraphQL, Firebase, and more.",
     tags: ["REST", "Firebase", "GraphQL"],
     color: "#34d399",
   },
   {
-    icon: <Zap size={28} />,
+    icon: <FiZap size={28} />,
     title: "Performance Optimization",
     desc: "Analyzing and improving load times, Lighthouse scores, and Core Web Vitals for better SEO.",
     tags: ["Core Web Vitals", "SEO"],
     color: "#fbbf24",
   },
   {
-    icon: <GitMerge size={28} />,
+    icon: <FiGitMerge size={28} />,
     title: "Version Control & Deploy",
     desc: "Professional Git workflows, CI/CD pipelines, and deployment on Vercel or Netlify.",
     tags: ["Git", "Vercel", "CI/CD"],
