@@ -57,10 +57,10 @@ export default function HeroSection() {
             >
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-text-main leading-[1.05]">
                 Hi, I&apos;m{" "}
-                <span className="gradient-text">Himel</span>
+                <span className="gradient-text">Khayruzzaman Himel</span>
               </h1>
               <h2 className="text-xl md:text-2xl text-muted font-medium">
-                Frontend Developer
+                Frontend Developer | Web Developer
               </h2>
             </motion.div>
 

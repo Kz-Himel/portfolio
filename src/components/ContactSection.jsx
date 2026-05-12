@@ -24,25 +24,25 @@ const socialLinks = [
   {
     icon: <MessageCircle size={20} />,
     label: "WhatsApp",
-    href: "https://wa.me/8801XXXXXXXXX",
+    href: "https://wa.me/8801307161360",
     color: "#25D366",
   },
   {
     icon: <Linkedin size={20} />,
     label: "LinkedIn",
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://www.linkedin.com/in/khayruzzaman-himel/",
     color: "#0A66C2",
   },
   {
     icon: <Github size={20} />,
     label: "GitHub",
-    href: "https://github.com/kamrulhimel",
+    href: "https://github.com/Kz-Himel",
     color: "#E5E7EB",
   },
   {
     icon: <Mail size={20} />,
     label: "Email",
-    href: "mailto:himel@example.com",
+    href: "mailto:kzhimel129@gmail.com",
     color: "#38BDF8",
   },
 ];

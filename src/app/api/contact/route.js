@@ -12,7 +12,7 @@ export async function POST(request) {
 
     const { data, error } = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>", // Change after domain setup
-      to: ["himel@example.com"], // YOUR EMAIL HERE
+      to: ["kzhimel129@gmail.com"], // YOUR EMAIL HERE
       subject: `New message from ${name}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #0F172A; color: #E5E7EB; padding: 32px; border-radius: 12px;">
