@@ -16,9 +16,9 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: <FaGithub size={18} />, href: "https://github.com/kamrulhimel", label: "GitHub" },
-  { icon: <FaLinkedin size={18} />, href: "https://linkedin.com/in/yourusername", label: "LinkedIn" },
-  { icon: <FiMessageCircle size={18} />, href: "https://wa.me/8801XXXXXXXXX", label: "WhatsApp" },
+  { icon: <FaGithub size={18} />, href: "https://github.com/Kz-Himel", label: "GitHub" },
+  { icon: <FaLinkedin size={18} />, href: "https://www.linkedin.com/in/khayruzzaman-himel/", label: "LinkedIn" },
+  { icon: <FiMessageCircle size={18} />, href: "https://wa.me/8801307161360", label: "WhatsApp" },
 ];
 
 export default function Footer() {
@@ -86,7 +86,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/5">
           <p className="text-muted text-xs">
-            © {new Date().getFullYear()} Kamrul Himel. Built with Next.js & ❤️
+            © {new Date().getFullYear()} Kz Himel. Built with Next.js & ❤️
           </p>
           <motion.button
             onClick={scrollToTop}
