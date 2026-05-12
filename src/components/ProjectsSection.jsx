@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ExternalLink, GitHub, ArrowRight } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
 
 export default function ProjectsSection() {
@@ -82,7 +82,7 @@ export default function ProjectsSection() {
                     className="p-2.5 rounded-lg glass border border-white/20 text-text-main hover:border-accent/40 transition-colors"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <GitHub size={16} />
+                    <Github size={16} />
                   </a>
                 </div>
               </div>

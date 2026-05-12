@@ -2,7 +2,12 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { GitHub, LinkedinIcon, MessageCircle, ArrowUp } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  MessageCircle,
+  ArrowUp,
+} from "lucide-react";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -15,8 +20,8 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: <GitHub size={18} />, href: "https://github.com/kamrulhimel", label: "GitHub" },
-  { icon: <LinkedinIcon size={18} />, href: "https://linkedin.com/in/yourusername", label: "LinkedIn" },
+  { icon: <Github size={18} />, href: "https://github.com/kamrulhimel", label: "GitHub" },
+  { icon: <Linkedin size={18} />, href: "https://linkedin.com/in/yourusername", label: "LinkedIn" },
   { icon: <MessageCircle size={18} />, href: "https://wa.me/8801XXXXXXXXX", label: "WhatsApp" },
 ];
 

@@ -2,7 +2,11 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ArrowRight,
+} from "lucide-react";
 import { projects } from "@/data/projects";
 import { useState } from "react";
 

@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink, Github, ArrowLeft, CheckCircle } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ArrowLeft,
+  CheckCircle,
+} from "lucide-react";
 import { use } from "react";
 
 export default function ProjectDetailPage({ params }) {
