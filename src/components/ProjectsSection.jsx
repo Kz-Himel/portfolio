@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FiExternalLink, FiArrowRight } from "react-icons/fi";
 import { FaGithub } from "react-icons/fa";
 import { projects } from "@/data/projects";
+import Image from "next/image";
 
 export default function ProjectsSection() {
   const featured = projects.filter((p) => p.featured);
@@ -58,11 +59,8 @@ export default function ProjectsSection() {
               {/* Thumbnail */}
               <div className="relative h-48 bg-gradient-to-br from-accent/10 via-secondary to-purple-500/10 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-5xl font-bold text-white/10 select-none" style={{ fontFamily: "'Clash Display', sans-serif" }}>
-                    {project.title.charAt(0)}
-                  </span>
+                  <Image src={project.image} alt={project.title} fill className="object-cover" />
                 </div>
-                {/* Replace with: <Image src={project.image} alt={project.title} fill className="object-cover" /> */}
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-transparent to-transparent" />
 
                 {/* Overlay buttons */}

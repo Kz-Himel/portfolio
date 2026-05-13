@@ -154,7 +154,7 @@ export default function HeroSection() {
                   </span>
                 </div>
                 {/* Uncomment and use your image: */}
-                <Image src="/profile.jpg" alt="Himel" fill className="object-cover" />
+                <Image src="/profile.png" alt="Kz Himel" fill className="object-cover" />
               </div>
 
               {/* Floating chips */}

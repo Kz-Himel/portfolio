@@ -80,7 +80,7 @@ export default function AboutSection() {
             {/* Image placeholder */}
             <div className="relative w-full aspect-square max-w-sm mx-auto lg:mx-0 rounded-2xl glass border border-white/8 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-bg to-purple-500/10 flex items-center justify-center">
-                <Image src="/profile.jpg" alt="Himel" fill className="object-cover" />
+                <Image src="/profile.png" alt="Kz Himel" fill className="object-cover" />
               </div>
               Replace with: 
               <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
