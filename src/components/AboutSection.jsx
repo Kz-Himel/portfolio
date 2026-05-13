@@ -120,7 +120,7 @@ export default function AboutSection() {
               className="space-y-4 text-muted leading-relaxed"
             >
               <p>
-                Hey! I&apos;m <span className="text-text-main font-semibold">Kamrul Himel</span>, a
+                Hey! I&apos;m <span className="text-text-main font-semibold">Khayruzzaman Himel</span>, a
                 passionate frontend developer from Bangladesh. I started my journey
                 into web development driven by a love for beautiful, interactive
                 interfaces.

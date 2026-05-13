@@ -9,7 +9,7 @@ export const metadata = {
     "Frontend Developer crafting modern, animated, and scalable web experiences using Next.js, React, and modern UI technologies.",
   keywords: ["Frontend Developer", "Next.js", "React", "Kz Himel", "Web Developer"],
   openGraph: {
-    title: "Himel | Frontend Developer",
+    title: "Kz Himel | Frontend Developer",
     description: "Frontend Developer crafting modern web experiences.",
     type: "website",
   },
@@ -20,9 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body>
           <SmoothScroll>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
+            <body>{children}</body>
           </SmoothScroll>
       </body>
     </html>
