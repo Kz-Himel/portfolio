@@ -73,7 +73,7 @@ export default function Footer() {
           <div>
             <h4 className="text-text-main font-semibold text-sm mb-4">Contact</h4>
             <div className="space-y-2 text-muted text-sm">
-              <p>himel@example.com</p>
+              <p>kzhimel129@gmail.com</p>
               <p>Bangladesh 🇧🇩</p>
               <div className="flex items-center gap-2 mt-3">
                 <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />

@@ -18,7 +18,7 @@ const skills = [
   { name: "Express.js", icon: "🚂", category: "Backend", level: 60 },
   { name: "REST API", icon: "🔌", category: "Backend", level: 72 },
   { name: "MongoDB", icon: "🍃", category: "Database", level: 68 },
-  { name: "Firebase", icon: "🔥", category: "Database", level: 72 },
+  { name: "Better Auth", icon: "🔐", category: "Database", level: 72 },
   { name: "Git", icon: "🌿", category: "Tools", level: 85 },
   { name: "GitHub", icon: "🐙", category: "Tools", level: 88 },
   { name: "VS Code", icon: "💻", category: "Tools", level: 95 },

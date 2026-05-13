@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FiZap, FiHeart, FiTarget } from "react-icons/fi";
 import { PiGraduationCap } from "react-icons/pi";
+import Image from 'next/image'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -79,12 +80,12 @@ export default function AboutSection() {
             {/* Image placeholder */}
             <div className="relative w-full aspect-square max-w-sm mx-auto lg:mx-0 rounded-2xl glass border border-white/8 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-bg to-purple-500/10 flex items-center justify-center">
-                <span className="text-8xl font-bold gradient-text" style={{ fontFamily: "'Clash Display', sans-serif" }}>KH</span>
+                <Image src="/profile.jpg" alt="Himel" fill className="object-cover" />
               </div>
-              {/* Replace with: <Image src="/profile.jpg" alt="Himel" fill className="object-cover" /> */}
+              Replace with: 
               <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6">
-                <div className="text-text-main font-semibold text-lg">Kamrul Himel</div>
+                <div className="text-text-main font-semibold text-lg">Khayruzzaman Himel</div>
                 <div className="text-accent text-sm">Frontend Developer</div>
               </div>
             </div>
@@ -173,7 +174,7 @@ export default function AboutSection() {
               </div>
               <div className="text-muted text-sm">
                 <div className="font-medium text-text-main">Computer Science</div>
-                <div className="text-xs mt-0.5">Your Institution Name · 2022 – Present</div>
+                <div className="text-xs mt-0.5">Rangpur Polytechnic Institute · 2022 – Present</div>
               </div>
             </motion.div>
           </div>

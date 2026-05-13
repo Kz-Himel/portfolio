@@ -1,139 +1,176 @@
 export const projects = [
   {
-    id: "ecommerce-dashboard",
-    title: "E-Commerce Dashboard",
+    id: "ah-tilecraft",
+    title: "AH TileCraft",
     description:
-      "A fully responsive admin dashboard for e-commerce with real-time analytics, inventory management, and order tracking.",
+      "A modern full-stack tile showroom platform with authentication, protected routes, and responsive product management.",
     longDescription:
-      "Built a comprehensive e-commerce admin dashboard using Next.js and Tailwind CSS. Features include real-time sales analytics, inventory management system, order tracking, customer management, and dynamic charts. Optimized for performance with server-side rendering.",
-    image: "/projects/ecommerce.png",
-    tags: ["Next.js", "Tailwind CSS", "Chart.js", "MongoDB"],
-    live: "https://demo.com",
-    github: "https://github.com/kamrulhimel",
+      "AH TileCraft is a premium tile showroom web application built with Next.js App Router. Users can browse elegant tile collections, explore protected product details, and enjoy a smooth modern UI. The platform focuses on performance, responsive design, and secure authentication with optimized rendering techniques.",
+    image: "/projects/ah-tilecraft.png",
+    tags: [
+      "Next.js",
+      "Tailwind CSS",
+      "MongoDB",
+      "Better Auth",
+      "Framer Motion",
+      "Hero UI"
+    ],
+    live: "https://ah-tilecraft.vercel.app",
+    github: "https://github.com/Kz-Himel/ah-tilecraft",
     featured: true,
-    year: "2024",
+    year: "2026",
     challenges:
-      "Handling real-time data updates without performance degradation was the biggest challenge. Solved with optimistic UI and WebSocket integration.",
+      "Implementing secure route protection and maintaining smooth performance across dynamic product pages.",
     features: [
-      "Real-time analytics dashboard",
-      "Inventory management",
-      "Order tracking system",
-      "Responsive design",
+      "Authentication system",
+      "Protected product details",
+      "Responsive UI",
+      "Modern dashboard",
+      "Search functionality",
       "Dark mode support",
     ],
   },
+
   {
-    id: "portfolio-v1",
-    title: "Portfolio Website",
+    id: "keen-keeper",
+    title: "Keen Keeper",
     description:
-      "A stunning personal portfolio with smooth animations, glassmorphism design, and Framer Motion interactions.",
+      "KeenKeeper is a responsive web application designed to help users track and maintain their friendships. It allows users to monitor interactions, view timelines, and stay connected by organizing communication history such as calls, texts, and video interactions.",
     longDescription:
-      "Designed and built a premium portfolio website featuring glassmorphism UI, smooth page transitions with Framer Motion, Lenis smooth scroll, and a custom contact form using Resend API.",
-    image: "/projects/portfolio.png",
-    tags: ["Next.js", "Framer Motion", "Tailwind CSS", "Resend"],
-    live: "https://himel.dev",
-    github: "https://github.com/kamrulhimel",
+      "Keen Keeper is a clean and modern productivity application designed to help users organize tasks and improve workflow management. The application includes dynamic task handling, responsive layouts, intuitive interactions, and optimized user experience for both desktop and mobile devices.",
+    image: "/projects/keen-keeper.png",
+    tags: ["React", "Tailwind CSS", "React Router", "Daisy UI", "Context API"],
+    live: "https://keen-keeper.vercel.app",
+    github: "https://github.com/Kz-Himel/Keen-Keeper",
     featured: true,
-    year: "2024",
+    year: "2026",
     challenges:
-      "Achieving smooth 60fps animations across all devices while maintaining accessibility.",
+      "Managing dynamic state updates while keeping the UI smooth and responsive.",
     features: [
-      "Glassmorphism UI",
-      "Framer Motion animations",
-      "Lenis smooth scroll",
-      "Contact form with Resend",
-      "Fully responsive",
-    ],
-  },
-  {
-    id: "weather-app",
-    title: "Weather App",
-    description:
-      "Real-time weather application with location detection, 7-day forecast, and beautiful weather animations.",
-    longDescription:
-      "A weather application built with React and OpenWeatherMap API. Features geolocation-based weather, animated weather icons, 7-day forecast, and hourly breakdown.",
-    image: "/projects/weather.png",
-    tags: ["React", "OpenWeatherMap API", "CSS Animations"],
-    live: "https://weather.himel.dev",
-    github: "https://github.com/kamrulhimel",
-    featured: false,
-    year: "2024",
-    challenges:
-      "Handling async geolocation gracefully with fallback to default location.",
-    features: [
-      "Geolocation detection",
-      "7-day forecast",
-      "Animated weather icons",
-      "Celsius/Fahrenheit toggle",
-    ],
-  },
-  {
-    id: "task-manager",
-    title: "Task Manager App",
-    description:
-      "A drag-and-drop task management app with Kanban boards, priority levels, and local persistence.",
-    longDescription:
-      "Full-featured task manager with Kanban board UI, drag-and-drop functionality using dnd-kit, task priorities, due dates, and localStorage persistence.",
-    image: "/projects/tasks.png",
-    tags: ["React", "dnd-kit", "Tailwind CSS", "LocalStorage"],
-    live: "https://tasks.himel.dev",
-    github: "https://github.com/kamrulhimel",
-    featured: false,
-    year: "2023",
-    challenges:
-      "Implementing accessible drag-and-drop with keyboard support.",
-    features: [
-      "Kanban board UI",
-      "Drag-and-drop",
-      "Priority levels",
-      "Local persistence",
+      "Friends data management",
+      "Dynamic interactions",
       "Responsive design",
+      "Realtime updates",
+      "Modern UI/UX",
     ],
   },
+
   {
-    id: "chat-app",
-    title: "Real-time Chat App",
+    id: "digitools-platform",
+    title: "DigiTools Platform",
     description:
-      "A real-time chat application with Firebase backend, user authentication, and live messaging.",
+      "An all-in-one digital tools platform with utility-based features and a clean modern interface.",
     longDescription:
-      "Chat application built with React and Firebase. Features include Google authentication, real-time messaging, read receipts, emoji support, and image sharing.",
-    image: "/projects/chat.png",
-    tags: ["React", "Firebase", "Tailwind CSS"],
-    live: "https://chat.himel.dev",
-    github: "https://github.com/kamrulhimel",
-    featured: false,
-    year: "2023",
-    challenges:
-      "Managing Firebase real-time listeners efficiently to avoid memory leaks.",
-    features: [
-      "Google authentication",
-      "Real-time messaging",
-      "Read receipts",
-      "Emoji support",
-      "Image sharing",
-    ],
-  },
-  {
-    id: "blog-platform",
-    title: "Blog Platform",
-    description:
-      "A minimal, fast blog platform with MDX support, syntax highlighting, and dark mode.",
-    longDescription:
-      "Personal blog platform built with Next.js App Router and MDX. Features server-side rendering, code syntax highlighting, table of contents, reading time, and SEO optimization.",
-    image: "/projects/blog.png",
-    tags: ["Next.js", "MDX", "Tailwind CSS", "Vercel"],
-    live: "https://blog.himel.dev",
-    github: "https://github.com/kamrulhimel",
+      "DigiTools Platform is a utility-focused web application that combines multiple digital tools into one modern platform. Designed with performance and simplicity in mind, it delivers fast interactions, responsive layouts, and user-friendly functionality for everyday productivity tasks.",
+    image: "/projects/digitools.png",
+    tags: ["React.js", "Tailwind CSS", "JS ES6", "API Integration", "Daisy UI"],
+    live: "https://digitools-platform-kzhimel.netlify.app/",
+    github: "https://github.com/Kz-Himel/DigiTools-Platform",
     featured: true,
+    year: "2025",
+    challenges:
+      "Structuring multiple utilities efficiently while maintaining scalability and clean architecture.",
+    features: [
+      "Multiple utility tools",
+      "Fast performance",
+      "Responsive interface",
+      "API integrations",
+      "Modern dashboard design",
+    ],
+  },
+
+  {
+    id: "book-vibe",
+    title: "Book Vibe",
+    description:
+      "A modern book discovery platform with elegant UI and responsive reading-focused experience.",
+    longDescription:
+      "Book Vibe is a beautifully designed book browsing platform where users can explore books with a clean and engaging reading-focused interface. The project emphasizes responsive layouts, modern animations, and intuitive navigation for better user experience.",
+    image: "/projects/book-vibe.png",
+    tags: ["React", "Tailwind CSS", "React Router"],
+    live: "book-vibe-kzhimel.netlify.app",
+    github: "https://github.com/Kz-Himel/Book-Vibe",
+    featured: false,
     year: "2024",
     challenges:
-      "Optimizing MDX rendering performance and implementing incremental static regeneration.",
+      "Designing a visually appealing layout while keeping navigation smooth and accessible.",
     features: [
-      "MDX content",
-      "Syntax highlighting",
-      "Table of contents",
-      "Reading time",
-      "SEO optimized",
+      "Book showcase",
+      "Responsive layout",
+      "Smooth animations",
+      "Interactive UI",
+      "Clean navigation",
+    ],
+  },
+
+  {
+    id: "english-janala",
+    title: "English Janala",
+    description:
+      "An educational platform designed to improve English learning with interactive lessons and modern UI.",
+    longDescription:
+      "English Janala is an educational web application focused on helping users learn English through interactive lessons and clean user experience. The platform includes engaging layouts, responsive design, and accessible content presentation.",
+    image: "/projects/english-janala.png",
+    tags: ["JavaScript", "Tailwind CSS", "API", "Responsive Design", "Daisy UI"],
+    live: "https://kz-himel.github.io/English-Janala/",
+    github: "https://github.com/Kz-Himel/English-Janala",
+    featured: false,
+    year: "2024",
+    challenges:
+      "Creating an engaging educational interface while keeping the application lightweight and responsive.",
+    features: [
+      "Interactive lessons",
+      "Responsive design",
+      "Dynamic content",
+      "Modern educational UI",
+      "Optimized performance",
+    ],
+  },
+
+  {
+    id: "github-issue-tracker",
+    title: "Github Issue Tracker",
+    description:
+      "A responsive frontend project showcasing clean UI development and component-based architecture.",
+    longDescription:
+      "Github Issue Tracker is a modern frontend project focused on responsive layouts, reusable components, and clean UI implementation. This is a web-based project that helps developers track bugs, manage feature requests, and organize project tasks efficiently. It uses dynamic API calls to load data in real-time and provides a clean, responsive interface.",
+    image: "/projects/github-issue-tracker.png",
+    tags: ["Java Script ES6", "Tailwind CSS", "RESTful API", "Responsive Design", "Daisy UI"],
+    live: "https://kz-himel.github.io/Assignment_5/",
+    github: "https://github.com/Kz-Himel/Assignment_5",
+    featured: false,
+    year: "2024",
+    challenges:
+      "Building reusable responsive components while maintaining consistent design patterns.",
+    features: [
+      "Responsive layout",
+      "Reusable components",
+      "Modern UI",
+      "Clean structure",
+      "Optimized design",
+    ],
+  },
+  {
+    id: "text-utils",
+    title: "Text Utils",
+    description:
+      "A powerful text utility platform with multiple text transformation and productivity tools.",
+    longDescription:
+      "Text Utils is a modern utility-based web application designed to simplify everyday text operations. Users can transform, analyze, and manipulate text instantly with a clean and responsive interface. The platform focuses on speed, usability, and efficient text processing tools for productivity.",
+    image: "/projects/text-utails.png",
+    tags: ["React", "Bootstrap 5", "JavaScript", "Utility Tools"],
+    live: "https://kz-himel.github.io/TeXT-uTAiLS/",
+    github: "https://github.com/Kz-Himel/TeXT-uTAiLS",
+    featured: false,
+    year: "2024",
+    challenges:
+      "Designing multiple text-processing utilities while maintaining a smooth and intuitive user experience.",
+    features: [
+      "Text transformation tools",
+      "Word & character counter",
+      "Case converter",
+      "Copy to clipboard",
+      "Responsive modern UI",
     ],
   },
 ];
