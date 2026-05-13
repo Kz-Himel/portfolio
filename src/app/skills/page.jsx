@@ -1,14 +1,17 @@
+import MainLayout from "@/components/layout/MainLayout";
 import SkillsSection from "@/components/SkillsSection";
 
 export const metadata = {
-  title: "Skills | Himel",
+  title: "Skills | Kz Himel",
   description: "Technologies and tools I use to build modern web applications.",
 };
 
 export default function SkillsPage() {
   return (
-    <div className="pt-20">
-      <SkillsSection />
-    </div>
+    <MainLayout>
+      <div className="pt-10">
+        <SkillsSection />
+      </div>
+    </MainLayout>
   );
 }
