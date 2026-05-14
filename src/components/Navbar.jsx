@@ -99,7 +99,7 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* Resume Button */}
+          {/* Github Button */}
           <div className="hidden md:flex items-center gap-3">
             <a href="/https://github.com/Kz-Himel">
                 <motion.button
@@ -182,20 +182,22 @@ export default function Navbar() {
                 );
               })}
 
-              {/* Resume Mobile */}
+              {/* Github Mobile */}
               <motion.li
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navLinks.length * 0.05 }}
               >
-                <a
-                  href="/resume.pdf"
-                  download
-                  className="mt-2 flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-bg transition-all hover:bg-soft-accent"
+                <a href="/https://github.com/Kz-Himel">
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass border border-white/10 text-text-main font-semibold text-sm hover:border-accent/30 transition-all duration-300"
                 >
-                  <FiDownload size={14} />
-                  Download Resume
-                </a>
+                  Github
+                  <FaGithub size={16} />
+                </motion.button>
+              </a>
               </motion.li>
             </ul>
           </motion.div>
