@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX, FiDownload } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -100,17 +101,16 @@ export default function Navbar() {
 
           {/* Resume Button */}
           <div className="hidden md:flex items-center gap-3">
-            <motion.a
-              href="/resume.pdf"
-              download
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              className="flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg shadow-lg shadow-accent/20 transition-all duration-300 hover:bg-soft-accent"
-              style={{ fontFamily: "'Satoshi', sans-serif" }}
-            >
-              <FiDownload size={14} />
-              Resume
-            </motion.a>
+            <a href="/https://github.com/Kz-Himel">
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass border border-white/10 text-text-main font-semibold text-sm hover:border-accent/30 transition-all duration-300"
+                >
+                  Github
+                  <FaGithub size={16} />
+                </motion.button>
+              </a>
           </div>
 
           {/* Mobile Toggle */}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiArrowRight, FiMessageCircle } from "react-icons/fi";
+import { FiArrowRight, FiMessageCircle, FiDownload } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,7 +21,10 @@ export default function HeroSection() {
       {/* Background blobs */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/8 rounded-full blur-[120px] animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: "2s" }} />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-[100px] animate-pulse-glow"
+          style={{ animationDelay: "2s" }}
+        />
         {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -89,7 +92,10 @@ export default function HeroSection() {
             >
               <Link href="/contact">
                 <motion.button
-                  whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(56,189,248,0.3)" }}
+                  whileHover={{
+                    scale: 1.04,
+                    boxShadow: "0 0 30px rgba(56,189,248,0.3)",
+                  }}
                   whileTap={{ scale: 0.96 }}
                   className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
                 >
@@ -97,16 +103,16 @@ export default function HeroSection() {
                   Contact Me
                 </motion.button>
               </Link>
-              <Link href="/projects">
-                <motion.button
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass border border-white/10 text-text-main font-semibold text-sm hover:border-accent/30 transition-all duration-300"
-                >
-                  View Projects
-                  <FiArrowRight size={16} />
-                </motion.button>
-              </Link>
+              <motion.a
+                href="/resume.pdf"
+                download
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass border border-white/10 text-text-main font-semibold text-sm hover:border-accent/30 transition-all duration-300 cursor-pointer"
+              >
+                <FiDownload size={16} />
+                Resume
+              </motion.a>
             </motion.div>
 
             {/* Stats */}
@@ -123,7 +129,9 @@ export default function HeroSection() {
                 { value: "10+", label: "Clients" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-2xl font-bold gradient-text">{stat.value}</div>
+                  <div className="text-2xl font-bold gradient-text">
+                    {stat.value}
+                  </div>
                   <div className="text-xs text-muted mt-0.5">{stat.label}</div>
                 </div>
               ))}
@@ -142,39 +150,55 @@ export default function HeroSection() {
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/20 via-transparent to-purple-500/20 blur-2xl scale-110" />
 
               {/* Rotating border */}
-              <div className="absolute inset-0 rounded-full border-2 border-dashed border-accent/20 animate-spin" style={{ animationDuration: "20s" }} />
+              <div
+                className="absolute inset-0 rounded-full border-2 border-dashed border-accent/20 animate-spin"
+                style={{ animationDuration: "20s" }}
+              />
               <div className="absolute inset-4 rounded-full border border-accent/10" />
 
               {/* Image container */}
               <div className="absolute inset-6 rounded-full glass border-2 animate-border-glow overflow-hidden animate-float">
-                {/* Replace with your actual image */}
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-accent/20 via-secondary to-purple-500/20 flex items-center justify-center">
-                  <span className="text-6xl font-bold gradient-text" style={{ fontFamily: "'Clash Display', sans-serif" }}>
-                    KH
-                  </span>
-                </div>
-                {/* Uncomment and use your image: */}
-                <Image src="/profile.png" alt="Kz Himel" fill className="object-cover" />
+                {/* your actual image */}
+                <Image
+                  src="/profile.png"
+                  alt="Kz Himel"
+                  fill
+                  className="object-cover"
+                />
               </div>
 
               {/* Floating chips */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 className="absolute -top-2 -right-4 glass border border-white/10 rounded-xl px-3 py-2 text-xs font-medium text-accent shadow-lg"
               >
                 ⚡ Next.js 15
               </motion.div>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
                 className="absolute -bottom-4 -left-4 glass border border-white/10 rounded-xl px-3 py-2 text-xs font-medium text-soft-accent shadow-lg"
               >
                 🎨 Framer Motion
               </motion.div>
               <motion.div
                 animate={{ x: [0, -6, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5,
+                }}
                 className="absolute top-1/2 -right-8 glass border border-white/10 rounded-xl px-3 py-2 text-xs font-medium text-purple-400 shadow-lg"
               >
                 🚀 Tailwind
