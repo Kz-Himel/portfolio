@@ -105,10 +105,10 @@ export default function Navbar() {
                 <motion.button
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
-                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass border border-white/10 text-text-main font-semibold text-sm hover:border-accent/30 transition-all duration-300"
+                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
                 >
-                  Github
                   <FaGithub size={16} />
+                  Github
                 </motion.button>
               </a>
           </div>
@@ -192,10 +192,10 @@ export default function Navbar() {
                 <motion.button
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
-                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass border border-white/10 text-text-main font-semibold text-sm hover:border-accent/30 transition-all duration-300"
+                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
                 >
-                  Github
                   <FaGithub size={16} />
+                  Github
                 </motion.button>
               </a>
               </motion.li>
