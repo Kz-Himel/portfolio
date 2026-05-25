@@ -104,7 +104,7 @@ export default function HeroSection() {
                 </motion.button>
               </Link>
               <motion.a
-                href="/resume.pdf"
+                href="/MERN_Developer_Khayruzzaman_Himel.pdf"
                 download
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}

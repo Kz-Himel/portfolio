@@ -103,7 +103,10 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a href="/https://github.com/Kz-Himel">
                 <motion.button
-                  whileHover={{ scale: 1.04 }}
+                  whileHover={{
+                    scale: 1.04,
+                    boxShadow: "0 0 30px rgba(56,189,248,0.3)",
+                  }}
                   whileTap={{ scale: 0.96 }}
                   className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
                 >
