@@ -9,12 +9,12 @@ export default function CustomCursor() {
 
   const springX = useSpring(mouseX, {
     stiffness: 500,
-    damping: 28,
+    damping: 30,
   });
 
   const springY = useSpring(mouseY, {
     stiffness: 500,
-    damping: 28,
+    damping: 30,
   });
 
   const [hovering, setHovering] = useState(false);
@@ -23,31 +23,25 @@ export default function CustomCursor() {
     const moveCursor = (e) => {
       mouseX.set(e.clientX - 10);
       mouseY.set(e.clientY - 10);
+
+      const target = e.target;
+
+      const isHovering =
+        target.closest("a") ||
+        target.closest("button") ||
+        target.closest("input") ||
+        target.closest("textarea") ||
+        target.closest(".hover-target");
+
+      setHovering(!!isHovering);
     };
-
-    const handleMouseEnter = () => setHovering(true);
-    const handleMouseLeave = () => setHovering(false);
-
-    const hoverElements = document.querySelectorAll(
-      "a, button, input, textarea, .hover-target"
-    );
-
-    hoverElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
-    });
 
     window.addEventListener("mousemove", moveCursor);
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
-
-      hoverElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      });
     };
-  }, [mouseX, mouseY]);
+  }, []);
 
   return (
     <motion.div
@@ -61,7 +55,7 @@ export default function CustomCursor() {
       transition={{
         type: "spring",
         stiffness: 300,
-        damping: 20,
+        damping: 18,
       }}
       className="
         fixed
@@ -76,11 +70,11 @@ export default function CustomCursor() {
         text-cyan-400
         font-bold
         text-lg
-        mix-blend-screen
-        drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]
+        select-none
+        drop-shadow-[0_0_10px_rgba(34,211,238,0.9)]
       "
     >
-      {"< />"}
+      {"</>"}
     </motion.div>
   );
 }
