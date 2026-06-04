@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CustomCursor() {
   const mouseX = useMotionValue(-100);
@@ -17,61 +17,70 @@ export default function CustomCursor() {
     damping: 28,
   });
 
+  const [hovering, setHovering] = useState(false);
+
   useEffect(() => {
     const moveCursor = (e) => {
-      mouseX.set(e.clientX - 25);
-      mouseY.set(e.clientY - 25);
+      mouseX.set(e.clientX - 10);
+      mouseY.set(e.clientY - 10);
     };
+
+    const handleMouseEnter = () => setHovering(true);
+    const handleMouseLeave = () => setHovering(false);
+
+    const hoverElements = document.querySelectorAll(
+      "a, button, input, textarea, .hover-target"
+    );
+
+    hoverElements.forEach((el) => {
+      el.addEventListener("mouseenter", handleMouseEnter);
+      el.addEventListener("mouseleave", handleMouseLeave);
+    });
 
     window.addEventListener("mousemove", moveCursor);
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
+
+      hoverElements.forEach((el) => {
+        el.removeEventListener("mouseenter", handleMouseEnter);
+        el.removeEventListener("mouseleave", handleMouseLeave);
+      });
     };
   }, [mouseX, mouseY]);
 
   return (
-    <>
-      <motion.div
-        style={{
-          translateX: springX,
-          translateY: springY,
-        }}
-        className="fixed top-0 left-0 z-[9999] pointer-events-none hidden md:flex items-center justify-center"
-      >
-        {/* Glow */}
-        <div className="absolute w-20 h-20 rounded-full bg-cyan-400/20 blur-2xl"></div>
-
-        {/* Cursor */}
-        <motion.div
-          animate={{
-            rotate: [0, 5, -5, 0],
-            scale: [1, 1.05, 1],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-          }}
-          className="
-            w-14
-            h-14
-            rounded-full
-            border
-            border-cyan-400/40
-            bg-white/5
-            backdrop-blur-md
-            flex
-            items-center
-            justify-center
-            text-white
-            text-lg
-            font-bold
-            shadow-[0_0_30px_rgba(34,211,238,0.5)]
-          "
-        >
-          {"< />"}
-        </motion.div>
-      </motion.div>
-    </>
+    <motion.div
+      style={{
+        translateX: springX,
+        translateY: springY,
+      }}
+      animate={{
+        scale: hovering ? 1.8 : 1,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+      }}
+      className="
+        fixed
+        top-0
+        left-0
+        z-[999999]
+        pointer-events-none
+        hidden
+        md:flex
+        items-center
+        justify-center
+        text-cyan-400
+        font-bold
+        text-lg
+        mix-blend-screen
+        drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]
+      "
+    >
+      {"< />"}
+    </motion.div>
   );
 }
