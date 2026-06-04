@@ -86,9 +86,7 @@ export default function Navbar() {
                       />
                     )}
 
-                    <span className="relative z-10">
-                      {link.label}
-                    </span>
+                    <span className="relative z-10">{link.label}</span>
 
                     {!isActive && (
                       <span className="absolute bottom-1 left-1/2 h-[1px] w-0 -translate-x-1/2 bg-accent transition-all duration-300 group-hover:w-4/5" />
@@ -101,19 +99,23 @@ export default function Navbar() {
 
           {/* Github Button */}
           <div className="hidden md:flex items-center gap-3">
-            <a href="/https://github.com/Kz-Himel">
-                <motion.button
-                  whileHover={{
-                    scale: 1.04,
-                    boxShadow: "0 0 30px rgba(56,189,248,0.3)",
-                  }}
-                  whileTap={{ scale: 0.96 }}
-                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
-                >
-                  <FaGithub size={16} />
-                  Github
-                </motion.button>
-              </a>
+            <a
+              href="https://github.com/Kz-Himel"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <motion.button
+                whileHover={{
+                  scale: 1.04,
+                  boxShadow: "0 0 30px rgba(56,189,248,0.3)",
+                }}
+                whileTap={{ scale: 0.96 }}
+                className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
+              >
+                <FaGithub size={16} />
+                Github
+              </motion.button>
+            </a>
           </div>
 
           {/* Mobile Toggle */}
@@ -191,16 +193,20 @@ export default function Navbar() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navLinks.length * 0.05 }}
               >
-                <a href="/https://github.com/Kz-Himel">
-                <motion.button
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
+                <a
+                  href="https://github.com/Kz-Himel"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <FaGithub size={16} />
-                  Github
-                </motion.button>
-              </a>
+                  <motion.button
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent text-bg font-semibold text-sm transition-all duration-300"
+                  >
+                    <FaGithub size={16} />
+                    Github
+                  </motion.button>
+                </a>
               </motion.li>
             </ul>
           </motion.div>

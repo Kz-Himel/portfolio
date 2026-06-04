@@ -4,9 +4,9 @@ import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata = {
-  title: "kz Himel | Frontend Developer",
+  title: "Kz Himel | MERN Developer",
   description:
-    "Frontend Developer crafting modern, animated, and scalable web experiences using Next.js, React, and modern UI technologies.",
+    "Hunior MERN Developer crafting modern, animated, and scalable web experiences using Next.js, React, and modern UI technologies.",
   keywords: ["Frontend Developer", "Next.js", "React", "Kz Himel", "Web Developer"],
   openGraph: {
     title: "Kz Himel | Frontend Developer",
