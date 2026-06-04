@@ -1,7 +1,6 @@
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata = {
   title: "Kz Himel | MERN Developer",
@@ -20,7 +19,10 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body>
           <SmoothScroll>
-            <body>{children}</body>
+            <body>
+              <CustomCursor />
+              {children}
+              </body>
           </SmoothScroll>
       </body>
     </html>

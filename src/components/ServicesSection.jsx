@@ -7,8 +7,8 @@ import { IoColorPaletteOutline } from "react-icons/io5";
 const services = [
   {
     icon: <FiCode size={28} />,
-    title: "Frontend Development",
-    desc: "Building fast, modern web apps with Next.js and React. Clean code, great architecture, and top performance.",
+    title: "MERN Development",
+    desc: "Building fast, modern web apps with Next.js, React, Express and MongoDB. Clean code, great architecture, and top performance.",
     tags: ["Next.js", "React", "TypeScript"],
     color: "#38BDF8",
   },
