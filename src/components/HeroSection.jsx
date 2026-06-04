@@ -64,7 +64,7 @@ export default function HeroSection() {
                 <span className="gradient-text">Khayruzzaman Himel</span>
               </h1>
               <h2 className="text-xl md:text-2xl text-muted font-medium">
-                Frontend Developer | Web Developer
+                Junior MERN Developer | React Js & Next Js
               </h2>
             </motion.div>
 
