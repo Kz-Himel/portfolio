@@ -1,5 +1,144 @@
 export const projects = [
   {
+    id: "careerpilot-ai",
+    title: "CareerPilot AI",
+    description:
+      "An AI-powered career guidance platform that generates personalized career roadmaps, skill recommendations, and learning plans.",
+    longDescription:
+      "CareerPilot AI is an intelligent career guidance platform that leverages Generative AI to help users achieve their career goals. Users can set career objectives, receive personalized AI-generated roadmaps, identify skill gaps, track learning progress, and save customized career plans. The platform combines modern UI, secure authentication, analytics, and AI-powered recommendations to deliver a complete career development experience.",
+    image: "/projects/career-pilot.png",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Express.js",
+      "MongoDB",
+      "Generative AI",
+      "Better Auth",
+      "Tailwind CSS",
+      "Recharts"
+    ],
+    live: "https://careerpilot-client-kzhimel.vercel.app/",
+    github: "https://github.com/Kz-Himel/careerpilot-client",
+    featured: true,
+    year: "2026",
+    challenges:
+      "Integrating AI-generated career roadmaps with secure authentication while maintaining fast performance and a scalable architecture.",
+    features: [
+      "AI career roadmap generation",
+      "Skill gap analysis",
+      "Personalized learning plans",
+      "Career goal management",
+      "Progress tracking dashboard",
+      "Save AI roadmaps",
+      "Authentication system",
+      "Analytics & charts",
+      "Responsive UI",
+      "Protected routes",
+    ],
+  },
+
+  {
+    id: "courseflow",
+    title: "CourseFlow",
+    description:
+      "A modern TypeScript-powered course selling platform with secure authentication, course management, and student enrollment.",
+    longDescription:
+      "CourseFlow is a full-stack online learning platform developed with TypeScript, Next.js, Express, and MongoDB. Instructors can publish and manage courses, while students can browse, purchase, and track their enrolled courses through a modern dashboard. The application focuses on type safety, scalability, and a seamless user experience.",
+    image: "/projects/course-flow.png",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Express.js",
+      "MongoDB",
+      "Better Auth",
+      "Tailwind CSS"
+    ],
+    live: "https://courseflow-client.vercel.app/",
+    github: "https://github.com/Kz-Himel/courseflow-client",
+    featured: true,
+    year: "2026",
+    challenges:
+      "Designing scalable TypeScript architecture while implementing secure authentication and course management features.",
+    features: [
+      "Authentication system",
+      "Course management",
+      "Student enrollment",
+      "Instructor dashboard",
+      "Search courses",
+      "Responsive design",
+      "Protected routes",
+      "Role-based access",
+    ],
+  },
+
+  {
+    id: "prompt-verse",
+    title: "PromptVerse",
+    description:
+      "An AI prompt sharing and marketplace platform where creators can publish, discover, and manage high-quality AI prompts.",
+    longDescription:
+      "Prompt Verse is a modern AI prompt marketplace built with Next.js. Users can explore trending prompts, publish their own creations, bookmark favorites, and manage content through a secure dashboard. The platform emphasizes clean UI, authentication, scalability, and an engaging community-driven experience.",
+    image: "/projects/prompt-verse.png",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "MongoDB",
+      "Better Auth",
+      "Tailwind CSS",
+      "Hero UI"
+    ],
+    live: "https://prompt-verse-kzhimel.vercel.app/",
+    github: "https://github.com/Kz-Himel/prompt-verse",
+    featured: true,
+    year: "2026",
+    challenges:
+      "Building a scalable marketplace architecture with secure authentication and efficient prompt management.",
+    features: [
+      "Authentication system",
+      "Create & share prompts",
+      "Prompt marketplace",
+      "Bookmark prompts",
+      "Creator dashboard",
+      "Search & filtering",
+      "Responsive UI",
+      "Dark mode support",
+    ],
+  },
+
+  {
+    id: "studynook",
+    title: "StudyNook",
+    description:
+      "A full-stack study room booking platform where users can create, manage, and reserve study spaces with a seamless booking experience.",
+    longDescription:
+      "StudyNook is a modern study room booking platform built with the MERN stack. Users can create study rooms, browse available spaces, make bookings, and manage reservations through an intuitive dashboard. The application focuses on responsive design, secure authentication, and efficient room management for students and organizations.",
+    image: "/projects/study-nook.png",
+    tags: [
+      "React.js",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT"
+    ],
+    live: "https://study-nook-kzhimel.vercel.app/",
+    github: "https://github.com/Kz-Himel/study-nook",
+    featured: true,
+    year: "2026",
+    challenges:
+      "Managing booking conflicts, implementing protected routes, and ensuring real-time room availability.",
+    features: [
+      "Authentication system",
+      "Study room management",
+      "Room booking system",
+      "Booking history",
+      "Admin dashboard",
+      "Responsive design",
+      "Search & filtering",
+      "Role-based access",
+    ],
+  },
+  {
     id: "ah-tilecraft",
     title: "AH TileCraft",
     description:
