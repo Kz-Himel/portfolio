@@ -27,11 +27,11 @@ const skills = [
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 15 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, delay: i * 0.05, ease: "easeOut" },
+    transition: { duration: 0.4, delay: i * 0.03, ease: "easeOut" },
   }),
 };
 
@@ -44,45 +44,47 @@ export default function SkillsSection() {
       : skills.filter((s) => s.category === activeCategory);
 
   return (
-    <section className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/6 rounded-full blur-[120px] -z-10" />
+    <section className="py-16 md:py-20 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" />
 
-      <div className="max-w-6xl mx-auto">
+      {/* Main Container aligned with Navbar and About standard */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
+          transition={{ duration: 0.5 }}
+          className="mb-8 md:mb-10"
         >
-          <span className="text-accent text-sm font-semibold uppercase tracking-widest">
+          <span className="text-accent text-xs font-semibold uppercase tracking-widest">
             Skills
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-text-main mt-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-main mt-1.5 tracking-tight">
             Tech I Work With
           </h2>
-          <p className="text-muted mt-3 max-w-lg">
-            A curated set of technologies I use to build fast, modern, and beautiful
-            web applications.
+          <p className="text-muted text-xs md:text-sm mt-2 max-w-md leading-relaxed">
+            A curated set of technologies I use to build fast, responsive, and modern web applications.
           </p>
         </motion.div>
 
         {/* Category Filter */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap gap-3 mb-12"
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="flex flex-wrap gap-2 md:gap-2.5 mb-8"
         >
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                 activeCategory === cat
-                  ? "bg-accent text-bg shadow-lg shadow-accent/20"
+                  ? "bg-accent text-bg shadow-md shadow-accent/20"
                   : "glass border border-white/8 text-muted hover:text-text-main hover:border-accent/20"
               }`}
             >
@@ -92,7 +94,7 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5">
           {filtered.map((skill, i) => (
             <motion.div
               key={skill.name}
@@ -103,30 +105,45 @@ export default function SkillsSection() {
               viewport={{ once: true }}
               custom={i}
               whileHover={{
-                y: -6,
-                borderColor: "rgba(56,189,248,0.35)",
-                boxShadow: "0 8px 30px rgba(56,189,248,0.12)",
+                y: -4,
+                borderColor: "rgba(56,189,248,0.3)",
+                boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
               }}
-              className="glass border border-white/8 rounded-2xl p-4 flex flex-col items-center gap-3 cursor-default transition-all duration-300 group"
+              className="glass border border-white/8 rounded-xl p-3.5 flex flex-col items-center gap-2.5 cursor-default transition-all duration-300 group"
             >
-              <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
+              {/* Icon */}
+              <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
                 {skill.icon}
               </span>
-              <span className="text-text-main text-sm font-medium text-center">
+
+              {/* Skill Name */}
+              <span className="text-text-main text-xs font-medium text-center truncate w-full">
                 {skill.name}
               </span>
 
-              {/* Progress bar */}
-              <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: i * 0.04, ease: "easeOut" }}
-                  className="h-full rounded-full bg-gradient-to-r from-accent to-soft-accent"
-                />
+              {/* Animated Progress Bar Container */}
+              <div className="w-full space-y-1 mt-1">
+                <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 1.2,
+                      delay: 0.1 + i * 0.03,
+                      ease: [0.25, 1, 0.5, 1], // Custom smooth ease-out curve
+                    }}
+                    className="h-full rounded-full bg-gradient-to-r from-accent to-sky-400"
+                  />
+                </div>
+                
+                {/* Percentage Text */}
+                <div className="text-right">
+                  <span className="text-[10px] text-muted font-mono">
+                    {skill.level}%
+                  </span>
+                </div>
               </div>
-              <span className="text-xs text-muted">{skill.level}%</span>
             </motion.div>
           ))}
         </div>

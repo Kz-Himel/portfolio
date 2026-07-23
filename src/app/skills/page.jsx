@@ -1,4 +1,3 @@
-import MainLayout from "@/components/layout/MainLayout";
 import SkillsSection from "@/components/SkillsSection";
 
 export const metadata = {
@@ -8,10 +7,8 @@ export const metadata = {
 
 export default function SkillsPage() {
   return (
-    <MainLayout>
       <div className="pt-10">
         <SkillsSection />
       </div>
-    </MainLayout>
   );
 }

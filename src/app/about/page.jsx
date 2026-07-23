@@ -1,5 +1,4 @@
 import AboutSection from "@/components/AboutSection";
-import MainLayout from "@/components/layout/MainLayout";
 
 export const metadata = {
   title: "About | Kz Himel",
@@ -9,10 +8,8 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <MainLayout>
       <div className="pt-10">
         <AboutSection />
       </div>
-    </MainLayout>
   );
 }
