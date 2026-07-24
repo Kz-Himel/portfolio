@@ -10,8 +10,6 @@ import Footer from "@/components/Footer";
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col justify-between overflow-x-hidden">
-      {/* Fixed Navigation Bar */}
-      <Navbar />
 
       {/* Main Content Sections */}
       <main className="flex-grow">

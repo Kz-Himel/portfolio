@@ -8,18 +8,18 @@ import { FaGithub } from "react-icons/fa";
 import Logo from "./Logo";
 
 const navLinks = [
-  { href: "#hero", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#services", label: "Services" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#hero", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#services", label: "Services" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("#hero");
+  const [activeSection, setActiveSection] = useState("/#hero");
 
   useEffect(() => {
     // 1. Navbar background change on scroll
@@ -39,7 +39,7 @@ export default function Navbar() {
     const handleIntersect = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setActiveSection(`#${entry.target.id}`);
+          setActiveSection(`/#${entry.target.id}`);
         }
       });
     };
@@ -48,7 +48,7 @@ export default function Navbar() {
 
     // Observe each section with matching IDs
     navLinks.forEach((link) => {
-      const sectionId = link.href.replace("#", "");
+      const sectionId = link.href.replace("/#", "");
       const element = document.getElementById(sectionId);
       if (element) observer.observe(element);
     });
