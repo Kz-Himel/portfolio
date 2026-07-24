@@ -5,6 +5,7 @@ import { FiMessageCircle, FiDownload } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
+import TypewriterText from "./TypewriterText";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -67,8 +68,14 @@ export default function HeroSection() {
                 Hi, I&apos;m{" "}
                 <span className="gradient-text">Khayruzzaman Himel</span>
               </h1>
-              <h2 className="text-lg md:text-xl text-muted font-medium">
-                Junior MERN Developer | React Js & Next Js
+              <h2 className="text-lg md:text-xl gradient-text font-medium">
+                <TypewriterText
+                  words={[
+                    "Junior MERN Developer",
+                    "React Js & Next Js Developer",
+                    "Frontend Focused Fullstack Dev",
+                  ]}
+                />
               </h2>
             </motion.div>
 
@@ -117,7 +124,6 @@ export default function HeroSection() {
               </Link>
               <motion.a
                 href="/MERN_Developer_Khayruzzaman_Himel.pdf"
-                download="MERN_Developer_Khayruzzaman_Himel.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.04 }}
@@ -207,7 +213,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.1 }}
                 className="absolute top-1/2 -right-8 glass border border-white/10 rounded-xl px-2.5 py-1.5 text-[11px] font-medium text-purple-400 shadow-lg"
               >
-                🚀 Tailwind
+                🚀 TypeScript
               </motion.div>
             </div>
           </motion.div>
