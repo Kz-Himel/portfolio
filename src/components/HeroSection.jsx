@@ -123,7 +123,7 @@ export default function HeroSection() {
                 </motion.button>
               </Link>
               <motion.a
-                href="/MERN_Developer_Khayruzzaman_Himel.pdf"
+                href="/Khayruzzaman_Himel_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.04 }}
