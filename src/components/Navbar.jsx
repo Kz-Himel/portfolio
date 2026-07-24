@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaGithub } from "react-icons/fa";
@@ -17,6 +18,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("/#hero");
@@ -29,7 +31,20 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
 
-    // 2. Dynamic active section highlighting on scroll
+    // If we're not on the home page, there are no #sections to observe.
+    // Just highlight the nav link whose href matches the current route
+    // (e.g. "/projects" -> highlight "Projects"), and skip the observer.
+    if (pathname !== "/") {
+      const matchedLink = navLinks.find(
+        (link) => link.href.replace("/#", "/") === pathname
+      );
+      setActiveSection(matchedLink ? matchedLink.href : "");
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+
+    // 2. Dynamic active section highlighting on scroll (home page only)
     const observerOptions = {
       root: null,
       rootMargin: "-20% 0px -70% 0px", // triggers active state when section enters upper-middle view
@@ -57,7 +72,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       observer.disconnect();
     };
-  }, []);
+  }, [pathname]); // re-run whenever the route changes so the observer re-attaches to fresh DOM nodes
 
   const handleCloseMenu = () => {
     setMenuOpen(false);
