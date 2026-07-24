@@ -1,14 +1,14 @@
-import ProjectsSection from "@/components/ProjectsSection";
+import AllProjectsPage from "@/components/AllProjectsPage";
 
 export const metadata = {
-  title: "Services | Kz Himel",
-  description: "Frontend development services including UI/UX implementation, performance optimization, and more.",
+  title: "Projects | Kz Himel",
+  description: "A collection of full-stack and frontend projects built by Kz Himel.",
 };
 
-export default function ServicesPage() {
+export default function ProjectsPage() {
   return (
     <div className="pt-10">
-      <ProjectsSection />
+      <AllProjectsPage />
     </div>
   );
 }
