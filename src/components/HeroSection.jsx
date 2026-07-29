@@ -143,9 +143,9 @@ export default function HeroSection() {
               className="flex gap-7 pt-2"
             >
               {[
-                { value: "20+", label: "Projects" },
-                { value: "1+", label: "Years Exp." },
-                { value: "10+", label: "Clients" },
+                { value: "30+", label: "Projects" },
+                { value: "1.5+", label: "Years Exp." },
+                { value: "12+", label: "Clients" },
               ].map((stat) => (
                 <motion.div
                   key={stat.label}
