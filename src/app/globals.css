@@ -3,12 +3,13 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0f172a;
-  --secondary: #111827;
-  --accent: #38bdf8;
-  --soft-accent: #7dd3fc;
-  --text-main: #e5e7eb;
-  --muted: #94a3b8;
+  --bg: #0a0518;
+  --secondary: #150a2e;
+  --accent: #a78bfa;
+  --soft-accent: #60a5fa;
+  --magenta: #c026d3;
+  --text-main: #f1e9ff;
+  --muted: #9d94b8;
 }
 
 * {
@@ -48,15 +49,15 @@ h4 {
 
 /* Glass card */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #38bdf8, #7dd3fc, #a78bfa);
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #c026d3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -64,17 +65,48 @@ h4 {
 
 /* Glow effect */
 .glow {
-  box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.18);
+}
+
+/* Cosmic atmosphere backdrop — sits behind hero/sections */
+.cosmic-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(96, 165, 250, 0.15), transparent),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(192, 38, 211, 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 10% 60%, rgba(167, 139, 250, 0.12), transparent),
+    var(--bg);
+}
+
+/* Floating embers/particles */
+@keyframes drift {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-120px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.animate-drift {
+  animation: drift linear infinite;
 }
 
 /* Animated border */
 @keyframes borderGlow {
   0%,
   100% {
-    border-color: rgba(56, 189, 248, 0.3);
+    border-color: rgba(167, 139, 250, 0.3);
   }
   50% {
-    border-color: rgba(56, 189, 248, 0.8);
+    border-color: rgba(192, 38, 211, 0.7);
   }
 }
 
