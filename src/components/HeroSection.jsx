@@ -1,3 +1,229 @@
+// "use client";
+
+// import { motion } from "framer-motion";
+// import { FiMessageCircle, FiDownload } from "react-icons/fi";
+// import { BsStars } from "react-icons/bs";
+// import Link from "next/link";
+// import Image from "next/image";
+// import TypewriterText from "./TypewriterText";
+
+// const fadeUp = {
+//   hidden: { opacity: 0, y: 30 },
+//   visible: (i = 0) => ({
+//     opacity: 1,
+//     y: 0,
+//     transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" },
+//   }),
+// };
+
+// export default function HeroSection() {
+//   return (
+//     <section className="relative min-h-[92vh] flex items-center pt-20 pb-10 overflow-hidden">
+//       {/* Background blobs */}
+//       <div className="absolute inset-0 -z-10">
+//         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/8 rounded-full blur-[120px] animate-pulse-glow" />
+//         <div
+//           className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-[100px] animate-pulse-glow"
+//           style={{ animationDelay: "2s" }}
+//         />
+//         <div
+//           className="absolute inset-0 opacity-[0.03]"
+//           style={{
+//             backgroundImage: `linear-gradient(rgba(56,189,248,1) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,1) 1px, transparent 1px)`,
+//             backgroundSize: "60px 60px",
+//           }}
+//         />
+//       </div>
+
+//       {/* WIDER + same alignment standard as Navbar (max-w-7xl px-6) */}
+//       <div className="max-w-7xl mx-auto px-6 w-full">
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+//           {/* Left Content */}
+//           <div className="space-y-6">
+//             <motion.div
+//               variants={fadeUp}
+//               initial="hidden"
+//               animate="visible"
+//               custom={0}
+//               whileHover={{ scale: 1.03 }}
+//               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-accent/20 text-accent text-xs font-medium"
+//             >
+//               <motion.span
+//                 animate={{ rotate: [0, 15, -15, 0] }}
+//                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+//               >
+//                 <BsStars size={13} />
+//               </motion.span>
+//               Available for freelance work
+//             </motion.div>
+
+//             <motion.div
+//               variants={fadeUp}
+//               initial="hidden"
+//               animate="visible"
+//               custom={1}
+//               className="space-y-1.5"
+//             >
+//               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-main leading-[1.08]">
+//                 Hi, I&apos;m{" "}
+//                 <span className="gradient-text">Khayruzzaman Himel</span>
+//               </h1>
+//               <h2 className="text-lg md:text-xl gradient-text font-medium">
+//                 <TypewriterText
+//                   words={[
+//                     "Junior MERN Developer",
+//                     "React Js & Next Js Developer",
+//                     "Frontend Focused Fullstack Dev",
+//                   ]}
+//                 />
+//               </h2>
+//             </motion.div>
+
+//             <motion.p
+//               variants={fadeUp}
+//               initial="hidden"
+//               animate="visible"
+//               custom={2}
+//               className="text-muted text-[15px] leading-relaxed max-w-xl"
+//             >
+//               I build responsive, animated, and scalable web applications using{" "}
+//               <span className="text-accent">Next.js</span>,{" "}
+//               <span className="text-accent">React</span>, and modern UI
+//               technologies. Crafting digital experiences that feel alive.
+//             </motion.p>
+
+//             <motion.div
+//               variants={fadeUp}
+//               initial="hidden"
+//               animate="visible"
+//               custom={3}
+//               className="flex flex-wrap gap-3.5"
+//             >
+//               <Link href="/contact">
+//                 <motion.button
+//                   whileHover={{
+//                     scale: 1.04,
+//                     boxShadow: "0 0 30px rgba(56,189,248,0.3)",
+//                   }}
+//                   whileTap={{ scale: 0.96 }}
+//                   animate={{
+//                     boxShadow: [
+//                       "0 0 0px rgba(56,189,248,0)",
+//                       "0 0 16px rgba(56,189,248,0.18)",
+//                       "0 0 0px rgba(56,189,248,0)",
+//                     ],
+//                   }}
+//                   transition={{
+//                     boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+//                   }}
+//                   className="flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-bg font-semibold text-[13px] transition-all duration-300"
+//                 >
+//                   <FiMessageCircle size={15} />
+//                   Contact Me
+//                 </motion.button>
+//               </Link>
+//               <motion.a
+//                 href="/Khayruzzaman_Himel_CV.pdf"
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//                 whileHover={{ scale: 1.04 }}
+//                 whileTap={{ scale: 0.96 }}
+//                 className="flex items-center gap-2 px-6 py-3 rounded-xl glass border border-white/10 text-text-main font-semibold text-[13px] hover:border-accent/30 transition-all duration-300 cursor-pointer"
+//               >
+//                 <FiDownload size={15} />
+//                 Resume
+//               </motion.a>
+//             </motion.div>
+
+//             <motion.div
+//               variants={fadeUp}
+//               initial="hidden"
+//               animate="visible"
+//               custom={4}
+//               className="flex gap-7 pt-2"
+//             >
+//               {[
+//                 { value: "30+", label: "Projects" },
+//                 { value: "1.5+", label: "Years Exp." },
+//                 { value: "12+", label: "Clients" },
+//               ].map((stat) => (
+//                 <motion.div
+//                   key={stat.label}
+//                   whileHover={{ y: -3 }}
+//                   className="text-center cursor-default"
+//                 >
+//                   <div className="text-xl font-bold gradient-text">
+//                     {stat.value}
+//                   </div>
+//                   <div className="text-[11px] text-muted mt-0.5">{stat.label}</div>
+//                 </motion.div>
+//               ))}
+//             </motion.div>
+//           </div>
+
+//           {/* Right — Image */}
+//           <motion.div
+//             initial={{ opacity: 0, scale: 0.85 }}
+//             animate={{ opacity: 1, scale: 1 }}
+//             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+//             className="relative flex justify-center lg:justify-end"
+//           >
+//             <div className="relative w-64 h-64 md:w-80 md:h-80">
+//               <motion.div
+//                 animate={{ opacity: [0.6, 1, 0.6] }}
+//                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+//                 className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/20 via-transparent to-purple-500/20 blur-2xl scale-110"
+//               />
+
+//               <div
+//                 className="absolute inset-0 rounded-full border-2 border-dashed border-accent/20 animate-spin"
+//                 style={{ animationDuration: "20s" }}
+//               />
+//               <div className="absolute inset-4 rounded-full border border-accent/10" />
+
+//               <div className="absolute inset-6 rounded-full glass border-2 animate-border-glow overflow-hidden animate-float">
+//                 <Image
+//                   src="/profile.png"
+//                   alt="Kz Himel"
+//                   fill
+//                   className="object-cover"
+//                   priority
+//                 />
+//               </div>
+
+//               <motion.div
+//                 animate={{ y: [0, -8, 0] }}
+//                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+//                 whileHover={{ scale: 1.1 }}
+//                 className="absolute -top-2 -right-4 glass border border-white/10 rounded-xl px-2.5 py-1.5 text-[11px] font-medium text-accent shadow-lg"
+//               >
+//                 ⚡ Next.js 15
+//               </motion.div>
+//               <motion.div
+//                 animate={{ y: [0, 8, 0] }}
+//                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+//                 whileHover={{ scale: 1.1 }}
+//                 className="absolute -bottom-4 -left-4 glass border border-white/10 rounded-xl px-2.5 py-1.5 text-[11px] font-medium text-soft-accent shadow-lg"
+//               >
+//                 🎨 Framer Motion
+//               </motion.div>
+//               <motion.div
+//                 animate={{ x: [0, -6, 0] }}
+//                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+//                 whileHover={{ scale: 1.1 }}
+//                 className="absolute top-1/2 -right-8 glass border border-white/10 rounded-xl px-2.5 py-1.5 text-[11px] font-medium text-purple-400 shadow-lg"
+//               >
+//                 🚀 TypeScript
+//               </motion.div>
+//             </div>
+//           </motion.div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -18,21 +244,34 @@ const fadeUp = {
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[92vh] flex items-center pt-20 pb-10 overflow-hidden">
-      {/* Background blobs */}
+    <section className="cosmic-bg relative min-h-[92vh] flex items-center pt-24 pb-10 overflow-hidden">
+      {/* Cosmic atmosphere background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/8 rounded-full blur-[120px] animate-pulse-glow" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-soft-accent/10 rounded-full blur-[120px] animate-pulse-glow" />
         <div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-[100px] animate-pulse-glow"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-magenta/10 rounded-full blur-[110px] animate-pulse-glow"
           style={{ animationDelay: "2s" }}
         />
         <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(56,189,248,1) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,1) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
+          className="absolute top-1/3 right-1/3 w-64 h-64 bg-accent/10 rounded-full blur-[100px] animate-pulse-glow"
+          style={{ animationDelay: "1s" }}
         />
+
+        {/* Drifting particles */}
+        {[...Array(14)].map((_, i) => (
+          <span
+            key={i}
+            className="absolute rounded-full bg-soft-accent/60 animate-drift"
+            style={{
+              width: `${2 + (i % 3)}px`,
+              height: `${2 + (i % 3)}px`,
+              left: `${(i * 7 + 5) % 100}%`,
+              bottom: `${(i * 11) % 60}%`,
+              animationDuration: `${6 + (i % 5)}s`,
+              animationDelay: `${i * 0.6}s`,
+            }}
+          />
+        ))}
       </div>
 
       {/* WIDER + same alignment standard as Navbar (max-w-7xl px-6) */}
@@ -66,7 +305,8 @@ export default function HeroSection() {
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-main leading-[1.08]">
                 Hi, I&apos;m{" "}
-                <span className="gradient-text">Khayruzzaman Himel</span>
+                <span className="italic gradient-text">Khayruzzaman</span>{" "}
+                Himel
               </h1>
               <h2 className="text-lg md:text-xl gradient-text font-medium">
                 <TypewriterText
@@ -103,14 +343,14 @@ export default function HeroSection() {
                 <motion.button
                   whileHover={{
                     scale: 1.04,
-                    boxShadow: "0 0 30px rgba(56,189,248,0.3)",
+                    boxShadow: "0 0 30px rgba(192,38,211,0.35)",
                   }}
                   whileTap={{ scale: 0.96 }}
                   animate={{
                     boxShadow: [
-                      "0 0 0px rgba(56,189,248,0)",
-                      "0 0 16px rgba(56,189,248,0.18)",
-                      "0 0 0px rgba(56,189,248,0)",
+                      "0 0 0px rgba(167,139,250,0)",
+                      "0 0 16px rgba(167,139,250,0.2)",
+                      "0 0 0px rgba(167,139,250,0)",
                     ],
                   }}
                   transition={{
@@ -168,20 +408,25 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="relative flex justify-center lg:justify-end"
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
+            <div className="relative w-72 h-72 md:w-96 md:h-96">
+              {/* Dramatic cosmic glow ring — LoL-style */}
               <motion.div
-                animate={{ opacity: [0.6, 1, 0.6] }}
+                animate={{ opacity: [0.5, 1, 0.5], scale: [1.05, 1.15, 1.05] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/20 via-transparent to-purple-500/20 blur-2xl scale-110"
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-soft-accent/30 via-accent/20 to-magenta/30 blur-3xl scale-125"
               />
 
               <div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-accent/20 animate-spin"
+                className="absolute inset-0 rounded-full border-2 border-dashed border-accent/25 animate-spin"
                 style={{ animationDuration: "20s" }}
               />
-              <div className="absolute inset-4 rounded-full border border-accent/10" />
+              <div
+                className="absolute inset-3 rounded-full border border-magenta/20 animate-spin"
+                style={{ animationDuration: "26s", animationDirection: "reverse" }}
+              />
+              <div className="absolute inset-6 rounded-full border border-accent/10" />
 
-              <div className="absolute inset-6 rounded-full glass border-2 animate-border-glow overflow-hidden animate-float">
+              <div className="absolute inset-9 rounded-full glass border-2 animate-border-glow overflow-hidden animate-float shadow-[0_0_60px_rgba(167,139,250,0.25)]">
                 <Image
                   src="/profile.png"
                   alt="Kz Himel"
@@ -191,27 +436,42 @@ export default function HeroSection() {
                 />
               </div>
 
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                whileHover={{ scale: 1.1 }}
-                className="absolute -top-2 -right-4 glass border border-white/10 rounded-xl px-2.5 py-1.5 text-[11px] font-medium text-accent shadow-lg"
-              >
-                ⚡ Next.js 15
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                whileHover={{ scale: 1.1 }}
-                className="absolute -bottom-4 -left-4 glass border border-white/10 rounded-xl px-2.5 py-1.5 text-[11px] font-medium text-soft-accent shadow-lg"
-              >
-                🎨 Framer Motion
-              </motion.div>
+              {/* Stacked overlapping cards — LEONA / LUX style */}
+              <div className="absolute -bottom-8 -left-10 flex items-end gap-3">
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                  whileHover={{ scale: 1.06, y: -6 }}
+                  className="glass border border-white/10 rounded-2xl px-4 py-3 shadow-xl backdrop-blur-xl"
+                >
+                  <div className="text-[10px] uppercase tracking-wider text-soft-accent font-semibold">
+                    Frontend
+                  </div>
+                  <div className="text-[12px] font-bold text-text-main mt-0.5">
+                    Next.js & React
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  whileHover={{ scale: 1.06, y: 8 }}
+                  className="glass border border-white/10 rounded-2xl px-4 py-3 shadow-xl backdrop-blur-xl hidden sm:block"
+                >
+                  <div className="text-[10px] uppercase tracking-wider text-magenta font-semibold">
+                    Backend
+                  </div>
+                  <div className="text-[12px] font-bold text-text-main mt-0.5">
+                    Node & MongoDB
+                  </div>
+                </motion.div>
+              </div>
+
               <motion.div
                 animate={{ x: [0, -6, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 whileHover={{ scale: 1.1 }}
-                className="absolute top-1/2 -right-8 glass border border-white/10 rounded-xl px-2.5 py-1.5 text-[11px] font-medium text-purple-400 shadow-lg"
+                className="absolute top-4 -right-6 glass border border-white/10 rounded-xl px-2.5 py-1.5 text-[11px] font-medium text-accent shadow-lg"
               >
                 🚀 TypeScript
               </motion.div>
