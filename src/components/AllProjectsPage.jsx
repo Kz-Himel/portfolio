@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { projects } from "@/data/projects";
+import projects from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import PageHero from "./ui/PageHero";
 import MagneticButton from "./ui/MagneticButton";
@@ -82,40 +82,33 @@ export default function AllProjectsPage() {
         </div>
 
         <AnimatePresence mode="wait">
-          <motion.div
-            key={cat}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -14 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5 md:auto-rows-[220px]"
-          >
-            {filtered.map((p, i) => {
-              const sizeCycle = ["xl", "md", "sm", "lg", "md", "md", "sm", "lg", "xl", "md", "sm"];
-              return (
-                <ProjectCard
-                  key={p.id}
-                  project={p}
-                  bentoSize={sizeCycle[i % sizeCycle.length]}
-                />
-              );
-            })}
+  <motion.div
+    key={cat}
+    initial={{ opacity: 0, y: 18 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -14 }}
+    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+  >
+    {filtered.map((p) => (
+      <ProjectCard key={p.id} project={p} />
+    ))}
 
-            {filtered.length === 0 && (
-              <div className="md:col-span-12 text-center py-20">
-                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted mb-2">
-                  No projects in {cat} yet
-                </p>
-                <button
-                  onClick={() => setCat("All")}
-                  className="text-cyan-neon hover:underline text-sm"
-                >
-                  View all projects →
-                </button>
-              </div>
-            )}
-          </motion.div>
-        </AnimatePresence>
+    {filtered.length === 0 && (
+      <div className="sm:col-span-2 lg:col-span-3 text-center py-20">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted mb-2">
+          No projects in {cat} yet
+        </p>
+        <button
+          onClick={() => setCat("All")}
+          className="text-cyan-neon hover:underline text-sm"
+        >
+          View all projects →
+        </button>
+      </div>
+    )}
+  </motion.div>
+</AnimatePresence>
 
         {/* Bottom CTA */}
         <div className="relative mt-16 md:mt-24 text-center">

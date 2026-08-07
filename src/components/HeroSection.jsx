@@ -110,7 +110,7 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* LEFT: Copy + code */}
-          <div className="lg:col-span-7 space-y-7 relative z-10">
+          <div className="lg:col-span-7 space-y-6 relative z-10">
             <Reveal delay={0}>
               <div className="inline-flex items-center gap-2.5 rounded-full hud-panel border border-cyan/25 px-3.5 py-1.5 shadow-[0_0_24px_-6px_rgba(6,182,212,0.4)]">
                 <motion.span
@@ -118,9 +118,9 @@ export default function HeroSection() {
                   transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
                   className="text-cyan-neon"
                 >
-                  <HiSparkles size={13} />
+                  <HiSparkles size={12} />
                 </motion.span>
-                <span className="text-[11.5px] font-semibold tracking-wide text-cyan-neon/95 font-mono uppercase">
+                <span className="text-[10.5px] font-semibold tracking-wide text-cyan-neon/95 font-mono uppercase">
                   Available for freelance · Q3 2026
                 </span>
                 <span className="relative flex h-1.5 w-1.5">
@@ -130,28 +130,28 @@ export default function HeroSection() {
               </div>
             </Reveal>
 
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               <Reveal delay={0.08} y={40} blur>
-                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-text-muted mb-2">
-                  // Hello World, I am
+                <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-text-muted mb-2">
+                  Hello World, I am
                 </p>
               </Reveal>
 
               <Reveal delay={0.14} y={48} blur>
                 <h1 className="font-display font-bold leading-[0.98] tracking-tight">
-                  <span className="block text-[44px] sm:text-6xl lg:text-[5.6rem] text-text-main">
+                  <span className="block text-[36px] sm:text-5xl lg:text-[4.6rem] text-text-main">
                     Khayruzzaman
                   </span>
-                  <span className="block text-[40px] sm:text-5xl lg:text-[4.5rem] gradient-text italic mt-1">
+                  <span className="block text-[32px] sm:text-4xl lg:text-[3.7rem] gradient-text italic mt-1">
                     Himel
                   </span>
                 </h1>
               </Reveal>
 
               <Reveal delay={0.26} y={24}>
-                <div className="flex items-center gap-3 mt-4">
+                <div className="flex items-center gap-3 mt-3">
                   <span className="h-px w-10 bg-gradient-to-r from-cyan to-transparent" />
-                  <h2 className="text-lg md:text-xl lg:text-2xl text-text-soft font-medium">
+                  <h2 className="text-base md:text-lg lg:text-xl text-text-soft font-medium">
                     <span className="font-mono text-cyan-neon/80 mr-1">&gt;</span>{" "}
                     <TypewriterText
                       words={[
@@ -167,7 +167,7 @@ export default function HeroSection() {
             </div>
 
             <Reveal delay={0.32} y={20} blur>
-              <p className="text-text-soft text-sm sm:text-[15px] leading-relaxed max-w-xl">
+              <p className="text-text-soft text-[13px] sm:text-sm leading-relaxed max-w-lg">
                 I engineer responsive, animated, and scalable web experiences
                 with <span className="text-cyan-neon font-medium">Next.js</span>,{" "}
                 <span className="text-violet-neon font-medium">React</span> &
@@ -178,17 +178,17 @@ export default function HeroSection() {
             </Reveal>
 
             <Reveal delay={0.38} y={16}>
-              <div className="flex flex-wrap gap-3.5 items-center">
+              <div className="flex flex-wrap gap-3 items-center">
                 <MagneticButton
                   as={Link}
                   href="/#contact"
                   strength={24}
-                  className="btn-primary inline-flex items-center gap-2 px-5.5 py-3 rounded-xl text-[13px] shadow-glow-cyan"
+                  className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[12px] shadow-glow-cyan"
                   whileHover={{ scale: 1.03 }}
                 >
-                  <FiMessageCircle size={15} />
+                  <FiMessageCircle size={14} />
                   <span className="font-semibold">Start a Project</span>
-                  <FiArrowRight size={14} className="-mr-1 opacity-90" />
+                  <FiArrowRight size={13} className="-mr-1 opacity-90" />
                 </MagneticButton>
 
                 <MagneticButton
@@ -197,18 +197,18 @@ export default function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   strength={20}
-                  className="btn-ghost inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] border"
+                  className="btn-ghost inline-flex items-center gap-2 px-4.5 py-2.5 rounded-xl text-[12px] border"
                   whileHover={{ scale: 1.03 }}
                 >
-                  <FiDownload size={15} />
-                  <span className="font-semibold">Download CV</span>
+                  <FiDownload size={14} />
+                  <span className="font-semibold">Resume</span>
                 </MagneticButton>
               </div>
             </Reveal>
 
             {/* STATS row */}
             <Reveal delay={0.46} y={16}>
-              <div className="grid grid-cols-3 gap-3 max-w-lg pt-3">
+              <div className="grid grid-cols-3 gap-2.5 max-w-md pt-2">
                 {[
                   { v: 30, s: "+", l: "Projects" },
                   { v: 1.5, s: "+", l: "Years Exp.", dec: 1 },
@@ -221,12 +221,12 @@ export default function HeroSection() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 + i * 0.06, duration: 0.5 }}
                     whileHover={{ y: -3 }}
-                    className="hud-panel rounded-2xl border border-cyan/15 px-3.5 py-3.5 text-center"
+                    className="hud-panel rounded-xl border border-cyan/15 px-2.5 py-2.5 text-center"
                   >
-                    <div className="font-display font-bold text-[22px] md:text-[26px] leading-none gradient-text">
+                    <div className="font-display font-bold text-[18px] md:text-[21px] leading-none gradient-text">
                       <Counter to={it.v} decimals={it.dec || 0} suffix={it.s} />
                     </div>
-                    <div className="text-[10.5px] text-text-muted mt-1.5 tracking-wide uppercase font-medium">
+                    <div className="text-[9px] text-text-muted mt-1 tracking-wide uppercase font-medium">
                       {it.l}
                     </div>
                   </motion.div>
@@ -238,21 +238,21 @@ export default function HeroSection() {
             <Reveal delay={0.52} y={18} blur>
               <motion.div
                 style={{ transform: depthTranslate(-14) }}
-                className="relative mt-6 max-w-md"
+                className="relative mt-5 max-w-sm"
               >
-                <div className="hud-panel rounded-2xl border border-cyan/20 p-4 shadow-[0_20px_60px_-20px_rgba(139,92,246,0.35)]">
+                <div className="hud-panel rounded-2xl border border-cyan/20 p-3.5 shadow-[0_20px_60px_-20px_rgba(139,92,246,0.35)]">
                   {/* window chrome */}
-                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/5">
+                  <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-white/5">
                     <div className="flex items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-magenta-glow/70" />
                       <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
                       <span className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
                     </div>
-                    <div className="font-mono text-[9.5px] text-text-muted tracking-wider uppercase">
+                    <div className="font-mono text-[9px] text-text-muted tracking-wider uppercase">
                       himel.ts
                     </div>
-                    <span className="text-[10px] text-cyan-neon/80 font-mono flex items-center gap-1">
-                      <FiCpu size={10} /> ready
+                    <span className="text-[9px] text-cyan-neon/80 font-mono flex items-center gap-1">
+                      <FiCpu size={9} /> ready
                     </span>
                   </div>
 
@@ -312,13 +312,7 @@ export default function HeroSection() {
                   className="absolute inset-[10%] rounded-full border border-violet/25 animate-spin-reverse"
                   style={{ transform: "scale(1)" }}
                 />
-                <div
-                  className="absolute inset-[20%] rounded-full border border-magenta-glow/15"
-                  style={{
-                    boxShadow:
-                      "inset 0 0 40px rgba(6,182,212,0.08), inset 0 0 60px rgba(139,92,246,0.06)",
-                  }}
-                />
+                {/* removed extra inner magenta ring for less visual clutter */}
 
                 {/* tick marks */}
                 {Array.from({ length: 40 }).map((_, i) => {

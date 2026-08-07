@@ -79,9 +79,6 @@ export default function Logo() {
         <span className="font-display font-semibold text-[1.05rem] gradient-text hidden sm:block">
           Himel
         </span>
-        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-cyan-neon/70 hidden sm:block mt-0.5">
-          // dev
-        </span>
       </div>
     </Link>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function PageHero({
   eyebrow,
@@ -10,6 +10,8 @@ export default function PageHero({
   stats,
 }) {
   const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
 
   return (
     <section
@@ -24,8 +26,8 @@ export default function PageHero({
           background:
             "radial-gradient(ellipse at center, rgba(139,92,246,0.18), rgba(34,211,238,0.12) 40%, transparent 70%)",
           filter: "blur(40px)",
-          y: use(scrollYProgress, [0, 1], [0, 80]),
-          opacity: 1 - use(scrollYProgress, [0, 1], [0, 0.7]),
+          y,
+          opacity,
         }}
       />
 

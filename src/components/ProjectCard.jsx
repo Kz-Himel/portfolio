@@ -6,19 +6,10 @@ import { motion } from "framer-motion";
 import { FiExternalLink, FiGithub, FiArrowRight } from "react-icons/fi";
 import TiltCard from "./ui/TiltCard";
 
-function formatTags(tags) {
-  return tags.slice(0, 4);
-}
-
-export default function ProjectCard({ project, bento = "md" }) {
-  const sizeCls =
-    bento === "xl"
-      ? "md:col-span-8 md:row-span-2 aspect-[16/10] md:aspect-auto"
-      : bento === "lg"
-        ? "md:col-span-8 aspect-[16/10]"
-        : bento === "sm"
-          ? "md:col-span-4 aspect-[4/5]"
-          : "md:col-span-4 aspect-[4/3]";
+export default function ProjectCard({ project }) {
+  const maxTags = 4;
+  const visibleTags = project.tags.slice(0, maxTags);
+  const extraTagCount = project.tags.length - visibleTags.length;
 
   return (
     <motion.div
@@ -26,10 +17,10 @@ export default function ProjectCard({ project, bento = "md" }) {
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={sizeCls}
+      className="aspect-[4/3]"
     >
-      <TiltCard max={bento === "xl" ? 7 : 9} strength={bento === "xl" ? 6 : 8} glare className="h-full">
-        <div className="group relative h-full rounded-[1.35rem] overflow-hidden hud-panel border border-cyan/15 shadow-[0_22px_70px_-22px_rgba(139,92,246,0.35)] transition-all duration-500 hover:border-cyan/35 hover:shadow-[0_30px_80px_-22px_rgba(6,182,212,0.45)]">
+      <TiltCard max={9} strength={8} glare className="h-full">
+        <div className="group relative h-full rounded-[1.35rem] overflow-hidden hud-panel border border-cyan/15 shadow-[0_22px_70px_-22px_rgba(139,92,246,0.35)] transition-all duration-500 hover:border-cyan/35 hover:shadow-[0_30px_80px_-22px_rgba(6,182,212,0.45)] flex flex-col">
           {/* Thumb */}
           <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.06]">
             <Image
@@ -37,17 +28,18 @@ export default function ProjectCard({ project, bento = "md" }) {
               alt={project.title}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
+            {/* Stronger, more consistent scrim so text is ALWAYS readable, not just on hover */}
             <div
               aria-hidden
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(5,8,22,0.0) 0%, rgba(5,8,22,0.35) 50%, rgba(5,8,22,0.92) 100%)",
+                  "linear-gradient(180deg, rgba(5,8,22,0.15) 0%, rgba(5,8,22,0.55) 45%, rgba(5,8,22,0.96) 100%)",
               }}
             />
-            {/* Grid overlay */}
+            {/* Grid overlay - hover only decoration */}
             <div
               aria-hidden
               className="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500 mix-blend-overlay"
@@ -57,7 +49,6 @@ export default function ProjectCard({ project, bento = "md" }) {
                 backgroundSize: "32px 32px",
               }}
             />
-            {/* Scan line sweep */}
             <motion.div
               aria-hidden
               className="absolute left-0 right-0 h-20 pointer-events-none opacity-0 group-hover:opacity-100"
@@ -90,92 +81,93 @@ export default function ProjectCard({ project, bento = "md" }) {
                 {project.year || "2026"}
               </div>
             </div>
-            <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-2 group-hover:translate-x-0">
-              <a
+
+            {/* Live + GitHub — ALWAYS visible now, not hover-only. This is what users actually click. */}
+            <div className="flex items-center gap-1.5">
+              <arguments
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="w-8 h-8 md:w-9 md:h-9 rounded-xl hud-panel border border-white/10 flex items-center justify-center text-text-soft hover:text-white hover:border-cyan/40 transition-all"
+                aria-label="View source on GitHub"
+                title="View source on GitHub"
+                className="w-8 h-8 md:w-9 md:h-9 rounded-xl hud-panel border border-white/15 flex items-center justify-center text-text-main hover:text-white hover:border-cyan/50 hover:bg-cyan/10 transition-all"
                 onClick={(e) => e.stopPropagation()}
               >
-                <FiGithub size={13} />
-              </a>
+                <FiGithub size={14} />
+              </arguments>
               <a
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Live site"
-                className="w-8 h-8 md:w-9 md:h-9 rounded-xl hud-panel border border-white/10 flex items-center justify-center text-text-soft hover:text-cyan-neon hover:border-cyan/40 transition-all"
+                aria-label="Open live site"
+                title="Open live site"
+                className="w-8 h-8 md:w-9 md:h-9 rounded-xl hud-panel border border-white/15 flex items-center justify-center text-text-main hover:text-cyan-neon hover:border-cyan/50 hover:bg-cyan/10 transition-all"
                 onClick={(e) => e.stopPropagation()}
               >
-                <FiExternalLink size={13} />
+                <FiExternalLink size={14} />
               </a>
             </div>
           </div>
 
           {/* Content */}
-          <div className="absolute inset-x-0 bottom-0 z-20 p-4 md:p-6 pt-16 md:pt-20 flex flex-col justify-end">
+          <div className="relative mt-auto z-20 p-4 md:p-6 flex flex-col justify-end">
+            <h3 className="font-display font-bold tracking-tight text-white mb-1.5 text-[17px] md:text-[19px] leading-[1.2]">
+              {project.title}
+            </h3>
+
+            <p
+              className="text-text-soft leading-relaxed mb-2.5 text-[12.5px] md:text-[13px] line-clamp-2"
+              style={{ maxWidth: "42ch" }}
+            >
+              {project.description}
+            </p>
+
             {/* Tech badges */}
             <div className="flex flex-wrap gap-1.5 mb-3">
-              {formatTags(project.tags).map((t) => (
+              {visibleTags.map((t) => (
                 <span
                   key={t}
                   className="tag-neon"
-                  style={{
-                    fontSize: bento === "xl" ? "10.5px" : "10px",
-                  }}
+                  style={{ fontSize: "10.5px", padding: "4px 9px" }}
                 >
                   {t}
                 </span>
               ))}
-            </div>
-            <h3
-              className={`font-display font-bold tracking-tight text-text-main mb-1.5 ${
-                bento === "xl" ? "text-[22px] md:text-[28px] leading-[1.05]" : "text-[16px] md:text-[18px] leading-[1.1]"
-              }`}
-            >
-              {project.title}
-            </h3>
-            <p
-              className={`text-text-soft leading-relaxed mb-4 line-clamp-3 ${
-                bento === "xl" ? "text-[13px] md:text-[14px]" : "text-[11.5px] md:text-[12.5px]"
-              }`}
-              style={{
-                maxWidth: bento === "xl" ? "56ch" : "44ch",
-              }}
-            >
-              {project.description}
-            </p>
-            <div className="flex items-center gap-3">
-              <Link
-                href={`/projects/${project.id}`}
-                className="inline-flex items-center gap-1.5 text-[11.5px] md:text-xs font-semibold tracking-wide group/link"
-              >
-                <span className="relative">
-                  <span className="gradient-text">View Case Study</span>
-                  <span className="absolute left-0 -bottom-0.5 w-0 h-px bg-gradient-to-r from-cyan-neon to-violet-neon transition-all duration-500 group-hover/link:w-full" />
+              {extraTagCount > 0 && (
+                <span
+                  className="tag-neon opacity-70"
+                  style={{ fontSize: "10.5px", padding: "4px 9px" }}
+                >
+                  +{extraTagCount} more
                 </span>
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-md bg-cyan/10 border border-cyan/25 text-cyan-neon transition-all duration-300 translate-x-0 group-hover/link:translate-x-1">
-                  <FiArrowRight size={10} />
-                </span>
-              </Link>
+              )}
             </div>
+
+            <Link
+              href={`/projects/${project.id}`}
+              className="shrink-0 inline-flex items-center gap-1.5 text-[12px] md:text-[13px] font-semibold tracking-wide group/link w-fit"
+            >
+              <span className="relative">
+                <span className="gradient-text">View Case Study</span>
+                <span className="absolute left-0 -bottom-0.5 w-0 h-px bg-gradient-to-r from-cyan-neon to-violet-neon transition-all duration-500 group-hover/link:w-full" />
+              </span>
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-md bg-cyan/10 border border-cyan/25 text-cyan-neon transition-all duration-300 translate-x-0 group-hover/link:translate-x-1">
+                <FiArrowRight size={10} />
+              </span>
+            </Link>
           </div>
 
           {/* Animated border pulse on hover */}
           <motion.div
             aria-hidden
             className="absolute inset-0 pointer-events-none rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            animate={
-              {
-                boxShadow: [
-                  "0 0 0 1px rgba(34,211,238,0.15), 0 0 40px rgba(34,211,238,0.1)",
-                  "0 0 0 1px rgba(139,92,246,0.25), 0 0 60px rgba(139,92,246,0.15)",
-                  "0 0 0 1px rgba(34,211,238,0.15), 0 0 40px rgba(34,211,238,0.1)",
-                ],
-              }
-            }
+            animate={{
+              boxShadow: [
+                "0 0 0 1px rgba(34,211,238,0.15), 0 0 40px rgba(34,211,238,0.1)",
+                "0 0 0 1px rgba(139,92,246,0.25), 0 0 60px rgba(139,92,246,0.15)",
+                "0 0 0 1px rgba(34,211,238,0.15), 0 0 40px rgba(34,211,238,0.1)",
+              ],
+            }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>

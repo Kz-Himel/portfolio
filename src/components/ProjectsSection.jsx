@@ -1,17 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { FiArrowRight, FiGrid } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiArrowRight, FiArrowLeft, FiGrid } from "react-icons/fi";
 import SectionHeader from "./ui/SectionHeader";
 import Reveal from "./ui/Reveal";
 import ProjectCard from "./ProjectCard";
 import MagneticButton from "./ui/MagneticButton";
 import projects from "../data/projects";
 
-const bentoSizes = ["xl", "md", "sm", "lg", "md", "md"];
+const PAGE_SIZE = 3;
 
-export default function ProjectsSection({ limit = 6, showHeading = true }) {
-  const list = projects.slice(0, limit);
+export default function ProjectsSection({ showHeading = true }) {
+  const [page, setPage] = useState(0);
+  const totalPages = Math.ceil(projects.length / PAGE_SIZE);
+
+  const list = projects.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+
+  const handlePrev = () => {
+    setPage((p) => (p - 1 + totalPages) % totalPages);
+  };
+  const handleNext = () => {
+    setPage((p) => (p + 1) % totalPages);
+  };
 
   return (
     <section id="projects" className="section-wrap relative">
@@ -22,7 +34,7 @@ export default function ProjectsSection({ limit = 6, showHeading = true }) {
               eyebrow="// Portfolio"
               title={
                 <>
-                  Featured <span className="gradient-text">Projects</span> · Bento
+                  Featured <span className="gradient-text">Projects</span>
                 </>
               }
               subtitle="A selection of premium client work and case studies — from fullstack SaaS and AI copilots to polished brand experiences. Hover, tilt, and explore."
@@ -45,22 +57,96 @@ export default function ProjectsSection({ limit = 6, showHeading = true }) {
           </div>
         )}
 
-        {/* Bento grid */}
-        <Reveal delay={0.05} y={30} blur>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5 auto-rows-auto md:auto-rows-[220px]">
-            {list.map((project, i) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                bento={bentoSizes[i % bentoSizes.length]}
+        {/* Grid — 3 per page, animated on change */}
+        <div className="relative min-h-[420px] md:min-h-[380px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={page}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.08 } },
+                exit: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+              }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            >
+              {list.map((project) => (
+                <motion.div
+                  key={project.id}
+                  variants={{
+                    hidden: { opacity: 0, y: 40, scale: 0.94, filter: "blur(10px)" },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      filter: "blur(0px)",
+                      transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+                    },
+                    exit: {
+                      opacity: 0,
+                      y: -24,
+                      scale: 0.96,
+                      filter: "blur(6px)",
+                      transition: { duration: 0.35, ease: [0.4, 0, 1, 1] },
+                    },
+                  }}
+                >
+                  <ProjectCard project={project} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Prev / Next controls — right under the grid, no big gap */}
+        <div className="mt-4 md:mt-5 flex items-center justify-center gap-4">
+          <MagneticButton
+            onClick={handlePrev}
+            strength={16}
+            aria-label="Previous projects"
+            className="btn-ghost inline-flex items-center justify-center w-10 h-10 rounded-full border"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.94 }}
+          >
+            <FiArrowLeft size={15} />
+          </MagneticButton>
+
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setPage(i)}
+                aria-label={`Go to project set ${i + 1}`}
+                className="relative h-1.5 rounded-full transition-all duration-400"
+                style={{
+                  width: i === page ? "24px" : "8px",
+                  background:
+                    i === page
+                      ? "linear-gradient(90deg, #22D3EE, #8B5CF6)"
+                      : "rgba(148,163,184,0.25)",
+                  boxShadow: i === page ? "0 0 10px rgba(34,211,238,0.5)" : "none",
+                }}
               />
             ))}
           </div>
-        </Reveal>
+
+          <MagneticButton
+            onClick={handleNext}
+            strength={16}
+            aria-label="Next projects"
+            className="btn-ghost inline-flex items-center justify-center w-10 h-10 rounded-full border"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.94 }}
+          >
+            <FiArrowRight size={15} />
+          </MagneticButton>
+        </div>
 
         {/* CTA strip */}
         {showHeading && (
-          <Reveal delay={0.25}>
+          <Reveal delay={0.1}>
             <div className="mt-12 md:mt-16">
               <div className="hud-panel rounded-[1.6rem] border border-cyan/20 p-6 md:p-10 overflow-hidden relative">
                 <div
