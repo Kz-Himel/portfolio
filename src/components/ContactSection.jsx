@@ -1,59 +1,77 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useState } from "react";
-import { FiSend, FiMessageCircle, FiMail, FiCheckCircle } from "react-icons/fi";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  FiMail,
+  FiMessageCircle,
+  FiSend,
+  FiMapPin,
+  FiCheckCircle,
+  FiAlertCircle,
+} from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaDiscord } from "react-icons/fa";
+import SectionHeader from "./ui/SectionHeader";
+import Reveal from "./ui/Reveal";
+import MagneticButton from "./ui/MagneticButton";
 
 const schema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z.string().min(2, "Name is required"),
+  email: z.string().email("Valid email required"),
+  subject: z.string().min(3, "Subject required"),
+  message: z.string().min(10, "Message too short"),
 });
 
-const socialLinks = [
+const socials = [
   {
-    icon: <FiMessageCircle size={18} />,
-    label: "WhatsApp",
-    href: "https://wa.me/8801307161360",
-    color: "#25D366",
+    icon: <FaGithub size={16} />,
+    label: "GitHub",
+    value: "@Kz-Himel",
+    href: "https://github.com/Kz-Himel",
+    color: "#E2E8F0",
   },
   {
-    icon: <FaLinkedin size={18} />,
+    icon: <FaLinkedin size={16} />,
     label: "LinkedIn",
+    value: "Khayruzzaman Himel",
     href: "https://www.linkedin.com/in/khayruzzaman-himel/",
     color: "#0A66C2",
   },
   {
-    icon: <FaGithub size={18} />,
-    label: "GitHub",
-    href: "https://github.com/Kz-Himel",
-    color: "#E5E7EB",
+    icon: <FaWhatsapp size={16} />,
+    label: "WhatsApp",
+    value: "+880 1700-000000",
+    href: "#",
+    color: "#25D366",
   },
   {
-    icon: <FiMail size={18} />,
-    label: "Email",
-    href: "mailto:kzhimel129@gmail.com",
-    color: "#38BDF8",
+    icon: <FaDiscord size={16} />,
+    label: "Discord",
+    value: "kzhimel",
+    href: "#",
+    color: "#5865F2",
   },
 ];
 
 export default function ContactSection() {
   const [status, setStatus] = useState("idle");
-
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
-  } = useForm({ resolver: zodResolver(schema) });
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: { name: "", email: "", subject: "", message: "" },
+  });
 
   const onSubmit = async (data) => {
-    setStatus("loading");
     try {
+      setStatus("loading");
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,197 +80,344 @@ export default function ContactSection() {
       if (res.ok) {
         setStatus("success");
         reset();
-        setTimeout(() => setStatus("idle"), 5000);
+        setTimeout(() => setStatus("idle"), 5500);
       } else {
         setStatus("error");
+        setTimeout(() => setStatus("idle"), 5500);
       }
     } catch {
       setStatus("error");
+      setTimeout(() => setStatus("idle"), 5500);
     }
   };
 
   return (
-    <section className="py-16 md:py-20 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" />
+    <section id="contact" className="section-wrap relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="mb-10 md:mb-14 text-center">
+          <div className="inline-block mx-auto">
+            <SectionHeader
+              eyebrow="// Contact"
+              title={
+                <>
+                  Let's build <span className="gradient-text">something legendary</span>
+                </>
+              }
+              subtitle="Got a project, role, or wild idea? My inbox is open — I reply within 24 hours. Prefer chat? Jump to WhatsApp or Discord."
+              align="center"
+            />
+          </div>
+        </div>
 
-      {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 md:mb-10 text-center"
-        >
-          <span className="text-accent text-xs font-semibold uppercase tracking-widest">
-            Contact
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-text-main mt-1 tracking-tight">
-            Let&apos;s Work Together
-          </h2>
-          <p className="text-muted text-xs md:text-sm mt-2 max-w-md mx-auto leading-relaxed">
-            Have a project in mind? Send me a message and I&apos;ll get back to you as soon as possible.
-          </p>
-        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6">
+          {/* LEFT: contact info panels */}
+          <div className="lg:col-span-5 space-y-4 md:space-y-5 order-2 lg:order-1">
+            <Reveal delay={0.06}>
+              <div className="hud-panel rounded-[1.5rem] border border-cyan/15 p-5 md:p-7 relative overflow-hidden">
+                <div
+                  aria-hidden
+                  className="absolute -right-8 -top-8 w-40 h-40 rounded-full blur-3xl opacity-60"
+                  style={{ background: "radial-gradient(circle, rgba(34,211,238,0.35), transparent 70%)" }}
+                />
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8 items-start">
-          {/* Left — Info & Socials */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-2 space-y-4"
-          >
-            <div className="glass border border-white/8 rounded-xl p-4 md:p-5 space-y-4">
-              <div>
-                <h3 className="text-text-main font-semibold text-base">Get in Touch</h3>
-                <p className="text-muted text-xs leading-relaxed mt-1">
-                  Whether you have a project, a question, or just want to say hi — my inbox is always open.
-                </p>
-              </div>
-
-              {/* Social Links */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 pt-1">
-                {socialLinks.map((link) => (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ x: 4 }}
-                    className="flex items-center gap-2.5 p-2 rounded-lg glass border border-white/5 hover:border-white/15 transition-all duration-200 group"
+                <div className="relative flex items-start gap-4 mb-6">
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(34,211,238,0.18), rgba(139,92,246,0.12))",
+                      border: "1px solid rgba(34,211,238,0.3)",
+                      color: "#22D3EE",
+                      boxShadow: "0 0 28px rgba(34,211,238,0.25), inset 0 0 20px rgba(139,92,246,0.12)",
+                    }}
                   >
-                    <div
-                      className="w-8 h-8 rounded-md flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105"
+                    <FiMail size={24} />
+                  </div>
+                  <div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-neon mb-1.5">
+                      Primary channel
+                    </div>
+                    <a
+                      href="mailto:kzhimel129@gmail.com"
+                      className="font-display font-semibold text-[18px] md:text-xl text-text-main hover:text-cyan-neon transition-colors"
+                    >
+                      kzhimel129@gmail.com
+                    </a>
+                    <div className="mt-2 flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.18em] text-text-muted">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
+                      </span>
+                      Available now · replies in 24h
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative flex items-center gap-3 text-[13px] text-text-soft leading-relaxed mb-6">
+                  <span className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 bg-violet/10 text-violet-neon border border-violet/25">
+                    <FiMapPin size={15} />
+                  </span>
+                  Rangpur, Bangladesh · GMT+6 · Remote-friendly
+                </div>
+
+                <div className="hud-divider mb-5" />
+
+                <div className="relative grid grid-cols-2 gap-2.5 md:gap-3">
+                  {socials.map((s, i) => (
+                    <a
+                      key={s.label}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex items-center gap-2.5 rounded-xl p-2.5 md:p-3 transition-all duration-300 hover:-translate-y-0.5"
                       style={{
-                        background: `${link.color}15`,
-                        color: link.color,
+                        background: `linear-gradient(135deg, ${s.color}0A, transparent)`,
+                        border: `1px solid ${s.color}22`,
                       }}
                     >
-                      {link.icon}
-                    </div>
-                    <span className="text-text-main text-xs font-medium group-hover:text-accent transition-colors">
-                      {link.label}
-                    </span>
-                  </motion.a>
-                ))}
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{
+                          color: s.color,
+                          background: `${s.color}15`,
+                          boxShadow: `inset 0 0 0 1px ${s.color}22`,
+                        }}
+                      >
+                        {s.icon}
+                      </div>
+                      <div className="leading-tight min-w-0">
+                        <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-text-muted mb-0.5">
+                          {s.label}
+                        </div>
+                        <div
+                          className="text-[12px] font-medium truncate"
+                          style={{ color: `${s.color}` }}
+                        >
+                          {s.value}
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
 
-            {/* Availability Badge */}
-            <div className="glass border border-green-500/20 rounded-xl p-3.5 flex items-center gap-3">
-              <div className="relative flex h-2.5 w-2.5 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-              </div>
-              <div>
-                <span className="text-green-400 text-xs font-semibold block leading-none">
-                  Available for Work
-                </span>
-                <p className="text-muted text-[11px] mt-0.5">
-                  Accepting new projects and freelance opportunities.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right — Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-3"
-          >
-            <div className="glass border border-white/8 rounded-xl p-5 md:p-6">
-              {status === "success" ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-10 text-center space-y-2.5"
-                >
-                  <FiCheckCircle size={40} className="text-green-400" />
-                  <h3 className="text-text-main font-semibold text-lg">Message Sent!</h3>
-                  <p className="text-muted text-xs max-w-xs">
-                    Thanks for reaching out. I&apos;ll get back to you within 24 hours.
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Name */}
-                    <div className="space-y-1">
-                      <label className="text-text-main text-xs font-medium">Name</label>
-                      <input
-                        {...register("name")}
-                        placeholder="Your name"
-                        className="w-full px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 text-text-main placeholder-muted text-xs focus:outline-none focus:border-accent/40 focus:bg-white/8 transition-all duration-200"
-                      />
-                      {errors.name && (
-                        <p className="text-red-400 text-[11px]">{errors.name.message}</p>
-                      )}
-                    </div>
-
-                    {/* Email */}
-                    <div className="space-y-1">
-                      <label className="text-text-main text-xs font-medium">Email</label>
-                      <input
-                        {...register("email")}
-                        type="email"
-                        placeholder="your@email.com"
-                        className="w-full px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 text-text-main placeholder-muted text-xs focus:outline-none focus:border-accent/40 focus:bg-white/8 transition-all duration-200"
-                      />
-                      {errors.email && (
-                        <p className="text-red-400 text-[11px]">{errors.email.message}</p>
-                      )}
+            <Reveal delay={0.1}>
+              <div className="hud-panel rounded-[1.5rem] border border-violet/15 p-5 md:p-7 relative overflow-hidden">
+                <div
+                  aria-hidden
+                  className="absolute -left-8 -bottom-8 w-40 h-40 rounded-full blur-3xl opacity-60"
+                  style={{ background: "radial-gradient(circle, rgba(139,92,246,0.35), transparent 70%)" }}
+                />
+                <div className="relative flex items-start gap-3.5">
+                  <div
+                    className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+                    style={{
+                      background: "rgba(74,222,128,0.12)",
+                      border: "1px solid rgba(74,222,128,0.3)",
+                      color: "#4ADE80",
+                      boxShadow: "0 0 20px rgba(74,222,128,0.2)",
+                    }}
+                  >
+                    <div className="relative w-4 h-4 flex items-center justify-center">
+                      <span className="absolute inline-flex w-full h-full rounded-full bg-green-400 opacity-60 animate-ping" />
+                      <FiCheckCircle size={16} />
                     </div>
                   </div>
+                  <div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-green-400 mb-1.5">
+                      Availability
+                    </div>
+                    <h4 className="font-display font-bold text-[17px] text-text-main mb-1">
+                      Open for <span className="gradient-text">freelance & FT roles</span>
+                    </h4>
+                    <p className="text-[12.5px] text-text-soft leading-relaxed">
+                      Accepting new projects from Q3 2026 · Onsite + Remote · Contract preferred · Weekly check-ins
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
 
-                  {/* Message */}
-                  <div className="space-y-1">
-                    <label className="text-text-main text-xs font-medium">Message</label>
+          {/* RIGHT: form */}
+          <div className="lg:col-span-7 order-1 lg:order-2">
+            <Reveal delay={0.08}>
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="hud-panel rounded-[1.6rem] border border-white/8 p-5 md:p-7 lg:p-9 relative overflow-hidden"
+              >
+                <div
+                  aria-hidden
+                  className="absolute -right-16 -top-16 w-72 h-72 rounded-full blur-[100px] opacity-50 pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(139,92,246,0.35), transparent 70%)",
+                  }}
+                />
+                <div
+                  aria-hidden
+                  className="absolute -left-16 -bottom-16 w-72 h-72 rounded-full blur-[100px] opacity-40 pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(34,211,238,0.3), transparent 70%)",
+                  }}
+                />
+
+                <div className="relative mb-7 flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-neon mb-1.5 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-cyan-neon animate-pulse shadow-[0_0_6px_var(--cyan-glow)]" />
+                      Transmission · Encrypted
+                    </div>
+                    <h3 className="font-display text-2xl md:text-[1.7rem] font-bold leading-tight text-text-main">
+                      Drop a <span className="gradient-text">message</span>
+                    </h3>
+                  </div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted">
+                    fields · 04
+                  </span>
+                </div>
+
+                <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                  <div className="hud-input md:col-span-1">
+                    <label htmlFor="name">01 · Name</label>
+                    <input
+                      id="name"
+                      placeholder="What should I call you?"
+                      {...register("name")}
+                      className={errors.name ? "!border-red-400/50" : ""}
+                    />
+                    {errors.name && (
+                      <p className="text-[10.5px] mt-1 text-red-400 font-medium">
+                        {errors.name.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="hud-input md:col-span-1">
+                    <label htmlFor="email">02 · Email</label>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="you@domain.com"
+                      {...register("email")}
+                      className={errors.email ? "!border-red-400/50" : ""}
+                    />
+                    {errors.email && (
+                      <p className="text-[10.5px] mt-1 text-red-400 font-medium">
+                        {errors.email.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="hud-input md:col-span-2">
+                    <label htmlFor="subject">03 · Subject</label>
+                    <input
+                      id="subject"
+                      placeholder="What's the project or role about?"
+                      {...register("subject")}
+                      className={errors.subject ? "!border-red-400/50" : ""}
+                    />
+                    {errors.subject && (
+                      <p className="text-[10.5px] mt-1 text-red-400 font-medium">
+                        {errors.subject.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="hud-input md:col-span-2">
+                    <label htmlFor="message">04 · Message</label>
                     <textarea
+                      id="message"
+                      rows={6}
+                      placeholder="Tell me about the scope, timeline, budget range, and what 'amazing' looks like…"
                       {...register("message")}
-                      rows={4}
-                      placeholder="Tell me about your project..."
-                      className="w-full px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 text-text-main placeholder-muted text-xs focus:outline-none focus:border-accent/40 focus:bg-white/8 transition-all duration-200 resize-none"
+                      className={errors.message ? "!border-red-400/50" : ""}
                     />
                     {errors.message && (
-                      <p className="text-red-400 text-[11px]">{errors.message.message}</p>
+                      <p className="text-[10.5px] mt-1 text-red-400 font-medium">
+                        {errors.message.message}
+                      </p>
                     )}
                   </div>
+                </div>
 
-                  {status === "error" && (
-                    <p className="text-red-400 text-xs">
-                      Something went wrong. Please try again.
-                    </p>
-                  )}
-
-                  <button
+                <div className="relative mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-2.5 text-[11px] text-text-muted font-mono">
+                    <FiMessageCircle size={13} className="text-cyan-neon" />
+                    Typical response · under 24 hours
+                  </div>
+                  <MagneticButton
+                    strength={18}
+                    whileHover={{ scale: 1.03 }}
+                    className="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-[13px] md:text-sm disabled:opacity-60 disabled:cursor-not-allowed"
                     type="submit"
-                    disabled={status === "loading"}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-accent text-bg font-semibold text-xs transition-all duration-300 hover:opacity-90 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                    disabled={isSubmitting}
                   >
-                    {status === "loading" ? (
-                      <>
-                        <div className="w-3.5 h-3.5 border-2 border-bg/30 border-t-bg rounded-full animate-spin" />
-                        <span>Sending...</span>
-                      </>
-                    ) : (
-                      <>
-                        <FiSend size={14} />
-                        <span>Send Message</span>
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
-            </div>
-          </motion.div>
+                    <AnimatePresence mode="wait">
+                      {status === "loading" || isSubmitting ? (
+                        <motion.span
+                          key="loading"
+                          initial={{ opacity: 0, scale: 0.7 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-2"
+                        >
+                          <motion.span
+                            className="w-4 h-4 rounded-full border-2 border-black/30 border-t-black/90"
+                            animate={{ rotate: 360 }}
+                            transition={{ repeat: Infinity, duration: 0.7, ease: "linear" }}
+                          />
+                          Transmitting…
+                        </motion.span>
+                      ) : status === "success" ? (
+                        <motion.span
+                          key="success"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-2"
+                        >
+                          <FiCheckCircle size={16} />
+                          Message sent!
+                        </motion.span>
+                      ) : status === "error" ? (
+                        <motion.span
+                          key="error"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-2"
+                        >
+                          <FiAlertCircle size={16} />
+                          Retry please
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="send"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-2"
+                        >
+                          <FiSend size={14} />
+                          Send Message
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </MagneticButton>
+                </div>
+
+                <div
+                  aria-hidden
+                  className="absolute inset-0 rounded-[inherit] pointer-events-none"
+                  style={{
+                    background:
+                      "repeating-linear-gradient(0deg, rgba(34,211,238,0.018) 0px, transparent 2px, transparent 4px)",
+                    mixBlendMode: "overlay",
+                    opacity: 0.5,
+                  }}
+                />
+              </form>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

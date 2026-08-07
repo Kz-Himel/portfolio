@@ -1,4 +1,4 @@
-export const projects = [
+const projects = [
   {
     id: "careerpilot-ai",
     title: "CareerPilot AI",
@@ -313,3 +313,5 @@ export const projects = [
     ],
   },
 ];
+
+export default projects

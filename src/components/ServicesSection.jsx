@@ -3,166 +3,172 @@
 import { motion } from "framer-motion";
 import {
   FiCode,
-  FiSmartphone,
-  FiZap,
-  FiGlobe,
-  FiGitMerge,
   FiServer,
   FiCpu,
+  FiMonitor,
+  FiLayers,
+  FiZap,
+  FiSearch,
+  FiTerminal,
 } from "react-icons/fi";
-import { IoColorPaletteOutline } from "react-icons/io5";
+import SectionHeader from "./ui/SectionHeader";
+import Reveal from "./ui/Reveal";
 
 const services = [
   {
+    title: "MERN Stack Development",
+    desc: "End-to-end fullstack apps with MongoDB, Express, React, and Node — designed to scale and maintain.",
     icon: <FiCode size={22} />,
-    title: "MERN Development",
-    desc: "Building fast, modern web apps with Next.js, React, Express and MongoDB. Clean architecture and top performance.",
-    tags: ["Next.js", "React", "TypeScript"],
-    color: "#38BDF8",
+    color: "#22D3EE",
+    span: "md:col-span-6",
   },
   {
+    title: "Backend & API Engineering",
+    desc: "REST & RESTful APIs, auth (JWT / Better Auth), rate limits, secure DB schemas, and clean architecture.",
     icon: <FiServer size={22} />,
-    title: "Backend Development",
-    desc: "Designing scalable REST APIs, secure database schemas, and robust server-side logic for high reliability.",
-    tags: ["Node.js", "Express", "MongoDB"],
-    color: "#818CF8",
+    color: "#8B5CF6",
+    span: "md:col-span-6",
   },
   {
+    title: "AI & LLM Integration",
+    desc: "Ship AI copilots, semantic search, contextual assistants, and RAG-powered flows into production products.",
     icon: <FiCpu size={22} />,
-    title: "AI Integration",
-    desc: "Integrating cutting-edge AI models, LLMs, and intelligent automation into web applications to elevate UX.",
-    tags: ["OpenAI", "Gemini API", "AI Agents"],
     color: "#EC4899",
+    span: "md:col-span-6 lg:col-span-4",
   },
   {
-    icon: <FiSmartphone size={22} />,
-    title: "Responsive Design",
-    desc: "Pixel-perfect, mobile-first interfaces that function and look stunning seamlessly across all screen sizes.",
-    tags: ["Mobile-First", "Tailwind CSS"],
-    color: "#38BDF8",
+    title: "Responsive Web Design",
+    desc: "Pixel-perfect, motion-rich interfaces for desktop, tablet, and mobile — mobile-first, accessible.",
+    icon: <FiMonitor size={22} />,
+    color: "#4ADE80",
+    span: "md:col-span-6 lg:col-span-4",
   },
   {
-    icon: <IoColorPaletteOutline size={22} />,
-    title: "UI/UX Implementation",
-    desc: "Translating complex Figma & Adobe designs into pixel-perfect code with smooth interactions.",
-    tags: ["Figma", "Framer Motion"],
-    color: "#A78BFA",
+    title: "UI / UX Engineering",
+    desc: "Translate Figma into real products. Design systems, component libraries, and AAA-level interactions.",
+    icon: <FiLayers size={22} />,
+    color: "#F472B6",
+    span: "md:col-span-6 lg:col-span-4",
   },
   {
-    icon: <FiGlobe size={22} />,
-    title: "API Integration",
-    desc: "Connecting modern frontends to diverse backends, payment gateways, and third-party services.",
-    tags: ["REST API", "Firebase", "Stripe"],
-    color: "#34D399",
-  },
-  {
+    title: "Third-Party API Integration",
+    desc: "Payments (Stripe), email (Resend), social logins, CRM, and any SaaS REST API — wired cleanly.",
     icon: <FiZap size={22} />,
-    title: "Performance & SEO",
-    desc: "Optimizing Web Vitals, page speed, and overall Lighthouse metrics for maximal organic reach.",
-    tags: ["Core Web Vitals", "SEO"],
-    color: "#FBBF24",
+    color: "#60A5FA",
+    span: "md:col-span-6 lg:col-span-4",
   },
   {
-    icon: <FiGitMerge size={22} />,
-    title: "Version Control & DevOps",
-    desc: "Structured Git workflows, automated CI/CD pipelines, and effortless deployment setup on Vercel or Netlify.",
-    tags: ["Git", "Vercel", "CI/CD"],
-    color: "#F87171",
+    title: "Performance & SEO Optimization",
+    desc: "Core Web Vitals, image optimization, SEO metadata, and 95+ Lighthouse scores on production sites.",
+    icon: <FiSearch size={22} />,
+    color: "#FACC15",
+    span: "md:col-span-6 lg:col-span-4",
+  },
+  {
+    title: "DevOps & Deployment",
+    desc: "Ship on Vercel, Netlify, Railway, Render — CI config, env management, and reliable releases.",
+    icon: <FiTerminal size={22} />,
+    color: "#A78BFA",
+    span: "md:col-span-6 lg:col-span-4",
   },
 ];
 
 export default function ServicesSection() {
   return (
-    <section className="py-16 md:py-20 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-accent/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+    <section id="services" className="section-wrap relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="mb-10 md:mb-14">
+          <SectionHeader
+            eyebrow="// Services"
+            title={
+              <>
+                What I can <span className="gradient-text">ship</span> for you
+              </>
+            }
+            subtitle="8 dedicated service lanes — pick one, or combine them for a full product build. All services are hands-on, premium-grade, and delivery focused."
+          />
+        </div>
 
-      {/* Main Container aligned with Navbar, About, Skills & Projects */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 md:mb-10"
-        >
-          <span className="text-accent text-xs font-semibold uppercase tracking-widest">
-            Services
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-text-main mt-1 tracking-tight">
-            What I Can Do For You
-          </h2>
-          <p className="text-muted text-xs md:text-sm mt-2 max-w-md leading-relaxed">
-            From concept to production — I deliver full-stack solutions with quality, performance, and attention to detail.
-          </p>
-        </motion.div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 md:gap-4">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              whileHover={{ y: -4 }}
-              className="group glass border border-white/8 rounded-xl p-4 cursor-default transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-            >
-              {/* Radial Hover Glow */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl pointer-events-none"
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
+          {services.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.04}>
+              <motion.div
+                whileHover={{ y: -6, scale: 1.01 }}
+                className={`hud-panel rounded-2xl md:rounded-3xl border border-white/5 p-5 md:p-7 h-full group relative overflow-hidden ${s.span}`}
                 style={{
-                  background: `radial-gradient(circle at 50% 0%, ${service.color}15, transparent 75%)`,
+                  boxShadow: "0 14px 50px -22px rgba(139,92,246,0.25)",
                 }}
-              />
-              
-              {/* Border Accent Glow on Hover */}
-              <div
-                className="absolute inset-0 rounded-xl border opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{ borderColor: `${service.color}35` }}
-              />
-
-              <div className="relative z-10 space-y-3">
-                {/* Icon */}
+              >
                 <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                  aria-hidden
+                  className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-0 group-hover:opacity-70 transition-all duration-700 blur-3xl pointer-events-none"
+                  style={{ background: `${s.color}55` }}
+                />
+
+                <div
+                  aria-hidden
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
                   style={{
-                    background: `${service.color}15`,
-                    color: service.color,
+                    background:
+                      "linear-gradient(135deg, transparent 60%, rgba(34,211,238,0.04) 100%)",
                   }}
-                >
-                  {service.icon}
-                </div>
+                />
 
-                <h3 className="text-text-main font-semibold text-base group-hover:text-white transition-colors">
-                  {service.title}
-                </h3>
-                
-                <p className="text-muted text-xs leading-relaxed">
-                  {service.desc}
-                </p>
-              </div>
-
-              {/* Tags */}
-              <div className="relative z-10 flex flex-wrap gap-1.5 pt-3">
-                {service.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 rounded-md text-[10px] font-medium transition-colors"
+                <div className="relative flex items-start justify-between mb-5">
+                  <div
+                    className="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center relative"
                     style={{
-                      background: `${service.color}12`,
-                      color: service.color,
-                      border: `1px solid ${service.color}20`,
+                      background: `linear-gradient(135deg, ${s.color}1F, ${s.color}08)`,
+                      border: `1px solid ${s.color}33`,
+                      color: s.color,
+                      boxShadow: `inset 0 0 22px ${s.color}12, 0 0 28px -8px ${s.color}55`,
                     }}
                   >
-                    {tag}
+                    {s.icon}
+                    <motion.div
+                      aria-hidden
+                      className="absolute inset-0 rounded-2xl"
+                      animate={{
+                        boxShadow: [
+                          `0 0 0 0 ${s.color}00`,
+                          `0 0 0 6px ${s.color}14`,
+                          `0 0 0 0 ${s.color}00`,
+                        ],
+                      }}
+                      transition={{
+                        duration: 2.6,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </div>
+                  <span
+                    className="font-mono text-[10px] tracking-[0.2em] uppercase"
+                    style={{ color: `${s.color}AA` }}
+                  >
+                    0{i + 1}
                   </span>
-                ))}
-              </div>
-            </motion.div>
+                </div>
+
+                <h3 className="relative font-display font-semibold text-[17px] md:text-xl text-text-main leading-tight mb-2.5 group-hover:text-white transition-colors">
+                  {s.title}
+                </h3>
+                <p className="relative text-[13px] md:text-[14px] text-text-soft leading-relaxed max-w-[46ch]">
+                  {s.desc}
+                </p>
+
+                {/* Bottom glow line */}
+                <div
+                  aria-hidden
+                  className="absolute left-0 right-0 bottom-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    boxShadow: `0 0 8px ${s.color}88`,
+                  }}
+                />
+              </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

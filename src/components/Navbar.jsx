@@ -1,274 +1,3 @@
-// "use client";
-
-// import { useState, useEffect } from "react";
-// import Link from "next/link";
-// import { usePathname } from "next/navigation";
-// import { motion, AnimatePresence } from "framer-motion";
-// import { FiMenu, FiX } from "react-icons/fi";
-// import { FaGithub } from "react-icons/fa";
-// import Logo from "./Logo";
-
-// const navLinks = [
-//   { href: "/#hero", label: "Home" },
-//   { href: "/#about", label: "About" },
-//   { href: "/#skills", label: "Skills" },
-//   { href: "/#projects", label: "Projects" },
-//   { href: "/#services", label: "Services" },
-//   { href: "/#contact", label: "Contact" },
-// ];
-
-// export default function Navbar() {
-//   const pathname = usePathname();
-//   const [scrolled, setScrolled] = useState(false);
-//   const [menuOpen, setMenuOpen] = useState(false);
-//   const [activeSection, setActiveSection] = useState("/#hero");
-
-//   useEffect(() => {
-//     // 1. Navbar background change on scroll
-//     const handleScroll = () => {
-//       setScrolled(window.scrollY > 20);
-//     };
-
-//     window.addEventListener("scroll", handleScroll);
-
-//     // If we're not on the home page, there are no #sections to observe.
-//     // Just highlight the nav link whose href matches the current route
-//     // (e.g. "/projects" -> highlight "Projects"), and skip the observer.
-//     if (pathname !== "/") {
-//       const matchedLink = navLinks.find(
-//         (link) => link.href.replace("/#", "/") === pathname
-//       );
-//       setActiveSection(matchedLink ? matchedLink.href : "");
-//       return () => {
-//         window.removeEventListener("scroll", handleScroll);
-//       };
-//     }
-
-//     // 2. Dynamic active section highlighting on scroll (home page only)
-//     const observerOptions = {
-//       root: null,
-//       rootMargin: "-20% 0px -70% 0px", // triggers active state when section enters upper-middle view
-//       threshold: 0,
-//     };
-
-//     const handleIntersect = (entries) => {
-//       entries.forEach((entry) => {
-//         if (entry.isIntersecting) {
-//           setActiveSection(`/#${entry.target.id}`);
-//         }
-//       });
-//     };
-
-//     const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-//     // Observe each section with matching IDs
-//     navLinks.forEach((link) => {
-//       const sectionId = link.href.replace("/#", "");
-//       const element = document.getElementById(sectionId);
-//       if (element) observer.observe(element);
-//     });
-
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll);
-//       observer.disconnect();
-//     };
-//   }, [pathname]); // re-run whenever the route changes so the observer re-attaches to fresh DOM nodes
-
-//   const handleCloseMenu = () => {
-//     setMenuOpen(false);
-//   };
-
-//   return (
-//     <>
-//       {/* Navbar */}
-//       <motion.nav
-//         initial={{ y: -80, opacity: 0 }}
-//         animate={{ y: 0, opacity: 1 }}
-//         transition={{ duration: 0.6, ease: "easeOut" }}
-//         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-//           scrolled
-//             ? "py-2.5 glass border-b border-white/5 shadow-lg shadow-black/20"
-//             : "py-4 bg-transparent"
-//         }`}
-//       >
-//         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-//           {/* Logo */}
-//           <Logo />
-
-//           {/* Desktop Nav */}
-//           <ul className="hidden md:flex items-center gap-0.5">
-//             {navLinks.map((link) => {
-//               const isActive = activeSection === link.href;
-
-//               return (
-//                 <li key={link.href}>
-//                   <Link
-//                     href={link.href}
-//                     onClick={() => setActiveSection(link.href)}
-//                     className={`relative px-3.5 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-300 group ${
-//                       isActive
-//                         ? "text-accent"
-//                         : "text-muted hover:text-text-main"
-//                     }`}
-//                     style={{ fontFamily: "'Satoshi', sans-serif" }}
-//                   >
-//                     {isActive && (
-//                       <motion.span
-//                         layoutId="activeNav"
-//                         className="absolute inset-0 rounded-lg border border-accent/20 bg-accent/10"
-//                         transition={{
-//                           type: "spring",
-//                           stiffness: 380,
-//                           damping: 30,
-//                         }}
-//                       />
-//                     )}
-
-//                     <span className="relative z-10">{link.label}</span>
-
-//                     {!isActive && (
-//                       <span className="absolute bottom-0.5 left-1/2 h-[1px] w-0 -translate-x-1/2 bg-accent transition-all duration-300 group-hover:w-4/5" />
-//                     )}
-//                   </Link>
-//                 </li>
-//               );
-//             })}
-//           </ul>
-
-//           {/* Github Button */}
-//           <div className="hidden md:flex items-center gap-3">
-//             <a
-//               href="https://github.com/Kz-Himel"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//             >
-//               <motion.button
-//                 whileHover={{
-//                   scale: 1.05,
-//                   boxShadow: "0 0 30px rgba(56,189,248,0.35)",
-//                 }}
-//                 whileTap={{ scale: 0.95 }}
-//                 animate={{
-//                   boxShadow: [
-//                     "0 0 0px rgba(56,189,248,0)",
-//                     "0 0 14px rgba(56,189,248,0.15)",
-//                     "0 0 0px rgba(56,189,248,0)",
-//                   ],
-//                 }}
-//                 transition={{
-//                   boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-//                 }}
-//                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-bg font-semibold text-[13px] transition-all duration-300"
-//               >
-//                 <FaGithub size={14} />
-//                 Github
-//               </motion.button>
-//             </a>
-//           </div>
-
-//           {/* Mobile Toggle */}
-//           <button
-//             onClick={() => setMenuOpen((prev) => !prev)}
-//             className="rounded-lg p-2 text-muted transition-colors hover:text-text-main md:hidden"
-//             aria-label="Toggle menu"
-//           >
-//             <AnimatePresence mode="wait">
-//               {menuOpen ? (
-//                 <motion.div
-//                   key="close"
-//                   initial={{ rotate: -90, opacity: 0 }}
-//                   animate={{ rotate: 0, opacity: 1 }}
-//                   exit={{ rotate: 90, opacity: 0 }}
-//                   transition={{ duration: 0.2 }}
-//                 >
-//                   <FiX size={20} />
-//                 </motion.div>
-//               ) : (
-//                 <motion.div
-//                   key="menu"
-//                   initial={{ rotate: 90, opacity: 0 }}
-//                   animate={{ rotate: 0, opacity: 1 }}
-//                   exit={{ rotate: -90, opacity: 0 }}
-//                   transition={{ duration: 0.2 }}
-//                 >
-//                   <FiMenu size={20} />
-//                 </motion.div>
-//               )}
-//             </AnimatePresence>
-//           </button>
-//         </div>
-//       </motion.nav>
-
-//       {/* Mobile Menu */}
-//       <AnimatePresence>
-//         {menuOpen && (
-//           <motion.div
-//             initial={{ opacity: 0, y: -20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             exit={{ opacity: 0, y: -20 }}
-//             transition={{ duration: 0.3 }}
-//             className="glass fixed left-0 right-0 top-[56px] z-40 border-b border-white/5 px-6 py-5 md:hidden"
-//           >
-//             <ul className="flex flex-col gap-1.5">
-//               {navLinks.map((link, i) => {
-//                 const isActive = activeSection === link.href;
-
-//                 return (
-//                   <motion.li
-//                     key={link.href}
-//                     initial={{ opacity: 0, x: -20 }}
-//                     animate={{ opacity: 1, x: 0 }}
-//                     transition={{ delay: i * 0.05 }}
-//                   >
-//                     <Link
-//                       href={link.href}
-//                       onClick={() => {
-//                         setActiveSection(link.href);
-//                         handleCloseMenu();
-//                       }}
-//                       className={`flex items-center rounded-lg px-4 py-2.5 text-[13px] font-medium transition-all ${
-//                         isActive
-//                           ? "border border-accent/20 bg-accent/10 text-accent"
-//                           : "text-muted hover:bg-white/5 hover:text-text-main"
-//                       }`}
-//                     >
-//                       {link.label}
-//                     </Link>
-//                   </motion.li>
-//                 );
-//               })}
-
-//               {/* Github Mobile */}
-//               <motion.li
-//                 initial={{ opacity: 0, x: -20 }}
-//                 animate={{ opacity: 1, x: 0 }}
-//                 transition={{ delay: navLinks.length * 0.05 }}
-//                 className="pt-2"
-//               >
-//                 <a
-//                   href="https://github.com/Kz-Himel"
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                 >
-//                   <motion.button
-//                     whileHover={{ scale: 1.04 }}
-//                     whileTap={{ scale: 0.96 }}
-//                     className="flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-bg font-semibold text-[13px] transition-all duration-300 w-full justify-center"
-//                   >
-//                     <FaGithub size={14} />
-//                     Github
-//                   </motion.button>
-//                 </a>
-//               </motion.li>
-//             </ul>
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-//     </>
-//   );
-// }
-
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -278,13 +7,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaGithub } from "react-icons/fa";
 import Logo from "./Logo";
+import MagneticButton from "./ui/MagneticButton";
 
 const navLinks = [
   { href: "/#hero", label: "Home" },
   { href: "/#about", label: "About" },
   { href: "/#skills", label: "Skills" },
   { href: "/#projects", label: "Projects" },
-  { href: "/#services", label: "Services" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#achievements", label: "Achievements" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -295,100 +26,100 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("/#hero");
 
   useEffect(() => {
-    // 1. Navbar background change on scroll
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
 
-    window.addEventListener("scroll", handleScroll);
-
-    // If we're not on the home page, there are no #sections to observe.
-    // Just highlight the nav link whose href matches the current route
-    // (e.g. "/projects" -> highlight "Projects"), and skip the observer.
     if (pathname !== "/") {
-      const matchedLink = navLinks.find(
-        (link) => link.href.replace("/#", "/") === pathname
+      const matched = navLinks.find(
+        (l) => l.href.replace("/#", "/") === pathname
       );
-      setActiveSection(matchedLink ? matchedLink.href : "");
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
+      setActiveSection(matched ? matched.href : "");
+      return () => window.removeEventListener("scroll", handleScroll);
     }
 
-    // 2. Dynamic active section highlighting on scroll (home page only)
-    const observerOptions = {
+    const opts = {
       root: null,
-      rootMargin: "-20% 0px -70% 0px", // triggers active state when section enters upper-middle view
+      rootMargin: "-35% 0px -55% 0px",
       threshold: 0,
     };
-
     const handleIntersect = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(`/#${entry.target.id}`);
-        }
+        if (entry.isIntersecting) setActiveSection(`/#${entry.target.id}`);
       });
     };
-
-    const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-    // Observe each section with matching IDs
+    const observer = new IntersectionObserver(handleIntersect, opts);
     navLinks.forEach((link) => {
-      const sectionId = link.href.replace("/#", "");
-      const element = document.getElementById(sectionId);
-      if (element) observer.observe(element);
+      const id = link.href.replace("/#", "");
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       observer.disconnect();
     };
-  }, [pathname]); // re-run whenever the route changes so the observer re-attaches to fresh DOM nodes
-
-  const handleCloseMenu = () => {
-    setMenuOpen(false);
-  };
+  }, [pathname]);
 
   return (
     <>
-      {/* Navbar — floating glass pill */}
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl"
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] max-w-6xl"
       >
         <div
-          className={`flex items-center justify-between rounded-full px-5 py-2.5 transition-all duration-500 ${
+          className={`relative flex items-center justify-between rounded-[1.4rem] px-3.5 py-2.5 transition-all duration-500 overflow-hidden ${
             scrolled
-              ? "glass shadow-lg shadow-black/30 border border-white/10"
-              : "glass border border-white/5"
+              ? "hud-panel shadow-[0_12px_60px_-10px_rgba(6,182,212,0.15)]"
+              : "hud-panel"
           }`}
         >
-          {/* Logo */}
+          {/* Animated border sweep */}
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 rounded-[1.4rem] pointer-events-none"
+            animate={
+              scrolled
+                ? {
+                    boxShadow: [
+                      "inset 0 0 0 1px rgba(6,182,212,0.2)",
+                      "inset 0 0 0 1px rgba(139,92,246,0.25)",
+                      "inset 0 0 0 1px rgba(6,182,212,0.2)",
+                    ],
+                  }
+                : {}
+            }
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+
           <Logo />
 
-          {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center gap-0.5 rounded-full">
+          <ul className="hidden lg:flex items-center gap-1 rounded-full p-1">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href;
-
               return (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     onClick={() => setActiveSection(link.href)}
-                    className={`relative px-3.5 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-300 group ${
-                      isActive
-                        ? "text-accent"
-                        : "text-muted hover:text-text-main"
-                    }`}
-                    style={{ fontFamily: "'Satoshi', sans-serif" }}
+                    className="relative px-3.5 py-2 rounded-full text-[12.5px] font-medium transition-colors duration-300 group block"
+                    style={{
+                      color: isActive ? "var(--text-main)" : "var(--text-soft)",
+                    }}
                   >
                     {isActive && (
                       <motion.span
-                        layoutId="activeNav"
-                        className="absolute inset-0 rounded-lg border border-accent/20 bg-accent/10"
+                        layoutId="navActive"
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(6,182,212,0.16), rgba(139,92,246,0.16))",
+                          border: "1px solid rgba(6,182,212,0.28)",
+                          boxShadow:
+                            "0 0 20px rgba(6,182,212,0.12), inset 0 0 20px rgba(139,92,246,0.06)",
+                        }}
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -396,11 +127,18 @@ export default function Navbar() {
                         }}
                       />
                     )}
-
-                    <span className="relative z-10">{link.label}</span>
-
+                    <span className="relative z-10 flex items-center gap-1.5">
+                      <span
+                        className={`inline-block w-1 h-1 rounded-full transition-all ${
+                          isActive
+                            ? "bg-cyan-neon shadow-[0_0_6px_var(--cyan-glow)]"
+                            : "bg-transparent group-hover:bg-violet-neon/60"
+                        }`}
+                      />
+                      {link.label}
+                    </span>
                     {!isActive && (
-                      <span className="absolute bottom-0.5 left-1/2 h-[1px] w-0 -translate-x-1/2 bg-accent transition-all duration-300 group-hover:w-4/5" />
+                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 h-px w-0 bg-gradient-to-r from-cyan-neon via-violet to-magenta-glow transition-all duration-300 group-hover:w-3/4 rounded-full" />
                     )}
                   </Link>
                 </li>
@@ -408,41 +146,24 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* Github Button */}
           <div className="hidden md:flex items-center gap-3">
-            <a
+            <MagneticButton
+              as="a"
               href="https://github.com/Kz-Himel"
               target="_blank"
               rel="noopener noreferrer"
+              strength={20}
+              className="btn-primary flex items-center gap-2 px-4.5 py-2.25 rounded-[0.8rem] text-[12px]"
+              whileHover={{ scale: 1.03 }}
             >
-              <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 30px rgba(192,38,211,0.35)",
-                }}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  boxShadow: [
-                    "0 0 0px rgba(167,139,250,0)",
-                    "0 0 14px rgba(167,139,250,0.2)",
-                    "0 0 0px rgba(167,139,250,0)",
-                  ],
-                }}
-                transition={{
-                  boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                }}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-bg font-semibold text-[13px] transition-all duration-300"
-              >
-                <FaGithub size={14} />
-                Github
-              </motion.button>
-            </a>
+              <FaGithub size={14} />
+              <span className="font-semibold">GitHub</span>
+            </MagneticButton>
           </div>
 
-          {/* Mobile Toggle */}
           <button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="rounded-lg p-2 text-muted transition-colors hover:text-text-main md:hidden"
+            onClick={() => setMenuOpen((p) => !p)}
+            className="lg:hidden relative z-10 rounded-xl p-2 text-text-soft transition-colors hover:text-cyan-neon"
             aria-label="Toggle menu"
           >
             <AnimatePresence mode="wait">
@@ -472,37 +193,35 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="glass fixed left-1/2 -translate-x-1/2 top-[76px] z-40 w-[calc(100%-2rem)] max-w-6xl rounded-3xl border border-white/10 px-6 py-5 md:hidden"
+            initial={{ opacity: 0, y: -16, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="hud-panel fixed left-1/2 -translate-x-1/2 top-[78px] z-40 w-[calc(100%-1.5rem)] max-w-6xl rounded-[1.2rem] border border-cyan/20 px-5 py-5 lg:hidden"
           >
-            <ul className="flex flex-col gap-1.5">
+            <ul className="flex flex-col gap-1">
               {navLinks.map((link, i) => {
                 const isActive = activeSection === link.href;
-
                 return (
                   <motion.li
                     key={link.href}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -14 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
+                    transition={{ delay: i * 0.04 }}
                   >
                     <Link
                       href={link.href}
                       onClick={() => {
                         setActiveSection(link.href);
-                        handleCloseMenu();
+                        setMenuOpen(false);
                       }}
-                      className={`flex items-center rounded-lg px-4 py-2.5 text-[13px] font-medium transition-all ${
+                      className={`flex items-center rounded-xl px-4 py-2.5 text-sm font-medium transition-all ${
                         isActive
-                          ? "border border-accent/20 bg-accent/10 text-accent"
-                          : "text-muted hover:bg-white/5 hover:text-text-main"
+                          ? "bg-gradient-to-r from-cyan/15 to-violet/15 text-cyan-neon border border-cyan/25"
+                          : "text-text-soft hover:bg-white/[0.04] hover:text-text-main"
                       }`}
                     >
                       {link.label}
@@ -510,27 +229,20 @@ export default function Navbar() {
                   </motion.li>
                 );
               })}
-
-              {/* Github Mobile */}
               <motion.li
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -14 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05 }}
+                transition={{ delay: navLinks.length * 0.04 }}
                 className="pt-2"
               >
                 <a
                   href="https://github.com/Kz-Himel"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="btn-primary flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold w-full"
                 >
-                  <motion.button
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.96 }}
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-bg font-semibold text-[13px] transition-all duration-300 w-full justify-center"
-                  >
-                    <FaGithub size={14} />
-                    Github
-                  </motion.button>
+                  <FaGithub size={14} />
+                  GitHub
                 </a>
               </motion.li>
             </ul>

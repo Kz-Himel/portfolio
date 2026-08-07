@@ -2,6 +2,9 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
+import SideRail from "@/components/SideRail";
+import CosmicBackground from "@/components/CosmicBackground";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Kz Himel | MERN & Frontend Developer",
@@ -20,9 +23,14 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
         <SmoothScroll>
+          <CosmicBackground />
           <Navbar />
+          <SideRail />
           <CustomCursor />
-          {children}
+          <main className="relative z-[2]">
+            {children}
+          </main>
+          <Footer />
         </SmoothScroll>
       </body>
     </html>
