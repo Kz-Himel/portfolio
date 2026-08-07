@@ -21,7 +21,7 @@ const railLinks = [
   {
     icon: <FaDiscord size={17} />,
     label: "Discord",
-    href: "#",
+    href: "https://discord.com/channels/1495450778364678285/1495450779220312116",
     color: "#5865F2",
   },
   {
@@ -74,44 +74,47 @@ export default function SideRail() {
         {railLinks.map((link, i) => (
           <div key={link.label} className="relative flex flex-col items-center">
             <motion.a
-              href={link.href}
-              target={link.download ? undefined : "_blank"}
-              rel="noopener noreferrer"
-              download={link.download ? true : undefined}
-              aria-label={link.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 + i * 0.05 }}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              className="group relative flex items-center justify-center w-10 h-10 rounded-full text-text-soft transition-all duration-300 hover:text-white"
-              style={{
-                color: "var(--text-soft)",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = link.color)}
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--text-soft)")
-              }
-            >
-              <span
-                aria-hidden
-                className="absolute inset-0 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"
-                style={{
-                  background: `radial-gradient(circle, ${link.color}22, transparent 70%)`,
-                  boxShadow: `0 0 18px ${link.color}33`,
-                }}
-              />
-              <span className="relative z-10 drop-shadow-[0_0_4px_currentColor] opacity-0 group-hover:opacity-100 transition-opacity">
-                {link.icon}
-              </span>
-              <span className="relative z-10 group-hover:opacity-80 opacity-70 transition-opacity">
-                {link.icon}
-              </span>
+  href={link.href}
+  target={link.download ? undefined : "_blank"}
+  rel="noopener noreferrer"
+  download={link.download ? true : undefined}
+  aria-label={link.label}
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ delay: 0.6 + i * 0.05 }}
+  whileHover={{ scale: 1.2 }}
+  whileTap={{ scale: 0.9 }}
+  className="group relative flex items-center justify-center w-10 h-10 rounded-full text-text-soft transition-all duration-300 hover:text-white"
+  style={{
+    color: "var(--text-soft)",
+  }}
+  onMouseEnter={(e) => (e.currentTarget.style.color = link.color)}
+  onMouseLeave={(e) =>
+    (e.currentTarget.style.color = "var(--text-soft)")
+  }
+>
+  <span
+    aria-hidden
+    className="absolute inset-0 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"
+    style={{
+      background: `radial-gradient(circle, ${link.color}22, transparent 70%)`,
+      boxShadow: `0 0 18px ${link.color}33`,
+    }}
+  />
 
-              <span className="pointer-events-none absolute left-full ml-3 whitespace-nowrap rounded-xl hud-panel px-2.5 py-1 text-[11px] font-medium text-text-main opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
-                {link.label}
-              </span>
-            </motion.a>
+  {/* base icon — always centered, no flow layout */}
+  <span className="absolute inset-0 z-10 flex items-center justify-center opacity-70 group-hover:opacity-0 transition-opacity">
+    {link.icon}
+  </span>
+  {/* glow icon on hover — exactly same position */}
+  <span className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-[0_0_4px_currentColor]">
+    {link.icon}
+  </span>
+
+  <span className="pointer-events-none absolute left-full ml-3 whitespace-nowrap rounded-xl hud-panel px-2.5 py-1 text-[11px] font-medium text-text-main opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
+    {link.label}
+  </span>
+</motion.a>
             {i !== railLinks.length - 1 && (
               <span className="w-4 h-px bg-gradient-to-r from-transparent via-cyan/25 to-transparent my-0.5" />
             )}
