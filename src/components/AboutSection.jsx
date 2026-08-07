@@ -103,11 +103,11 @@ export default function AboutSection() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-start">
           {/* Left column: portrait + info */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="md:col-span-5 space-y-6">
             <Reveal delay={0.05} y={24} blur>
-              <TiltCard strength={8} max={8} className="w-full">
+              <TiltCard strength={8} max={8} className="w-full max-w-sm mx-auto md:max-w-none">
                 <div className="relative rounded-[1.6rem] overflow-hidden hud-panel border border-violet/20 shadow-[0_24px_70px_-24px_rgba(139,92,246,0.35)]">
                   {/* corner notches */}
                   <span className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-cyan-neon z-20 pointer-events-none" />
@@ -121,7 +121,7 @@ export default function AboutSection() {
                       alt="Himel portrait"
                       fill
                       className="object-cover scale-105"
-                      sizes="(max-width: 1024px) 100vw, 420px"
+                      sizes="(max-width: 768px) 90vw, (max-width: 1024px) 40vw, 420px"
                     />
                     <div
                       aria-hidden
@@ -223,7 +223,7 @@ export default function AboutSection() {
           </div>
 
           {/* Right: copy + timeline */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="md:col-span-7 space-y-8">
             <Reveal delay={0.15}>
               <div className="hud-panel rounded-[1.4rem] border border-cyan/15 p-6 md:p-8">
                 <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-neon mb-4 flex items-center gap-2">
