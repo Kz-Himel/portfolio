@@ -44,15 +44,15 @@ const socials = [
   {
     icon: <FaWhatsapp size={16} />,
     label: "WhatsApp",
-    value: "+880 1700-000000",
-    href: "#",
+    value: "+880 1341288101",
+    href: "https://wa.me/8801341288101",
     color: "#25D366",
   },
   {
     icon: <FaDiscord size={16} />,
     label: "Discord",
     value: "kzhimel",
-    href: "#",
+    href: "https://discord.com/channels/1495450778364678285/1495450779220312116",
     color: "#5865F2",
   },
 ];
@@ -280,7 +280,7 @@ export default function ContactSection() {
 
                 <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                   <div className="hud-input md:col-span-1">
-                    <label htmlFor="name">01 · Name</label>
+                    <label htmlFor="name">Name</label>
                     <input
                       id="name"
                       placeholder="What should I call you?"
@@ -294,7 +294,7 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div className="hud-input md:col-span-1">
-                    <label htmlFor="email">02 · Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                       id="email"
                       type="email"
@@ -309,7 +309,7 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div className="hud-input md:col-span-2">
-                    <label htmlFor="subject">03 · Subject</label>
+                    <label htmlFor="subject">Subject</label>
                     <input
                       id="subject"
                       placeholder="What's the project or role about?"
@@ -323,7 +323,7 @@ export default function ContactSection() {
                     )}
                   </div>
                   <div className="hud-input md:col-span-2">
-                    <label htmlFor="message">04 · Message</label>
+                    <label htmlFor="message">Message</label>
                     <textarea
                       id="message"
                       rows={6}
