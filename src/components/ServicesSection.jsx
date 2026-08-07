@@ -20,56 +20,48 @@ const services = [
     desc: "End-to-end fullstack apps with MongoDB, Express, React, and Node — designed to scale and maintain.",
     icon: <FiCode size={22} />,
     color: "#22D3EE",
-    span: "md:col-span-6",
   },
   {
     title: "Backend & API Engineering",
     desc: "REST & RESTful APIs, auth (JWT / Better Auth), rate limits, secure DB schemas, and clean architecture.",
     icon: <FiServer size={22} />,
     color: "#8B5CF6",
-    span: "md:col-span-6",
   },
   {
     title: "AI & LLM Integration",
     desc: "Ship AI copilots, semantic search, contextual assistants, and RAG-powered flows into production products.",
     icon: <FiCpu size={22} />,
     color: "#EC4899",
-    span: "md:col-span-6 lg:col-span-4",
   },
   {
     title: "Responsive Web Design",
     desc: "Pixel-perfect, motion-rich interfaces for desktop, tablet, and mobile — mobile-first, accessible.",
     icon: <FiMonitor size={22} />,
     color: "#4ADE80",
-    span: "md:col-span-6 lg:col-span-4",
   },
   {
     title: "UI / UX Engineering",
     desc: "Translate Figma into real products. Design systems, component libraries, and AAA-level interactions.",
     icon: <FiLayers size={22} />,
     color: "#F472B6",
-    span: "md:col-span-6 lg:col-span-4",
   },
   {
     title: "Third-Party API Integration",
     desc: "Payments (Stripe), email (Resend), social logins, CRM, and any SaaS REST API — wired cleanly.",
     icon: <FiZap size={22} />,
     color: "#60A5FA",
-    span: "md:col-span-6 lg:col-span-4",
   },
   {
     title: "Performance & SEO Optimization",
     desc: "Core Web Vitals, image optimization, SEO metadata, and 95+ Lighthouse scores on production sites.",
     icon: <FiSearch size={22} />,
     color: "#FACC15",
-    span: "md:col-span-6 lg:col-span-4",
   },
   {
     title: "DevOps & Deployment",
     desc: "Ship on Vercel, Netlify, Railway, Render — CI config, env management, and reliable releases.",
     icon: <FiTerminal size={22} />,
     color: "#A78BFA",
-    span: "md:col-span-6 lg:col-span-4",
   },
 ];
 
@@ -89,12 +81,12 @@ export default function ServicesSection() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.04}>
               <motion.div
                 whileHover={{ y: -6, scale: 1.01 }}
-                className={`hud-panel rounded-2xl md:rounded-3xl border border-white/5 p-5 md:p-7 h-full group relative overflow-hidden ${s.span}`}
+                className="hud-panel rounded-2xl md:rounded-3xl border border-white/5 p-5 md:p-7 h-full group relative overflow-hidden"
                 style={{
                   boxShadow: "0 14px 50px -22px rgba(139,92,246,0.25)",
                 }}

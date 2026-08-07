@@ -40,10 +40,9 @@ export default function MagneticButton({
     my.set(0);
   };
 
-  // as যদি Link কম্পোনেন্ট অথবা string "a" হয় কিন্তু href থাকে, তবে আসল Next.js Link ব্যবহার হবে
   const isLink = href && (as === Link || as === "a" || typeof as === "function");
 
-  // Safe Element নির্ধারণ
+
   const MotionComponent = isLink ? motion.create(Link) : motion[typeof as === "string" ? as : "button"];
 
   return (

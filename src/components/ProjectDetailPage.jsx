@@ -7,7 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FiArrowLeft, FiCheckCircle, FiCalendar, FiLayers, FiExternalLink, FiArrowUpRight, FiHash } from "react-icons/fi";
 import { FaGithub } from "react-icons/fa";
-import { projects } from "@/data/projects";
+import projects from "@/data/projects";
 import MagneticButton from "./ui/MagneticButton";
 import { ExperienceSection, AchievementsSection } from "./ExperienceSection";
 
@@ -192,7 +192,7 @@ export default function ProjectDetailPage({ params }) {
               <div className="relative">
                 <div className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-cyan-neon mb-3 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-cyan-neon shadow-[0_0_6px_var(--cyan-glow)]" />
-                  // 01 · Problem
+
                 </div>
                 <h2 className="font-display font-bold text-[22px] md:text-3xl text-text-main mb-3 leading-tight">
                   The <span className="gradient-text">challenge</span>
@@ -213,7 +213,7 @@ export default function ProjectDetailPage({ params }) {
               <div className="relative">
                 <div className="font-mono text-[10.5px] uppercase tracking-[0.28em] text-violet-neon mb-3 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-violet-neon shadow-[0_0_6px_#8B5CF6]" />
-                  // 02 · Solution
+
                 </div>
                 <h2 className="font-display font-bold text-[22px] md:text-3xl text-text-main mb-5 leading-tight">
                   Key <span className="gradient-text">features delivered</span>
@@ -342,7 +342,7 @@ export default function ProjectDetailPage({ params }) {
                   Liked this?
                 </div>
                 <h4 className="font-display font-bold text-[18px] text-text-main leading-tight mb-4">
-                  Let's build your <span className="gradient-text">next project.</span>
+                  Lets build your <span className="gradient-text">next project.</span>
                 </h4>
                 <div className="flex flex-col gap-2.5">
                   <MagneticButton
