@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 
 export default function CosmicBackground() {
@@ -14,6 +14,16 @@ export default function CosmicBackground() {
   const bgOrb1Y = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
   const bgOrb2Y = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
   const bgGridY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+
+  // JS স্টেট (কোনো TS Type Syntax ছাড়া)
+  const [particles, setParticles] = useState([]);
+
+  useEffect(() => {
+    const generated = Array.from({ length: 14 }).map((_, i) => ({
+      bottom: `-${((i * 3.7) % 10).toFixed(2)}%`,
+    }));
+    setParticles(generated);
+  }, []);
 
   // Neural network + star canvas
   useEffect(() => {
@@ -134,10 +144,13 @@ export default function CosmicBackground() {
       className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
     >
       {/* Base gradient */}
-      <div className="absolute inset-0" style={{
-        background:
-          "radial-gradient(ellipse 80% 60% at 50% 0%, #0A1328 0%, #050816 45%, #03060F 100%)"
-      }} />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 0%, #0A1328 0%, #050816 45%, #03060F 100%)",
+        }}
+      />
 
       {/* Parallax glow orbs */}
       <motion.div
@@ -212,9 +225,9 @@ export default function CosmicBackground() {
       {/* Neural / star canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-90" />
 
-      {/* Rising particles (simple CSS) */}
+      {/* Rising particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 14 }).map((_, i) => (
+        {particles.map((p, i) => (
           <span
             key={i}
             className="absolute rounded-full animate-rise"
@@ -222,13 +235,13 @@ export default function CosmicBackground() {
               width: `${2 + (i % 3)}px`,
               height: `${2 + (i % 3)}px`,
               left: `${(i * 7.3 + 5) % 100}%`,
-              bottom: `-${Math.random() * 10}%`,
+              bottom: p.bottom,
               background:
                 i % 4 === 0
                   ? "rgba(236, 72, 153, 0.7)"
                   : i % 3 === 0
-                    ? "rgba(139, 92, 246, 0.7)"
-                    : "rgba(34, 211, 238, 0.75)",
+                  ? "rgba(139, 92, 246, 0.7)"
+                  : "rgba(34, 211, 238, 0.75)",
               boxShadow: `0 0 6px ${
                 i % 3 === 0
                   ? "rgba(139,92,246,0.7)"

@@ -46,11 +46,12 @@ function computeRadar() {
   });
 }
 
+// 🛠️ FIX 1: .toFixed(4) যোগ করা হয়েছে যাতে সার্ভার ও ব্রাউজারে একই ফ্লোটিং পয়েন্ট ভ্যালু থাকে
 function hexPos(index, total, radius) {
   const angle = (index / total) * Math.PI * 2 - Math.PI / 2;
   return {
-    x: 50 + radius * Math.cos(angle),
-    y: 50 + radius * Math.sin(angle),
+    x: Number((50 + radius * Math.cos(angle)).toFixed(4)),
+    y: Number((50 + radius * Math.sin(angle)).toFixed(4)),
   };
 }
 
@@ -61,7 +62,7 @@ export default function SkillsSection() {
   const filtered = activeCat === "all" ? skills : skills.filter((s) => s.cat === activeCat);
   const hexSkills = activeCat === "all" ? skills.slice(0, 13) : filtered;
 
-  // Radar polygon (pentagon scaled by each axis)
+  // 🛠️ FIX 2: .toFixed(4) যোগ করা হয়েছে dynamic SVG radar points গুলোর জন্য
   const radarPoints = (values) => {
     const cx = 50, cy = 50, maxR = 38;
     const angleStep = (Math.PI * 2) / values.length;
@@ -69,7 +70,9 @@ export default function SkillsSection() {
       .map((v, i) => {
         const angle = i * angleStep - Math.PI / 2;
         const r = (v / 100) * maxR;
-        return `${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`;
+        const x = (cx + r * Math.cos(angle)).toFixed(4);
+        const y = (cy + r * Math.sin(angle)).toFixed(4);
+        return `${x},${y}`;
       })
       .join(" ");
   };
@@ -213,6 +216,7 @@ export default function SkillsSection() {
                           whileHover={{ scale: 1.18, zIndex: 50 }}
                           className="absolute -translate-x-1/2 -translate-y-1/2"
                           style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
+                          suppressHydrationWarning // 🛠️ FIX 3: Framer motion positioning এর ছোটখাট তারতম্য এড়াতে
                         >
                           <div className="group relative cursor-default flex items-center justify-center">
                             {/* Hex shape via SVG bg */}
@@ -304,7 +308,9 @@ export default function SkillsSection() {
                       const pts = RADAR_LABELS.map((_, i) => {
                         const angle = (i / RADAR_LABELS.length) * Math.PI * 2 - Math.PI / 2;
                         const rr = (r / 100) * 38;
-                        return `${50 + rr * Math.cos(angle)},${50 + rr * Math.sin(angle)}`;
+                        const x = (50 + rr * Math.cos(angle)).toFixed(4);
+                        const y = (50 + rr * Math.sin(angle)).toFixed(4);
+                        return `${x},${y}`;
                       }).join(" ");
                       return (
                         <polygon
@@ -320,12 +326,14 @@ export default function SkillsSection() {
                     {/* Axis lines */}
                     {RADAR_LABELS.map((_, i) => {
                       const angle = (i / RADAR_LABELS.length) * Math.PI * 2 - Math.PI / 2;
+                      const x2 = Number((50 + 38 * Math.cos(angle)).toFixed(4));
+                      const y2 = Number((50 + 38 * Math.sin(angle)).toFixed(4));
                       return (
                         <line
                           key={i}
                           x1={50} y1={50}
-                          x2={50 + 38 * Math.cos(angle)}
-                          y2={50 + 38 * Math.sin(angle)}
+                          x2={x2}
+                          y2={y2}
                           stroke="rgba(6,182,212,0.15)"
                           strokeWidth="0.2"
                         />
@@ -349,6 +357,8 @@ export default function SkillsSection() {
                     {radar.map((v, i) => {
                       const angle = (i / RADAR_LABELS.length) * Math.PI * 2 - Math.PI / 2;
                       const r = (v / 100) * 38;
+                      const cx = Number((50 + r * Math.cos(angle)).toFixed(4));
+                      const cy = Number((50 + r * Math.sin(angle)).toFixed(4));
                       return (
                         <motion.circle
                           key={i}
@@ -356,8 +366,8 @@ export default function SkillsSection() {
                           whileInView={{ r: 0.9 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.4 + i * 0.1, duration: 0.6 }}
-                          cx={50 + r * Math.cos(angle)}
-                          cy={50 + r * Math.sin(angle)}
+                          cx={cx}
+                          cy={cy}
                           fill="#22D3EE"
                           style={{ filter: "drop-shadow(0 0 2px rgba(34,211,238,0.9))" }}
                         />
@@ -368,8 +378,8 @@ export default function SkillsSection() {
                     {RADAR_LABELS.map((l, i) => {
                       const angle = (i / RADAR_LABELS.length) * Math.PI * 2 - Math.PI / 2;
                       const r = 46;
-                      const x = 50 + r * Math.cos(angle);
-                      const y = 50 + r * Math.sin(angle);
+                      const x = Number((50 + r * Math.cos(angle)).toFixed(4));
+                      const y = Number((50 + r * Math.sin(angle)).toFixed(4));
                       return (
                         <g key={l}>
                           <text
