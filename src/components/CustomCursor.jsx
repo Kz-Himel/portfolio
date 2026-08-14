@@ -6,11 +6,14 @@ import { useEffect, useState } from "react";
 export default function CustomCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
-  const springX = useSpring(mouseX, { stiffness: 700, damping: 32, mass: 0.4 });
-  const springY = useSpring(mouseY, { stiffness: 700, damping: 32, mass: 0.4 });
 
-  const dotX = useSpring(mouseX, { stiffness: 1200, damping: 40, mass: 0.2 });
-  const dotY = useSpring(mouseY, { stiffness: 1200, damping: 40, mass: 0.2 });
+  // Outer ring spring settings
+  const ringX = useSpring(mouseX, { stiffness: 400, damping: 28, mass: 0.5 });
+  const ringY = useSpring(mouseY, { stiffness: 400, damping: 28, mass: 0.5 });
+
+  // Center "</>" icon spring settings (more responsive)
+  const codeX = useSpring(mouseX, { stiffness: 1000, damping: 35, mass: 0.2 });
+  const codeY = useSpring(mouseY, { stiffness: 1000, damping: 35, mass: 0.2 });
 
   const [variant, setVariant] = useState("idle");
 
@@ -21,65 +24,78 @@ export default function CustomCursor() {
     const moveCursor = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
+
       const t = e.target;
-      const interactive =
-        t.closest("a, button, input, textarea, select, [role='button'], .hover-target, [data-cursor='hover']");
+      const interactive = t.closest(
+        "a, button, input, textarea, select, [role='button'], .hover-target, [data-cursor='hover']"
+      );
       const clickable = t.closest("a, button");
+
       setVariant(interactive ? (clickable ? "click" : "hover") : "idle");
     };
+
     window.addEventListener("mousemove", moveCursor);
     return () => window.removeEventListener("mousemove", moveCursor);
   }, [mouseX, mouseY]);
 
-  const ringSize =
-    variant === "click" ? 56 : variant === "hover" ? 44 : 32;
+  // Dynamic Ring Sizing & Colors
+  const ringSize = variant === "click" ? 64 : variant === "hover" ? 52 : 40;
   const ringColor =
     variant === "click"
-      ? "rgba(236,72,153)"
+      ? "#EC4899"
       : variant === "hover"
-        ? "rgba(139,92,246)"
-        : "rgba(6,182,212)";
+      ? "#8B5CF6"
+      : "#06B6D4";
 
   return (
     <>
+      {/* Outer Glowing Ring */}
       <motion.div
         style={{
-          translateX: springX,
-          translateY: springY,
+          translateX: ringX,
+          translateY: ringY,
+          x: "-50%",
+          y: "-50%",
         }}
         animate={{
           width: ringSize,
           height: ringSize,
           borderColor: ringColor,
         }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        className="pointer-events-none fixed top-0 left-0 z-[99999] rounded-full border md:block hidden"
+        transition={{ type: "spring", stiffness: 300, damping: 22 }}
+        className="pointer-events-none fixed top-0 left-0 z-[99999] rounded-full border border-opacity-80 hidden md:block"
       >
         <div
-          className="absolute inset-0 rounded-full opacity-60"
+          className="absolute inset-0 rounded-full opacity-40 transition-colors duration-300"
           style={{
-            boxShadow: `0 0 20px ${ringColor}55, inset 0 0 10px ${ringColor}33`,
+            boxShadow: `0 0 20px ${ringColor}, inset 0 0 10px ${ringColor}`,
           }}
         />
       </motion.div>
 
+      {/* Main Cursor Icon: "</>" */}
       <motion.div
         style={{
-          translateX: dotX,
-          translateY: dotY,
+          translateX: codeX,
+          translateY: codeY,
+          x: "-50%",
+          y: "-50%",
         }}
-        className="pointer-events-none fixed top-0 left-0 z-[99999] hidden md:block"
+        animate={{
+          scale: variant === "click" ? 1.3 : variant === "hover" ? 1.15 : 1,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        className="pointer-events-none fixed top-0 left-0 z-[99999] hidden md:flex items-center justify-center select-none"
       >
-        <div
-          className="w-2 h-2 rounded-full"
+        <span
+          className="font-mono font-bold text-xs tracking-tighter"
           style={{
-            background:
-            "linear-gradient(135deg, #22D3EE, #8B5CF6)",
-            boxShadow:
-              "0 0 10px rgba(34,211,238,0.9), 0 0 20px rgba(139,92,246,0.6)",
-            transform: "translate(-50%, -50%)",
+            color: ringColor,
+            textShadow: `0 0 8px ${ringColor}, 0 0 16px ${ringColor}88`,
           }}
-        />
+        >
+          &lt;/&gt;
+        </span>
       </motion.div>
     </>
   );
