@@ -9,16 +9,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        /* ===== New semantic tokens (Elias-theme redesign) ===== */
         bg: {
-          DEFAULT: "#050816",
-          900: "#050816",
-          800: "#07111F",
-          700: "#0A1328",
-          600: "#0F1A33",
+          DEFAULT: "var(--bg)",
+          elevated: "var(--bg-elevated)",
         },
+        accent: {
+          DEFAULT: "var(--accent)",
+          soft: "var(--accent-soft)",
+        },
+        /* ===== Legacy cosmic tokens (still used by not-yet-redesigned components) ===== */
         panel: "#0B1022",
         border: {
-          DEFAULT: "rgba(6,182,212,0.15)",
+          DEFAULT: "var(--border)",
           soft: "rgba(148,163,184,0.08)",
         },
         cyan: {
@@ -45,16 +48,16 @@ module.exports = {
           soft: "#F472B6",
         },
         text: {
-          main: "#E2E8F0",
-          soft: "#94A3B8",
-          muted: "#64748B",
+          main: "var(--text-main)",
+          soft: "var(--text-soft)",
+          muted: "var(--text-muted)",
         },
       },
       fontFamily: {
-        heading: ["'Clash Display'", "'Inter'", "sans-serif"],
-        display: ["'Clash Display'", "'Inter'", "sans-serif"],
-        body: ["'Satoshi'", "'Inter'", "sans-serif"],
-        mono: ["'JetBrains Mono'", "'SFMono-Regular'", "monospace"],
+        heading: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+        display: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+        body: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+        mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       backgroundImage: {
         "grid-futuristic":
