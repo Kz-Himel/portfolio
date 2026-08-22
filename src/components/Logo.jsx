@@ -41,7 +41,7 @@ export default function Logo() {
       </svg>
 
       <span className="font-mono font-semibold text-[1rem] tracking-tight text-text-main">
-        Himel
+        Kz Himel
       </span>
     </Link>
   );
