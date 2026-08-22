@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
-import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
+import { FiMenu, FiX, FiSun, FiMoon, FiGithub } from "react-icons/fi";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -25,7 +25,6 @@ function ThemeToggle() {
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    // reserve the slot so layout doesn't jump on hydration
     return <div className="w-8 h-8" />;
   }
 
@@ -39,6 +38,21 @@ function ThemeToggle() {
     >
       {isDark ? <FiSun size={16} /> : <FiMoon size={16} />}
     </button>
+  );
+}
+
+function GithubButton() {
+  return (
+    <a
+      href="https://github.com/your-username" // Replace with your GitHub URL
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 px-3 py-1.5 rounded-md text-text-soft hover:text-text-main hover:bg-border/30 transition-all font-mono text-[13px]"
+      aria-label="GitHub Profile"
+    >
+      <FiGithub size={16} />
+      <span className="hidden md:inline">GitHub</span>
+    </a>
   );
 }
 
@@ -90,8 +104,10 @@ export default function Navbar() {
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 inset-x-0 z-50 bg-bg transition-colors duration-300 ${
-          scrolled ? "border-b border-border" : "border-b border-transparent"
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-bg/80 backdrop-blur-md border-b border-border shadow-sm"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
         <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
@@ -118,12 +134,16 @@ export default function Navbar() {
             })}
           </ul>
 
-          <div className="hidden lg:flex items-center">
+          {/* Desktop Right Actions */}
+          <div className="hidden lg:flex items-center gap-2">
             <ThemeToggle />
+            <GithubButton />
           </div>
 
-          <div className="flex items-center gap-3 lg:hidden">
+          {/* Mobile Right Actions: DarkMode -> GitHub -> Hamburger */}
+          <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
+            <GithubButton />
             <button
               onClick={() => setMenuOpen((p) => !p)}
               className="p-2 text-text-soft hover:text-text-main transition-colors"
@@ -157,6 +177,7 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
+      {/* Mobile Drawer Navigation with Blur Background */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -164,7 +185,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="box fixed left-4 right-4 top-[64px] z-40 bg-bg px-5 py-5 lg:hidden"
+            className="box fixed left-4 right-4 top-[72px] z-40 bg-bg/90 backdrop-blur-lg border border-border px-5 py-5 lg:hidden shadow-xl"
           >
             <ul className="flex flex-col gap-1">
               {navLinks.map((link, i) => {

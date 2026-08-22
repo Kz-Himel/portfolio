@@ -158,8 +158,8 @@ export default function AboutSection() {
                     year.
                   </p>
                   <p>
-                    I care deeply about <span className="text-text-main">craft</span> —
-                    the kind of subtle details that separate a good site from a
+                    I care deeply about <span className="text-text-main">craft</span>{" "}
+                    {"— "}the kind of subtle details that separate a good site from a
                     memorable one. I combine a frontend-first approach with fullstack
                     competence: building authentication flows, REST APIs, database
                     schemas, and now, integrating AI &amp; LLMs into product experiences.
