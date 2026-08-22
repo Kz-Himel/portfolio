@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
-        {/* <ThemeProvider> */}
+        <ThemeProvider>
           <Background3D />
           <CustomCursor />
           <SmoothScroll>
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             </main>
             <Footer />
           </SmoothScroll>
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       </body>
     </html>
   );
