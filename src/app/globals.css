@@ -1,30 +1,54 @@
-@import url("https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 @import "tailwindcss";
 
-/* ========== THEME TOKENS ========== */
+/* ========================================================================
+   THEME TOKENS — Elias-reference redesign
+   ======================================================================== */
 :root {
-  --bg-0: #03060F;
-  --bg-1: #050816;
-  --bg-2: #07111F;
-  --bg-3: #0A1328;
-  --panel: rgba(11, 16, 34, 0.6);
-  --panel-solid: #0B1022;
-  --cyan: #06B6D4;
-  --cyan-neon: #22D3EE;
-  --cyan-glow: rgba(6, 182, 212, 0.55);
-  --blue-neon: #3B82F6;
-  --violet: #8B5CF6;
-  --violet-neon: #A78BFA;
-  --violet-glow: rgba(139, 92, 246, 0.55);
-  --purple-neon: #C084FC;
-  --magenta-glow: rgba(236, 72, 153, 0.45);
-  --magenta: #EC4899;
-  --text-main: #E2E8F0;
-  --text-soft: #94A3B8;
-  --text-muted: #64748B;
-  --border: rgba(6, 182, 212, 0.18);
-  --border-soft: rgba(148, 163, 184, 0.08);
+  /* ---- LIGHT MODE ---- */
+  --bg: #F7F7F8;
+  --bg-elevated: #FFFFFF;
+  --accent: #9A34C7;
+  --accent-soft: rgba(154, 52, 199, 0.12);
+  --text-main: #1B1D23;
+  --text-soft: #4B5262;
+  --text-muted: #767E8F;
+  --border: rgba(15, 17, 23, 0.14);
+  --dot-color: rgba(15, 17, 23, 0.28);
+
+  --bg-0: var(--bg);
+  --panel: var(--bg-elevated);
+  --panel-solid: var(--bg-elevated);
+  --cyan: var(--accent);
+  --cyan-neon: var(--accent);
+  --cyan-glow: var(--accent-soft);
+  --violet: var(--accent);
+  --violet-neon: var(--accent);
+  --violet-glow: var(--accent-soft);
+}
+
+.dark {
+  /* ---- DARK MODE (matches reference video exactly) ---- */
+  --bg: #272A31;
+  --bg-elevated: #2E323A;
+  --accent: #C168D8;
+  --accent-soft: rgba(193, 104, 216, 0.16);
+  --text-main: #F1F1F3;
+  --text-soft: #9CA3AF;
+  --text-muted: #6B7280;
+  --border: rgba(255, 255, 255, 0.12);
+  --dot-color: rgba(255, 255, 255, 0.22);
+
+  --bg-0: var(--bg);
+  --panel: var(--bg-elevated);
+  --panel-solid: var(--bg-elevated);
+  --cyan: var(--accent);
+  --cyan-neon: var(--accent);
+  --cyan-glow: var(--accent-soft);
+  --violet: var(--accent);
+  --violet-neon: var(--accent);
+  --violet-glow: var(--accent-soft);
 }
 
 /* ========== BASE ========== */
@@ -39,11 +63,12 @@ html {
 }
 
 body {
-  background-color: var(--bg-0);
+  background-color: var(--bg);
   color: var(--text-main);
-  font-family: "Satoshi", "Inter", sans-serif;
+  font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
   overflow-x: hidden;
   cursor: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 @media (max-width: 767px) {
@@ -51,13 +76,13 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Clash Display", "Inter", sans-serif;
-  letter-spacing: -0.015em;
+  font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  letter-spacing: -0.01em;
 }
 
 ::selection {
-  background: rgba(6, 182, 212, 0.28);
-  color: var(--cyan-neon);
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 /* ========== SCROLLBAR ========== */
@@ -66,11 +91,95 @@ h1, h2, h3, h4, h5, h6 {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-0);
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--cyan), var(--violet));
-  border-radius: 10px;
+  background: var(--text-muted);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ========================================================================
+   NEW ELIAS-STYLE PRIMITIVES
+   ======================================================================== */
+
+.box {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+
+.box-accent {
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.btn-outline-muted {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  color: var(--text-soft);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline-muted:hover {
+  border-color: var(--text-soft);
+  color: var(--text-main);
+}
+
+.section-tag {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.divider-line {
+  height: 1px;
+  background: var(--border);
+  flex: 1;
+}
+
+.tech-tag {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 4px);
+  grid-auto-rows: 4px;
+  gap: 8px;
+}
+.dot-grid span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--dot-color);
 }
 
 /* ========== GRADIENTS ========== */
@@ -366,7 +475,6 @@ h1, h2, h3, h4, h5, h6 {
   .section-wrap { padding: 8rem 0; }
 }
 
-/* Section label */
 .section-label {
   display: inline-flex;
   align-items: center;
