@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import SideRail from "@/components/SideRail";
 import CosmicBackground from "@/components/CosmicBackground";
 import Footer from "@/components/Footer";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "Kz Himel | MERN & Frontend Developer",
@@ -13,8 +14,8 @@ export const metadata = {
   keywords: ["MERN Developer", "Front End Developer", "Next.js", "React", "Kz Himel", "Web Developer"],
   openGraph: {
     title: "Kz Himel | MERN Developer",
-  description: "Frontend Developer crafting modern web experiences.",
-  type: "website",
+    description: "Frontend Developer crafting modern web experiences.",
+    type: "website",
   },
 };
 
@@ -22,16 +23,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
-        <SmoothScroll>
-          <CosmicBackground />
-          <Navbar />
-          <SideRail />
-          <CustomCursor />
-          <main className="relative z-[2]">
-            {children}
-          </main>
-          <Footer />
-        </SmoothScroll>
+        <ThemeProvider>
+          <SmoothScroll>
+            <CosmicBackground />
+            <Navbar />
+            <SideRail />
+            <CustomCursor />
+            <main className="relative z-[2]">
+              {children}
+            </main>
+            <Footer />
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
