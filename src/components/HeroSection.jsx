@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FiArrowRight, FiDownload } from "react-icons/fi";
+import { FiArrowRight, FiDownload, FiCpu } from "react-icons/fi";
 import Reveal from "./ui/Reveal";
 import Counter from "./ui/Counter";
 
@@ -21,25 +21,40 @@ export default function HeroSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center">
           {/* LEFT: copy */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5">
+            {/* 1. AI-Powered Quote / Badge */}
             <Reveal delay={0} blur={false}>
-              <h1 className="font-mono font-bold leading-[1.15] text-[28px] sm:text-4xl lg:text-[2.75rem] text-text-main">
-                Khayruzzaman Himel is a{" "}
-                <span className="text-accent">MERN developer</span> and{" "}
-                <span className="text-accent">frontend engineer</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent font-mono text-xs md:text-sm">
+                <FiCpu size={14} className="animate-pulse" />
+                <span>AI-Powered Developer &amp; Full-Stack Crafter</span>
+              </div>
+            </Reveal>
+
+            {/* 2. Big Name Heading */}
+            <Reveal delay={0.05} blur={false}>
+              <h1 className="font-mono font-bold leading-[1.1] text-3xl sm:text-5xl lg:text-6xl text-text-main tracking-tight">
+                Khayruzzaman Himel
               </h1>
             </Reveal>
 
+            {/* 3. Sub-heading / Role */}
             <Reveal delay={0.1} blur={false}>
+              <h2 className="font-mono font-semibold text-lg sm:text-2xl text-accent">
+                Fullstack Developer <span className="text-text-muted text-base font-normal">(MERN Stack)</span>
+              </h2>
+            </Reveal>
+
+            {/* 4. Description */}
+            <Reveal delay={0.15} blur={false}>
               <p className="text-text-soft text-sm sm:text-[15px] leading-relaxed max-w-lg">
-                He builds responsive, animated, and scalable web apps with
-                Next.js, React, and Node.js — turning designs into interfaces
-                that feel fast, intentional, and alive.
+                Building responsive, animated, and scalable web apps with
+                Next.js, React, Node.js, and AI integrations — turning ideas into production-grade interfaces that feel fast, intentional, and alive.
               </p>
             </Reveal>
 
-            <Reveal delay={0.18} blur={false}>
-              <div className="flex flex-wrap gap-3 items-center">
+            {/* CTAs */}
+            <Reveal delay={0.2} blur={false}>
+              <div className="flex flex-wrap gap-3 items-center pt-1">
                 <Link
                   href="/#contact"
                   className="btn-outline"
@@ -48,7 +63,7 @@ export default function HeroSection() {
                   <FiArrowRight size={14} />
                 </Link>
                 <a
-                  href="/Khayruzzaman_Himel_CV.pdf"
+                  href="/Khayruzzaman_Himel_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline-muted"
@@ -59,7 +74,8 @@ export default function HeroSection() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.26} blur={false}>
+            {/* Stats Cards */}
+            <Reveal delay={0.25} blur={false}>
               <div className="grid grid-cols-3 gap-3 max-w-md pt-2">
                 {stats.map((it) => (
                   <div key={it.l} className="box px-3 py-3 text-center">
@@ -75,10 +91,10 @@ export default function HeroSection() {
             </Reveal>
           </div>
 
-          {/* RIGHT: photo + decorative frames, same layout as reference */}
+          {/* RIGHT: photo + decorative frames */}
           <div className="lg:col-span-5 relative">
             <div className="relative w-full max-w-[340px] mx-auto">
-              {/* decorative empty wireframe rectangles, upper-left of the photo */}
+              {/* decorative empty wireframe rectangles */}
               <span
                 aria-hidden
                 className="hidden sm:block box-accent absolute -top-8 left-6 w-24 h-20 -z-10"
@@ -88,7 +104,7 @@ export default function HeroSection() {
                 className="hidden sm:block box-accent absolute -top-2 left-16 w-16 h-14 -z-10"
               />
 
-              {/* decorative dot grid, lower-right of the photo */}
+              {/* decorative dot grid */}
               <div
                 aria-hidden
                 className="hidden sm:grid absolute -bottom-6 -right-8 grid-cols-5 gap-2"
@@ -127,7 +143,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Quote block, same as reference */}
+        {/* Quote block */}
         <Reveal delay={0.1} blur={false} className="mt-16 md:mt-24">
           <div className="box-accent relative px-6 py-6 md:px-8 md:py-7 max-w-3xl">
             <span className="absolute -top-4 left-6 text-4xl text-accent font-mono select-none">

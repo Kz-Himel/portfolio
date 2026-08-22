@@ -44,7 +44,7 @@ function ThemeToggle() {
 function GithubButton() {
   return (
     <a
-      href="https://github.com/your-username" // Replace with your GitHub URL
+      href="https://github.com/Kz-Himel"
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center gap-2 px-3 py-1.5 rounded-md text-text-soft hover:text-text-main hover:bg-border/30 transition-all font-mono text-[13px]"
