@@ -1,101 +1,133 @@
 "use client";
 
-import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+
+const CORNER = 8; // px, length of each bracket arm
+const STROKE = 1.5;
 
 export default function CustomCursor() {
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
+  const [ready, setReady] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [hovering, setHovering] = useState(false);
+  const [isTouch, setIsTouch] = useState(true);
 
-  // Outer ring spring settings
-  const ringX = useSpring(mouseX, { stiffness: 400, damping: 28, mass: 0.5 });
-  const ringY = useSpring(mouseY, { stiffness: 400, damping: 28, mass: 0.5 });
-
-  // Center "</>" icon spring settings (more responsive)
-  const codeX = useSpring(mouseX, { stiffness: 1000, damping: 35, mass: 0.2 });
-  const codeY = useSpring(mouseY, { stiffness: 1000, damping: 35, mass: 0.2 });
-
-  const [variant, setVariant] = useState("idle");
+  const dotX = useMotionValue(-100);
+  const dotY = useMotionValue(-100);
+  const ringX = useSpring(dotX, { stiffness: 320, damping: 28, mass: 0.4 });
+  const ringY = useSpring(dotY, { stiffness: 320, damping: 28, mass: 0.4 });
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    const touchDevice = window.matchMedia("(pointer: coarse)").matches;
+    setIsTouch(touchDevice);
+    setReady(true);
+    if (touchDevice) return;
 
-    const moveCursor = (e) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+    document.body.classList.add("cursor-none-active");
 
-      const t = e.target;
-      const interactive = t.closest(
-        "a, button, input, textarea, select, [role='button'], .hover-target, [data-cursor='hover']"
-      );
-      const clickable = t.closest("a, button");
-
-      setVariant(interactive ? (clickable ? "click" : "hover") : "idle");
+    const move = (e) => {
+      dotX.set(e.clientX);
+      dotY.set(e.clientY);
+      setVisible(true);
     };
+    const over = (e) => {
+      const target = e.target.closest?.(
+        "a, button, input, textarea, select, [role='button'], .hover-target"
+      );
+      setHovering(!!target);
+    };
+    const leave = () => setVisible(false);
 
-    window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
-  }, [mouseX, mouseY]);
+    window.addEventListener("mousemove", move);
+    window.addEventListener("mouseover", over);
+    window.addEventListener("mouseleave", leave);
 
-  // Dynamic Ring Sizing & Colors
-  const ringSize = variant === "click" ? 64 : variant === "hover" ? 52 : 40;
-  const ringColor =
-    variant === "click"
-      ? "#EC4899"
-      : variant === "hover"
-      ? "#8B5CF6"
-      : "#06B6D4";
+    return () => {
+      document.body.classList.remove("cursor-none-active");
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("mouseover", over);
+      window.removeEventListener("mouseleave", leave);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!ready || isTouch) return null;
+
+  const size = hovering ? 46 : 28;
+
+  const cornerBase = {
+    position: "absolute",
+    width: CORNER,
+    height: CORNER,
+    transition: "width 0.2s ease, height 0.2s ease, border-color 0.2s ease",
+  };
 
   return (
     <>
-      {/* Outer Glowing Ring */}
       <motion.div
+        aria-hidden
+        className="fixed top-0 left-0 z-[999] pointer-events-none w-1 h-1"
         style={{
-          translateX: ringX,
-          translateY: ringY,
-          x: "-50%",
-          y: "-50%",
+          x: dotX,
+          y: dotY,
+          translateX: "-50%",
+          translateY: "-50%",
+          background: "var(--accent)",
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.2s ease",
         }}
-        animate={{
-          width: ringSize,
-          height: ringSize,
-          borderColor: ringColor,
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 22 }}
-        className="pointer-events-none fixed top-0 left-0 z-[99999] rounded-full border border-opacity-80 hidden md:block"
-      >
-        <div
-          className="absolute inset-0 rounded-full opacity-40 transition-colors duration-300"
-          style={{
-            boxShadow: `0 0 20px ${ringColor}, inset 0 0 10px ${ringColor}`,
-          }}
-        />
-      </motion.div>
+      />
 
-      {/* Main Cursor Icon: "</>" */}
       <motion.div
+        aria-hidden
+        className="fixed top-0 left-0 z-[998] pointer-events-none"
         style={{
-          translateX: codeX,
-          translateY: codeY,
-          x: "-50%",
-          y: "-50%",
+          x: ringX,
+          y: ringY,
+          translateX: "-50%",
+          translateY: "-50%",
+          width: size,
+          height: size,
+          opacity: visible ? 1 : 0,
+          transition: "width 0.2s ease, height 0.2s ease, opacity 0.2s ease",
         }}
-        animate={{
-          scale: variant === "click" ? 1.3 : variant === "hover" ? 1.15 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
-        className="pointer-events-none fixed top-0 left-0 z-[99999] hidden md:flex items-center justify-center select-none"
       >
         <span
-          className="font-mono font-bold text-xs tracking-tighter"
           style={{
-            color: ringColor,
-            textShadow: `0 0 8px ${ringColor}, 0 0 16px ${ringColor}88`,
+            ...cornerBase,
+            top: 0,
+            left: 0,
+            borderTop: `${STROKE}px solid var(--accent)`,
+            borderLeft: `${STROKE}px solid var(--accent)`,
           }}
-        >
-          &lt;/&gt;
-        </span>
+        />
+        <span
+          style={{
+            ...cornerBase,
+            top: 0,
+            right: 0,
+            borderTop: `${STROKE}px solid var(--accent)`,
+            borderRight: `${STROKE}px solid var(--accent)`,
+          }}
+        />
+        <span
+          style={{
+            ...cornerBase,
+            bottom: 0,
+            left: 0,
+            borderBottom: `${STROKE}px solid var(--accent)`,
+            borderLeft: `${STROKE}px solid var(--accent)`,
+          }}
+        />
+        <span
+          style={{
+            ...cornerBase,
+            bottom: 0,
+            right: 0,
+            borderBottom: `${STROKE}px solid var(--accent)`,
+            borderRight: `${STROKE}px solid var(--accent)`,
+          }}
+        />
       </motion.div>
     </>
   );

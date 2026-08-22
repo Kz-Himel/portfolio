@@ -84,6 +84,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent);
 }
 
+body.cursor-none-active,
+body.cursor-none-active * {
+  cursor: none !important;
+}
+@media (pointer: coarse) {
+  body.cursor-none-active,
+  body.cursor-none-active * {
+    cursor: auto !important;
+  }
+}
+
 /* ========== SCROLLBAR ========== */
 ::-webkit-scrollbar {
   width: 6px;

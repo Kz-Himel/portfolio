@@ -5,6 +5,7 @@ import SideRail from "@/components/SideRail";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import Background3D from "@/components/Background3D";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata = {
   title: "Kz Himel | MERN & Frontend Developer",
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
       <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
         <ThemeProvider>
           <Background3D />
+          <CustomCursor />
           <SmoothScroll>
             <Navbar />
             <SideRail />
