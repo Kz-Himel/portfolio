@@ -67,7 +67,6 @@ body {
   color: var(--text-main);
   font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
   overflow-x: hidden;
-  cursor: none;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 

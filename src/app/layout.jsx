@@ -1,9 +1,7 @@
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import SideRail from "@/components/SideRail";
-import CosmicBackground from "@/components/CosmicBackground";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 
@@ -25,10 +23,8 @@ export default function RootLayout({ children }) {
       <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
         <ThemeProvider>
           <SmoothScroll>
-            <CosmicBackground />
             <Navbar />
             <SideRail />
-            <CustomCursor />
             <main className="relative z-[2]">
               {children}
             </main>
