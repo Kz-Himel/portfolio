@@ -2,31 +2,25 @@
 
 import { motion } from "framer-motion";
 
-export function SectionHeader({ eyebrow, title, subtitle, align = "left" }) {
-  const alignClass =
-    align === "center"
-      ? "text-center items-center mx-auto"
-      : align === "right"
-        ? "text-right items-end ml-auto"
-        : "text-left items-start";
+export function SectionHeader({ tag, action, subtitle }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`mb-10 md:mb-14 max-w-3xl flex flex-col ${alignClass}`}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="mb-10 md:mb-12"
     >
-      {eyebrow && (
-        <div className="section-label mb-3">{eyebrow}</div>
-      )}
-      {title && (
-        <h2 className="text-3xl md:text-5xl lg:text-[3.4rem] font-bold leading-[1.05] tracking-tight">
-          {title}
+      <div className="flex items-center gap-4">
+        <h2 className="font-mono font-bold text-2xl md:text-3xl text-text-main whitespace-nowrap">
+          <span className="section-tag">#</span>
+          {tag}
         </h2>
-      )}
+        <div className="divider-line" />
+        {action}
+      </div>
       {subtitle && (
-        <p className="text-text-soft mt-4 max-w-2xl text-sm md:text-base leading-relaxed">
+        <p className="text-text-soft mt-4 max-w-2xl text-sm md:text-[15px] leading-relaxed">
           {subtitle}
         </p>
       )}
