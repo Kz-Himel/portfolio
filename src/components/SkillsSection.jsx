@@ -56,7 +56,7 @@ export default function SkillsSection() {
   const hexSkills = activeCat === "all" ? skills.slice(0, 13) : filtered;
 
   return (
-    <section id="skills" className="relative py-20 md:py-28">
+    <section id="skills" className="relative py-20 md:py-28 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           tag="skills"
@@ -91,10 +91,10 @@ export default function SkillsSection() {
         </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* LEFT: the radial "stack" cluster */}
+          {/* LEFT: Radial Stack Cluster */}
           <div className="lg:col-span-7">
             <Reveal delay={0.12} blur={false}>
-              <div className="box p-6 md:p-8">
+              <div className="box p-6 md:p-8 relative">
                 <div className="flex items-center justify-between mb-6">
                   <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">
                     Tech Cluster
@@ -105,8 +105,10 @@ export default function SkillsSection() {
                 </div>
 
                 <div className="relative aspect-square w-full max-w-[480px] mx-auto">
+                  
+                  {/* CORE STACK CENTER */}
                   <div
-                    className="box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92px] h-[92px] md:w-[116px] md:h-[116px] flex flex-col items-center justify-center z-10"
+                    className="box absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92px] h-[92px] md:w-[116px] md:h-[116px] flex flex-col items-center justify-center z-10 bg-bg"
                     style={{ borderColor: "var(--accent)" }}
                   >
                     <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-text-muted mb-1">
@@ -117,26 +119,51 @@ export default function SkillsSection() {
                     </span>
                   </div>
 
-                  <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full pointer-events-none">
+                  {/* CONNECTING LINES WITH WAVE PULSE */}
+                  <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full pointer-events-none z-0">
                     {hexSkills.map((s, i) => {
                       const r = 36 + (s.size === "lg" ? 0 : s.size === "md" ? -4 : -8);
                       const pos = hexPos(i, hexSkills.length, r);
                       return (
-                        <motion.line
-                          key={`l-${s.name}`}
-                          x1={50} y1={50}
-                          x2={pos.x} y2={pos.y}
-                          stroke="var(--border)"
-                          strokeWidth="0.3"
-                          initial={{ pathLength: 0, opacity: 0 }}
-                          whileInView={{ pathLength: 1, opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.1 + i * 0.03 }}
-                        />
+                        <g key={`l-${s.name}`}>
+                          {/* Base Connection Line */}
+                          <motion.line
+                            x1={50} y1={50}
+                            x2={pos.x} y2={pos.y}
+                            stroke="var(--border)"
+                            strokeWidth="0.3"
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            whileInView={{ pathLength: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.1 + i * 0.03 }}
+                          />
+
+                          {/* Line Pulse Traveling Outward */}
+                          <motion.line
+                            x1={50} y1={50}
+                            x2={pos.x} y2={pos.y}
+                            stroke="var(--accent)"
+                            strokeWidth="0.6"
+                            strokeDasharray="6 20"
+                            strokeLinecap="round"
+                            initial={{ strokeDashoffset: 26, opacity: 0 }}
+                            animate={{
+                              strokeDashoffset: [26, 0],
+                              opacity: [0, 1, 0],
+                            }}
+                            transition={{
+                              duration: 2.2,
+                              repeat: Infinity,
+                              delay: (i % 4) * 0.25,
+                              ease: "easeInOut",
+                            }}
+                          />
+                        </g>
                       );
                     })}
                   </svg>
 
+                  {/* SKILL BOXES */}
                   {hexSkills.map((s, i) => {
                     const r = 38 + (s.size === "lg" ? 2 : s.size === "md" ? -2 : -6);
                     const pos = hexPos(i, hexSkills.length, r);
@@ -159,7 +186,7 @@ export default function SkillsSection() {
                       >
                         <div className="group relative flex items-center justify-center cursor-default">
                           <div
-                            className={`box ${box} bg-bg flex items-center justify-center font-mono font-medium text-text-main`}
+                            className={`box ${box} bg-bg flex items-center justify-center font-mono font-medium text-text-main transition-colors duration-300 group-hover:border-accent`}
                           >
                             <span className="text-center px-1 leading-tight">{s.name}</span>
                           </div>
@@ -183,20 +210,25 @@ export default function SkillsSection() {
             </Reveal>
           </div>
 
-          {/* RIGHT: category boxes, same layout as reference */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 content-start">
+          {/* RIGHT: Clean Pill Badge List */}
+          <div className="lg:col-span-5 grid grid-cols-1 gap-4 content-start">
             {categoryBoxes.map((box, i) => (
               <Reveal key={box.label} delay={0.16 + i * 0.05} blur={false}>
-                <div className="box h-full">
-                  <div className="px-4 py-3 border-b border-border">
-                    <span className="font-mono font-semibold text-[13px] text-text-main">
+                <div className="box p-4 transition-all hover:border-accent/50">
+                  <div className="mb-2.5">
+                    <span className="font-mono font-semibold text-[12px] uppercase tracking-wider text-accent">
                       {box.label}
                     </span>
                   </div>
-                  <div className="px-4 py-3">
-                    <p className="tech-tag leading-relaxed">
-                      {box.items.join(" ")}
-                    </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {box.items.map((item) => (
+                      <span
+                        key={item}
+                        className="px-2.5 py-1 text-[11px] font-mono bg-border/40 text-text-main border border-border/80 rounded-md transition-colors hover:border-accent/40"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </Reveal>
