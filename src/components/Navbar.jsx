@@ -9,13 +9,13 @@ import { FiMenu, FiX, FiSun, FiMoon, FiGithub } from "react-icons/fi";
 import Logo from "./Logo";
 
 const navLinks = [
-  { href: "/#hero", label: "#home" },
-  { href: "/#about", label: "#about" },
-  { href: "/#skills", label: "#skills" },
-  { href: "/#projects", label: "#projects" },
-  { href: "/#experience", label: "#experience" },
-  { href: "/#achievements", label: "#achievements" },
-  { href: "/#contact", label: "#contact" },
+  { href: "/#hero", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#achievements", label: "Achievements" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 function ThemeToggle() {
@@ -123,7 +123,7 @@ export default function Navbar() {
                     onClick={() => setActiveSection(link.href)}
                     className={`font-mono text-[13px] transition-colors ${
                       isActive
-                        ? "text-text-main font-semibold"
+                        ? "text-text-main font-semibold text-purple-400"
                         : "text-text-soft hover:text-text-main"
                     }`}
                   >
