@@ -7,6 +7,7 @@ import Reveal from "./ui/Reveal";
 
 const categories = [
   { id: "all", label: "All" },
+  { id: "language", label: "Language" },
   { id: "frontend", label: "Frontend" },
   { id: "backend", label: "Backend" },
   { id: "database", label: "Database" },
@@ -35,7 +36,8 @@ const skills = [
 ];
 
 const categoryBoxes = [
-  { label: "Frontend", items: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"] },
+  { label: "Language", items: ["JavaScript(ES6+)", "TypeScript", "Html5", "CSS3"] },
+  { label: "Frontend", items: ["React.js", "Next.js", "Tailwind CSS", "Hero Ui", "Shadcn", "Framer Motion", "Three.js"] },
   { label: "Backend", items: ["Node.js", "Express.js", "REST APIs", "Better Auth", "JWT"] },
   { label: "Database", items: ["MongoDB", "Mongoose", "PostgreSQL", "Prisma"] },
   { label: "Tools", items: ["Git", "GitHub", "Vercel", "VS Code", "Figma"] },
