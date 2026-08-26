@@ -33,6 +33,7 @@ const skills = [
   { name: "PostgreSQL", level: 68, cat: "database", size: "sm" },
   { name: "Git · GitHub", level: 90, cat: "tools", size: "md" },
   { name: "Vercel · Netlify", level: 92, cat: "tools", size: "sm" },
+  { name: "Claude · Claude Code", level: 80, cat: "tools", size: "sm" },
 ];
 
 const categoryBoxes = [
@@ -40,7 +41,7 @@ const categoryBoxes = [
   { label: "Frontend", items: ["React.js", "Next.js", "Tailwind CSS", "Hero Ui", "Shadcn", "Framer Motion", "Three.js"] },
   { label: "Backend", items: ["Node.js", "Express.js", "REST APIs", "Better Auth", "JWT"] },
   { label: "Database", items: ["MongoDB", "Mongoose", "PostgreSQL", "Prisma"] },
-  { label: "Tools", items: ["Git", "GitHub", "Vercel", "VS Code", "Figma"] },
+  { label: "Tools", items: ["Git", "GitHub", "Vercel", "VS Code", "Figma", "Claude"] },
 ];
 
 function hexPos(index, total, radius) {
