@@ -1,5 +1,48 @@
 const projects = [
   {
+    id: "ankara",
+    title: "Ankara",
+    description:
+      "A modern full-stack marketplace platform for buying, selling, managing products, and tracking orders with a secure and seamless user experience.",
+
+    longDescription:
+      "Ankara is a full-stack product marketplace platform built to provide a complete and seamless e-commerce experience. Users can securely register and log in, explore products by category, search and browse listings, manage their own products, place and track orders, and share reviews and ratings. The platform features secure JWT authentication, role-based access control, product and category management, order processing, and an intuitive responsive interface. Powered by Next.js, TypeScript, Express.js, PostgreSQL, and Prisma ORM, Ankara demonstrates a scalable architecture and modern approach to building a real-world marketplace application.",
+    image: "/projects/ankara.png",
+    tags: [
+      "Next.js",
+      "Tailwind CSS",
+      "TypeScript",
+      "Express.js",
+      "Prisma",
+      "PostgreSQL",
+      "JWT",
+      "RBAC System",
+      "Recharts",
+      "Node.js",
+      "Framer Motion",
+    ],
+    live: "https://product-marketplace-client.vercel.app/",
+    github: "https://github.com/Kz-Himel/product-marketplace-client",
+    featured: true,
+    year: "2026",
+    challenges:
+      "Designing a secure and scalable marketplace architecture with role-based access control, real-time order management, and reliable product data handling while maintaining a fast and responsive user experience.",
+
+    features: [
+      "Product listing & management",
+      "Product search & category filtering",
+      "JWT authentication",
+      "Role-based access control",
+      "Shopping cart & order management",
+      "Order tracking & status management",
+      "Product reviews & ratings",
+      "Admin dashboard",
+      "Protected routes",
+      "Responsive & modern UI",
+    ],
+  },
+
+  {
     id: "careerpilot-ai",
     title: "CareerPilot AI",
     description:
@@ -15,7 +58,7 @@ const projects = [
       "Generative AI",
       "Better Auth",
       "Tailwind CSS",
-      "Recharts"
+      "Recharts",
     ],
     live: "https://careerpilot-client-kzhimel.vercel.app/",
     github: "https://github.com/Kz-Himel/careerpilot-client",
@@ -51,7 +94,7 @@ const projects = [
       "Express.js",
       "MongoDB",
       "Better Auth",
-      "Tailwind CSS"
+      "Tailwind CSS",
     ],
     live: "https://courseflow-client.vercel.app/",
     github: "https://github.com/Kz-Himel/courseflow-client",
@@ -85,7 +128,7 @@ const projects = [
       "MongoDB",
       "Better Auth",
       "Tailwind CSS",
-      "Hero UI"
+      "Hero UI",
     ],
     live: "https://prompt-verse-kzhimel.vercel.app/",
     github: "https://github.com/Kz-Himel/prompt-verse",
@@ -119,7 +162,7 @@ const projects = [
       "Node.js",
       "Express.js",
       "MongoDB",
-      "JWT"
+      "JWT",
     ],
     live: "https://study-nook-kzhimel.vercel.app/",
     github: "https://github.com/Kz-Himel/study-nook",
@@ -152,7 +195,7 @@ const projects = [
       "MongoDB",
       "Better Auth",
       "Framer Motion",
-      "Hero UI"
+      "Hero UI",
     ],
     live: "https://ah-tilecraft.vercel.app",
     github: "https://github.com/Kz-Himel/ah-tilecraft",
@@ -250,7 +293,13 @@ const projects = [
     longDescription:
       "English Janala is an educational web application focused on helping users learn English through interactive lessons and clean user experience. The platform includes engaging layouts, responsive design, and accessible content presentation.",
     image: "/projects/english-janala.png",
-    tags: ["JavaScript", "Tailwind CSS", "API", "Responsive Design", "Daisy UI"],
+    tags: [
+      "JavaScript",
+      "Tailwind CSS",
+      "API",
+      "Responsive Design",
+      "Daisy UI",
+    ],
     live: "https://kz-himel.github.io/English-Janala/",
     github: "https://github.com/Kz-Himel/English-Janala",
     featured: false,
@@ -274,7 +323,13 @@ const projects = [
     longDescription:
       "Github Issue Tracker is a modern frontend project focused on responsive layouts, reusable components, and clean UI implementation. This is a web-based project that helps developers track bugs, manage feature requests, and organize project tasks efficiently. It uses dynamic API calls to load data in real-time and provides a clean, responsive interface.",
     image: "/projects/github-issue-tracker.png",
-    tags: ["Java Script ES6", "Tailwind CSS", "RESTful API", "Responsive Design", "Daisy UI"],
+    tags: [
+      "Java Script ES6",
+      "Tailwind CSS",
+      "RESTful API",
+      "Responsive Design",
+      "Daisy UI",
+    ],
     live: "https://kz-himel.github.io/Assignment_5/",
     github: "https://github.com/Kz-Himel/Assignment_5",
     featured: false,
@@ -314,4 +369,4 @@ const projects = [
   },
 ];
 
-export default projects
+export default projects;
