@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Logo() {
   return (
     <Link
-      href="/"
+      href="#home"
       className="flex items-center gap-2.5 select-none group"
       aria-label="Kz Himel — home"
     >
