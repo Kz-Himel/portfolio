@@ -1,10 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiBriefcase, FiCode, FiUsers, FiCpu, FiCalendar, FiTrendingUp } from "react-icons/fi";
+import { FiBriefcase, FiCode, FiCpu, FiCalendar } from "react-icons/fi";
 import SectionHeader from "./ui/SectionHeader";
-import Reveal from "./ui/Reveal";
-import Counter from "./ui/Counter";
 
 const experience = [
   {
@@ -46,13 +44,6 @@ const experience = [
       "Contributed to local dev community — mentored juniors, shared tutorials, ran code reviews.",
     ],
   },
-];
-
-const achievements = [
-  { label: "Projects Shipped", value: 30, suffix: "+", icon: <FiCode size={20} /> },
-  { label: "Happy Clients", value: 12, suffix: "+", icon: <FiUsers size={20} /> },
-  { label: "Avg. Lighthouse", value: 96, suffix: "/100", icon: <FiTrendingUp size={20} /> },
-  { label: "Years Coding", value: 1.5, suffix: "+", icon: <FiCalendar size={20} />, dec: 1 },
 ];
 
 function ExperienceSection() {
@@ -126,35 +117,4 @@ function ExperienceSection() {
   );
 }
 
-function AchievementsSection() {
-  return (
-    <section id="achievements" className="relative pb-20 md:pb-28">
-      <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          tag="achievements"
-          subtitle="Live stats from shipping production work."
-        />
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {achievements.map((a, i) => (
-            <Reveal key={a.label} delay={0.06 + i * 0.06} blur={false}>
-              <div className="box p-5 md:p-6 h-full">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-accent">{a.icon}</span>
-                  <span className="font-mono text-[10px] text-text-muted">0{i + 1}</span>
-                </div>
-                <div className="font-mono font-bold text-text-main leading-none mb-2 text-[2rem] md:text-[2.5rem]">
-                  <Counter to={a.value} decimals={a.dec || 0} suffix={a.suffix} />
-                </div>
-                <div className="text-[12px] text-text-soft">{a.label}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export { ExperienceSection, AchievementsSection };
 export default ExperienceSection;
