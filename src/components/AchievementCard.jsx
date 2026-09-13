@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { FiAward } from "react-icons/fi";
-import Reveal from "./Reveal";
+import Reveal from "../components/ui/Reveal";
 
 function AchievementCard({ achievement, index, onClick }) {
   const { label, issuer, detail, image } = achievement;
@@ -14,12 +14,15 @@ function AchievementCard({ achievement, index, onClick }) {
         onClick={onClick}
         className="box p-0 h-full w-full text-left overflow-hidden group cursor-pointer"
       >
-        <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-border">
+        <div
+          className="relative w-full aspect-[4/3] overflow-hidden border-b border-border"
+          style={{ background: "var(--bg-elevated)" }}
+        >
           <Image
             src={image}
             alt={label}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-contain p-3 transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>

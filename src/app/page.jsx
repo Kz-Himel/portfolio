@@ -4,7 +4,8 @@ import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ServicesSection from "@/components/ServicesSection";
 import ContactSection from "@/components/ContactSection";
-import { ExperienceSection, AchievementsSection } from "@/components/ExperienceSection";
+import ExperienceSection from "@/components/ExperienceSection";
+import AchievementsSection from "@/components/AchievementsSection";
 
 export default function HomePage() {
   return (
