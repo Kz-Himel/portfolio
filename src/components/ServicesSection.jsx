@@ -16,7 +16,7 @@ import Reveal from "./ui/Reveal";
 
 const services = [
   {
-    title: "MERN Stack Development",
+    title: " FullStack & MERN Stack Development",
     desc: "End-to-end fullstack apps with MongoDB, Express, React, and Node — designed to scale and maintain.",
     icon: <FiCode size={20} />,
   },
