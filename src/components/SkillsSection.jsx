@@ -34,12 +34,16 @@ const skills = [
   { name: "Git · GitHub", level: 90, cat: "tools", size: "md" },
   { name: "Vercel · Netlify", level: 92, cat: "tools", size: "sm" },
   { name: "Claude · Claude Code", level: 80, cat: "tools", size: "sm" },
+  { name: "Tanstack Query", level: 80, cat: "frontend", size: "sm" },
+  { name: "Redux", level: 80, cat: "frontend", size: "sm" },
+  { name: "Zod", level: 80, cat: "backend", size: "sm" },
+  { name: "Prisma", level: 80, cat: "database", size: "sm" },
 ];
 
 const categoryBoxes = [
   { label: "Language", items: ["JavaScript(ES6+)", "TypeScript", "Html5", "CSS3"] },
-  { label: "Frontend", items: ["React.js", "Next.js", "Tailwind CSS", "Hero Ui", "Shadcn", "Framer Motion", "Three.js"] },
-  { label: "Backend", items: ["Node.js", "Express.js", "REST APIs", "Better Auth", "JWT"] },
+  { label: "Frontend", items: ["React.js", "Next.js", "Tailwind CSS", "Shadcn", "Hero Ui", "Framer Motion", "Three.js", "Tanstack Query", "Redux"] },
+  { label: "Backend", items: ["Node.js", "Express.js", "REST APIs", "Better Auth", "JWT", "Zod"] },
   { label: "Database", items: ["MongoDB", "Mongoose", "PostgreSQL", "Prisma"] },
   { label: "Tools", items: ["Git", "GitHub", "Vercel", "VS Code", "Figma", "Claude"] },
 ];
