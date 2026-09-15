@@ -2,27 +2,61 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FiArrowRight, FiDownload, FiCpu } from "react-icons/fi";
+import dynamic from "next/dynamic";
+import { 
+  FiArrowRight, 
+  FiDownload, 
+  FiCpu, 
+  FiGithub, 
+  FiZap, 
+  FiLayers, 
+  FiTerminal, 
+  FiCheckCircle 
+} from "react-icons/fi";
 import Reveal from "./ui/Reveal";
-import Counter from "./ui/Counter";
 
-const stats = [
-  { v: 30, s: "+", l: "Projects" },
-  { v: 1.5, s: "+", l: "Years Exp.", dec: 1 },
-  { v: 12, s: "+", l: "Clients" },
+// Dynamic Import to avoid Next.js SSR Hydration Issues
+const GitHubCalendar = dynamic(
+  () => import("react-github-calendar").then((mod) => mod.GitHubCalendar),
+  { ssr: false }
+);
+
+const GITHUB_USERNAME = "Kz-Himel";
+
+const coreCapabilities = [
+  {
+    title: "AI-Driven Applications",
+    desc: "LLM integration, Prompt Engineering & Smart Automation",
+    tag: "AI / ML",
+    icon: FiCpu,
+  },
+  {
+    title: "Full-Stack Web Systems",
+    desc: "Production-ready apps with Next.js, Node.js & MongoDB",
+    tag: "MERN / Next",
+    icon: FiLayers,
+  },
+  {
+    title: "High Performance UI/UX",
+    desc: "Interactive, fluid animations & mobile-first architecture",
+    tag: "Frontend",
+    icon: FiZap,
+  },
 ];
 
 export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative pt-32 pb-20 md:pt-40 md:pb-28"
+      className="relative pt-10 pb-20 md:pt-40 md:pb-28 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center">
-          {/* LEFT: copy */}
-          <div className="lg:col-span-7 space-y-5">
-            {/* 1. AI-Powered Quote / Badge */}
+          
+          {/* LEFT: Copy & Capabilities */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            {/* 1. AI Badge */}
             <Reveal delay={0} blur={false}>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent font-mono text-xs md:text-sm">
                 <FiCpu size={14} className="animate-pulse" />
@@ -30,14 +64,14 @@ export default function HeroSection() {
               </div>
             </Reveal>
 
-            {/* 2. Big Name Heading */}
+            {/* 2. Heading */}
             <Reveal delay={0.05} blur={false}>
               <h1 className="font-mono font-bold leading-[1.1] text-3xl sm:text-5xl lg:text-6xl text-text-main tracking-tight">
                 Khayruzzaman Himel
               </h1>
             </Reveal>
 
-            {/* 3. Sub-heading / Role */}
+            {/* 3. Role */}
             <Reveal delay={0.1} blur={false}>
               <h2 className="font-mono font-semibold text-lg sm:text-2xl text-accent">
                 Fullstack Developer <span className="text-text-muted text-base font-normal">(MERN Stack)</span>
@@ -47,18 +81,14 @@ export default function HeroSection() {
             {/* 4. Description */}
             <Reveal delay={0.15} blur={false}>
               <p className="text-text-soft text-sm sm:text-[15px] leading-relaxed max-w-lg">
-                Building responsive, animated, and scalable web apps with
-                Next.js, React, Node.js, and AI integrations — turning ideas into production-grade interfaces that feel fast, intentional, and alive.
+                Building responsive, animated, and scalable web apps with Next.js, React, Node.js, and AI integrations — turning ideas into production-grade interfaces that feel fast, intentional, and alive.
               </p>
             </Reveal>
 
             {/* CTAs */}
             <Reveal delay={0.2} blur={false}>
               <div className="flex flex-wrap gap-3 items-center pt-1">
-                <Link
-                  href="/#contact"
-                  className="btn-outline"
-                >
+                <Link href="/#contact" className="btn-outline">
                   Contact me
                   <FiArrowRight size={14} />
                 </Link>
@@ -74,27 +104,51 @@ export default function HeroSection() {
               </div>
             </Reveal>
 
-            {/* Stats Cards */}
+            {/* UNIQUE FEATURE: Core Capabilities / Tech Focus instead of Stats */}
             <Reveal delay={0.25} blur={false}>
-              <div className="grid grid-cols-3 gap-3 max-w-md pt-2">
-                {stats.map((it) => (
-                  <div key={it.l} className="box px-3 py-3 text-center">
-                    <div className="font-mono font-bold text-lg text-text-main">
-                      <Counter to={it.v} decimals={it.dec || 0} suffix={it.s} />
-                    </div>
-                    <div className="text-[10px] text-text-muted mt-1 tracking-wide uppercase">
-                      {it.l}
-                    </div>
-                  </div>
-                ))}
+              <div className="pt-3">
+                <div className="flex items-center gap-2 text-xs font-mono text-text-muted mb-3 uppercase tracking-wider">
+                  <FiTerminal size={14} className="text-accent" />
+                  <span>Core Expertise & Focus Areas</span>
+                </div>
+
+                <div className="space-y-2.5 max-w-lg">
+                  {coreCapabilities.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <div
+                        key={item.title}
+                        className="group flex items-start justify-between p-3 rounded-xl border border-accent/15 bg-accent/5 hover:bg-accent/10 hover:border-accent/40 transition-all duration-300"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-accent/10 text-accent group-hover:scale-105 transition-transform">
+                            <Icon size={16} />
+                          </div>
+                          <div>
+                            <h4 className="font-mono text-xs sm:text-sm font-semibold text-text-main flex items-center gap-1.5">
+                              {item.title}
+                              <FiCheckCircle size={12} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </h4>
+                            <p className="text-[11px] sm:text-xs text-text-soft mt-0.5">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </div>
+                        <span className="font-mono text-[10px] px-2 py-1 rounded bg-accent/10 text-accent shrink-0">
+                          {item.tag}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </Reveal>
+
           </div>
 
-          {/* RIGHT: photo + decorative frames */}
+          {/* RIGHT: Photo */}
           <div className="lg:col-span-5 relative">
             <div className="relative w-full max-w-[340px] mx-auto">
-              {/* decorative empty wireframe rectangles */}
               <span
                 aria-hidden
                 className="hidden sm:block box-accent absolute -top-8 left-6 w-24 h-20 -z-10"
@@ -104,7 +158,6 @@ export default function HeroSection() {
                 className="hidden sm:block box-accent absolute -top-2 left-16 w-16 h-14 -z-10"
               />
 
-              {/* decorative dot grid */}
               <div
                 aria-hidden
                 className="hidden sm:grid absolute -bottom-6 -right-8 grid-cols-5 gap-2"
@@ -119,10 +172,10 @@ export default function HeroSection() {
               </div>
 
               <Reveal delay={0.2} blur={false}>
-                <div className="box relative aspect-[3/4] overflow-hidden">
+                <div className="box relative aspect-[3/4] overflow-hidden rounded-xl">
                   <Image
                     src="/profile.png"
-                    alt="Kz Himel"
+                    alt="Khayruzzaman Himel"
                     fill
                     className="object-cover"
                     priority
@@ -132,8 +185,8 @@ export default function HeroSection() {
               </Reveal>
 
               <Reveal delay={0.3} blur={false}>
-                <div className="box mt-3 flex items-center gap-2.5 px-4 py-3">
-                  <span className="w-3 h-3 shrink-0" style={{ background: "var(--accent)" }} />
+                <div className="box mt-3 flex items-center gap-2.5 px-4 py-3 rounded-xl">
+                  <span className="w-2.5 h-2.5 shrink-0 rounded-full animate-ping" style={{ background: "var(--accent)" }} />
                   <span className="font-mono text-[13px] text-text-soft">
                     Currently working on <span className="text-text-main font-semibold">CareerPilot AI</span>
                   </span>
@@ -143,20 +196,50 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Quote block */}
+        {/* GITHUB CONTRIBUTIONS GRID */}
         <Reveal delay={0.1} blur={false} className="mt-16 md:mt-24">
-          <div className="box-accent relative px-6 py-6 md:px-8 md:py-7 max-w-3xl">
-            <span className="absolute -top-4 left-6 text-4xl text-accent font-mono select-none">
-              &ldquo;
-            </span>
-            <p className="font-mono text-base md:text-lg text-text-main">
-              It works on my machine.
-            </p>
-            <p className="font-mono text-sm text-text-soft mt-4 text-right">
-              — every developer, probably
-            </p>
+          <div className="box p-6 md:p-8 rounded-2xl border border-accent/20 bg-accent/5 backdrop-blur-sm relative">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-xl bg-accent/10 text-accent">
+                  <FiGithub size={22} />
+                </div>
+                <div>
+                  <h3 className="font-mono font-bold text-lg text-text-main">
+                    GitHub Contributions
+                  </h3>
+                  <p className="text-xs text-text-soft">
+                    My coding activity &amp; open source commits
+                  </p>
+                </div>
+              </div>
+
+              <a
+                href={`https://github.com/${GITHUB_USERNAME}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-mono text-accent hover:underline w-fit"
+              >
+                <span>@{GITHUB_USERNAME}</span>
+                <FiArrowRight size={12} />
+              </a>
+            </div>
+
+            <div className="overflow-x-auto pb-2 flex justify-center">
+              <GitHubCalendar
+                username={GITHUB_USERNAME}
+                blockSize={12}
+                blockMargin={4}
+                fontSize={12}
+                colorScheme="dark"
+                style={{
+                  color: "var(--text-soft)",
+                }}
+              />
+            </div>
           </div>
         </Reveal>
+
       </div>
     </section>
   );
