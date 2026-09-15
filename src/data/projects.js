@@ -1,12 +1,11 @@
 const projects = [
   {
-    id: "ankara",
-    title: "Ankara",
+    id: "megamart",
+    title: "Megamart",
     description:
       "A modern full-stack marketplace platform for buying, selling, managing products, and tracking orders with a secure and seamless user experience.",
-
     longDescription:
-      "Ankara is a full-stack product marketplace platform built to provide a complete and seamless e-commerce experience. Users can securely register and log in, explore products by category, search and browse listings, manage their own products, place and track orders, and share reviews and ratings. The platform features secure JWT authentication, role-based access control, product and category management, order processing, and an intuitive responsive interface. Powered by Next.js, TypeScript, Express.js, PostgreSQL, and Prisma ORM, Ankara demonstrates a scalable architecture and modern approach to building a real-world marketplace application.",
+      "Megamart is a full-stack product marketplace platform built to provide a complete and seamless e-commerce experience. Users can securely register and log in, explore products by category, search and browse listings, manage their own products, place and track orders, and share reviews and ratings. The platform features secure JWT authentication, role-based access control, product and category management, order processing, and an intuitive responsive interface. Powered by Next.js, TypeScript, Express.js, PostgreSQL, and Prisma ORM, Ankara demonstrates a scalable architecture and modern approach to building a real-world marketplace application.",
     image: "/projects/ankara.png",
     tags: [
       "Next.js",
@@ -21,13 +20,14 @@ const projects = [
       "Node.js",
       "Framer Motion",
     ],
-    live: "https://product-marketplace-client.vercel.app/",
-    github: "https://github.com/Kz-Himel/product-marketplace-client",
+    live: "https://megamart-client.vercel.app/",
+    github: "https://github.com/Kz-Himel/megamart-client",
+    clientRepoUrl: "https://github.com/Kz-Himel/megamart-client",
+    serverRepoUrl: "https://github.com/Kz-Himel/megamart-server",
     featured: true,
     year: "2026",
     challenges:
       "Designing a secure and scalable marketplace architecture with role-based access control, real-time order management, and reliable product data handling while maintaining a fast and responsive user experience.",
-
     features: [
       "Product listing & management",
       "Product search & category filtering",
@@ -42,13 +42,49 @@ const projects = [
     ],
   },
 
+    {
+    id: "prompt-verse",
+    title: "PromptVerse",
+    description:
+      "An AI prompt sharing and marketplace platform where creators can publish, discover, and manage high-quality AI prompts.",
+    longDescription:
+      "Prompt Verse is a modern AI prompt marketplace built with Next.js. Users can explore trending prompts, publish their own creations, bookmark favorites, and manage content through a secure dashboard. The platform emphasizes clean UI, authentication, scalability, and an engaging community-driven experience.",
+    image: "/projects/prompt-verse.png",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "MongoDB",
+      "Better Auth",
+      "Tailwind CSS",
+      "Hero UI",
+    ],
+    live: "https://prompt-verse-kzhimel.vercel.app/",
+    github: "https://github.com/Kz-Himel/prompt-verse",
+    clientRepoUrl: "https://github.com/Kz-Himel/prompt-verse",
+    serverRepoUrl: "",
+    featured: true,
+    year: "2026",
+    challenges:
+      "Building a scalable marketplace architecture with secure authentication and efficient prompt management.",
+    features: [
+      "Authentication system",
+      "Create & share prompts",
+      "Prompt marketplace",
+      "Bookmark prompts",
+      "Creator dashboard",
+      "Search & filtering",
+      "Responsive UI",
+      "Dark mode support",
+    ],
+  },
+
   {
-    id: "careerpilot-ai",
-    title: "CareerPilot AI",
+    id: "roadmapiq",
+    title: "Roadmap IQ",
     description:
       "An AI-powered career guidance platform that generates personalized career roadmaps, skill recommendations, and learning plans.",
     longDescription:
-      "CareerPilot AI is an intelligent career guidance platform that leverages Generative AI to help users achieve their career goals. Users can set career objectives, receive personalized AI-generated roadmaps, identify skill gaps, track learning progress, and save customized career plans. The platform combines modern UI, secure authentication, analytics, and AI-powered recommendations to deliver a complete career development experience.",
+      "Roadmap IQ is an intelligent career guidance platform that leverages Generative AI to help users achieve their career goals. Users can set career objectives, receive personalized AI-generated roadmaps, identify skill gaps, track learning progress, and save customized career plans. The platform combines modern UI, secure authentication, analytics, and AI-powered recommendations to deliver a complete career development experience.",
     image: "/projects/career-pilot.png",
     tags: [
       "Next.js",
@@ -60,8 +96,10 @@ const projects = [
       "Tailwind CSS",
       "Recharts",
     ],
-    live: "https://careerpilot-client-kzhimel.vercel.app/",
-    github: "https://github.com/Kz-Himel/careerpilot-client",
+    live: "https://roadmapiq-client.vercel.app/",
+    github: "https://github.com/Kz-Himel/roadmap-iq-client",
+    clientRepoUrl: "https://github.com/Kz-Himel/roadmap-iq-client",
+    serverRepoUrl: "https://github.com/Kz-Himel/roadmap-iq-server",
     featured: true,
     year: "2026",
     challenges:
@@ -98,6 +136,8 @@ const projects = [
     ],
     live: "https://courseflow-client.vercel.app/",
     github: "https://github.com/Kz-Himel/courseflow-client",
+    clientRepoUrl: "https://github.com/Kz-Himel/courseflow-client",
+    serverRepoUrl: "",
     featured: true,
     year: "2026",
     challenges:
@@ -111,40 +151,6 @@ const projects = [
       "Responsive design",
       "Protected routes",
       "Role-based access",
-    ],
-  },
-
-  {
-    id: "prompt-verse",
-    title: "PromptVerse",
-    description:
-      "An AI prompt sharing and marketplace platform where creators can publish, discover, and manage high-quality AI prompts.",
-    longDescription:
-      "Prompt Verse is a modern AI prompt marketplace built with Next.js. Users can explore trending prompts, publish their own creations, bookmark favorites, and manage content through a secure dashboard. The platform emphasizes clean UI, authentication, scalability, and an engaging community-driven experience.",
-    image: "/projects/prompt-verse.png",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "MongoDB",
-      "Better Auth",
-      "Tailwind CSS",
-      "Hero UI",
-    ],
-    live: "https://prompt-verse-kzhimel.vercel.app/",
-    github: "https://github.com/Kz-Himel/prompt-verse",
-    featured: true,
-    year: "2026",
-    challenges:
-      "Building a scalable marketplace architecture with secure authentication and efficient prompt management.",
-    features: [
-      "Authentication system",
-      "Create & share prompts",
-      "Prompt marketplace",
-      "Bookmark prompts",
-      "Creator dashboard",
-      "Search & filtering",
-      "Responsive UI",
-      "Dark mode support",
     ],
   },
 
@@ -166,6 +172,8 @@ const projects = [
     ],
     live: "https://study-nook-kzhimel.vercel.app/",
     github: "https://github.com/Kz-Himel/study-nook",
+    clientRepoUrl: "https://github.com/Kz-Himel/study-nook",
+    serverRepoUrl: "",
     featured: true,
     year: "2026",
     challenges:
@@ -181,6 +189,7 @@ const projects = [
       "Role-based access",
     ],
   },
+
   {
     id: "ah-tilecraft",
     title: "AH TileCraft",
@@ -199,6 +208,8 @@ const projects = [
     ],
     live: "https://ah-tilecraft.vercel.app",
     github: "https://github.com/Kz-Himel/ah-tilecraft",
+    clientRepoUrl: "https://github.com/Kz-Himel/ah-tilecraft",
+    serverRepoUrl: "",
     featured: true,
     year: "2026",
     challenges:
@@ -224,6 +235,8 @@ const projects = [
     tags: ["React", "Tailwind CSS", "React Router", "Daisy UI", "Context API"],
     live: "https://keen-keeper.vercel.app",
     github: "https://github.com/Kz-Himel/Keen-Keeper",
+    clientRepoUrl: "https://github.com/Kz-Himel/Keen-Keeper",
+    serverRepoUrl: "",
     featured: true,
     year: "2026",
     challenges:
@@ -248,6 +261,8 @@ const projects = [
     tags: ["React.js", "Tailwind CSS", "JS ES6", "API Integration", "Daisy UI"],
     live: "https://digitools-platform-kzhimel.netlify.app/",
     github: "https://github.com/Kz-Himel/DigiTools-Platform",
+    clientRepoUrl: "https://github.com/Kz-Himel/DigiTools-Platform",
+    serverRepoUrl: "",
     featured: true,
     year: "2025",
     challenges:
@@ -272,6 +287,8 @@ const projects = [
     tags: ["React", "Tailwind CSS", "React Router"],
     live: "book-vibe-kzhimel.netlify.app",
     github: "https://github.com/Kz-Himel/Book-Vibe",
+    clientRepoUrl: "https://github.com/Kz-Himel/Book-Vibe",
+    serverRepoUrl: "",
     featured: false,
     year: "2024",
     challenges:
@@ -302,6 +319,8 @@ const projects = [
     ],
     live: "https://kz-himel.github.io/English-Janala/",
     github: "https://github.com/Kz-Himel/English-Janala",
+    clientRepoUrl: "https://github.com/Kz-Himel/English-Janala",
+    serverRepoUrl: "",
     featured: false,
     year: "2024",
     challenges:
@@ -332,6 +351,8 @@ const projects = [
     ],
     live: "https://kz-himel.github.io/Assignment_5/",
     github: "https://github.com/Kz-Himel/Assignment_5",
+    clientRepoUrl: "https://github.com/Kz-Himel/Assignment_5",
+    serverRepoUrl: "",
     featured: false,
     year: "2024",
     challenges:
@@ -344,6 +365,7 @@ const projects = [
       "Optimized design",
     ],
   },
+
   {
     id: "text-utils",
     title: "Text Utils",
@@ -355,6 +377,8 @@ const projects = [
     tags: ["React", "Bootstrap 5", "JavaScript", "Utility Tools"],
     live: "https://kz-himel.github.io/TeXT-uTAiLS/",
     github: "https://github.com/Kz-Himel/TeXT-uTAiLS",
+    clientRepoUrl: "https://github.com/Kz-Himel/TeXT-uTAiLS",
+    serverRepoUrl: "",
     featured: false,
     year: "2024",
     challenges:
