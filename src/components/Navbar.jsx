@@ -34,9 +34,9 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle light / dark theme"
-      className="flex items-center justify-center w-8 h-8 text-text-soft hover:text-accent transition-colors"
+      className="flex items-center justify-center w-8 h-8 text-text-soft hover:text-accent transition-colors rounded-lg border border-border bg-panel"
     >
-      {isDark ? <FiSun size={16} /> : <FiMoon size={16} />}
+      {isDark ? <FiSun size={15} /> : <FiMoon size={15} />}
     </button>
   );
 }
@@ -47,11 +47,11 @@ function GithubButton() {
       href="https://github.com/Kz-Himel"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-2 px-3 py-1.5 rounded-md text-text-soft hover:text-text-main hover:bg-border/30 transition-all font-mono text-[13px]"
+      className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 text-text-soft hover:text-text-main transition-colors text-xs font-mono border border-border rounded-lg bg-panel hover:border-accent"
       aria-label="GitHub Profile"
     >
-      <FiGithub size={16} />
-      <span className="hidden md:inline">GitHub</span>
+      <FiGithub size={15} />
+      <span>GitHub</span>
     </a>
   );
 }
@@ -63,7 +63,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("/#hero");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
@@ -100,20 +100,19 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-200 ${
           scrolled
-            ? "bg-bg/80 backdrop-blur-md border-b border-border shadow-sm"
-            : "bg-transparent border-b border-transparent"
+            ? "bg-bg/90 backdrop-blur-md border-b border-border shadow-xs py-3"
+            : "bg-transparent border-b border-transparent py-5"
         }`}
       >
-        <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+        <nav className="max-w-6xl mx-auto flex items-center justify-between px-6">
+          {/* Brand Logo */}
           <Logo />
 
-          <ul className="hidden lg:flex items-center gap-7">
+          {/* Desktop Nav Links */}
+          <ul className="hidden lg:flex items-center gap-7 bg-panel border border-border px-5 py-2 rounded-full shadow-xs">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href;
               return (
@@ -121,9 +120,9 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setActiveSection(link.href)}
-                    className={`font-mono text-[13px] transition-colors ${
+                    className={`text-xs font-medium transition-colors ${
                       isActive
-                        ? "text-text-main font-semibold text-purple-400"
+                        ? "text-accent font-semibold"
                         : "text-text-soft hover:text-text-main"
                     }`}
                   >
@@ -134,86 +133,69 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* Desktop Right Actions */}
+          {/* Right Actions (Theme + GitHub) */}
           <div className="hidden lg:flex items-center gap-2">
-            <ThemeToggle />
             <GithubButton />
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Right Actions: DarkMode -> GitHub -> Hamburger */}
+          {/* Mobile Right Controls */}
           <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
-            <GithubButton />
             <button
               onClick={() => setMenuOpen((p) => !p)}
-              className="p-2 text-text-soft hover:text-text-main transition-colors"
+              className="p-2 text-text-soft hover:text-text-main transition-colors border border-border rounded-lg bg-panel"
               aria-label="Toggle menu"
             >
-              <AnimatePresence mode="wait">
-                {menuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <FiX size={20} />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <FiMenu size={20} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {menuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
             </button>
           </div>
         </nav>
-      </motion.header>
+      </header>
 
-      {/* Mobile Drawer Navigation with Blur Background */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="box fixed left-4 right-4 top-[72px] z-40 bg-bg/90 backdrop-blur-lg border border-border px-5 py-5 lg:hidden shadow-xl"
+            transition={{ duration: 0.15 }}
+            className="fixed inset-x-4 top-[75px] z-40 bg-panel border border-border p-5 lg:hidden shadow-xl rounded-xl"
           >
-            <ul className="flex flex-col gap-1">
-              {navLinks.map((link, i) => {
+            <ul className="flex flex-col gap-2.5">
+              {navLinks.map((link) => {
                 const isActive = activeSection === link.href;
                 return (
-                  <motion.li
-                    key={link.href}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.03 }}
-                  >
+                  <li key={link.href}>
                     <Link
                       href={link.href}
                       onClick={() => {
                         setActiveSection(link.href);
                         setMenuOpen(false);
                       }}
-                      className={`block font-mono text-sm py-2.5 transition-colors ${
+                      className={`block text-sm py-2 px-3 rounded-lg transition-colors ${
                         isActive
-                          ? "text-accent font-semibold"
-                          : "text-text-soft hover:text-text-main"
+                          ? "text-accent font-semibold bg-accent-soft"
+                          : "text-text-soft hover:text-text-main hover:bg-bg"
                       }`}
                     >
                       {link.label}
                     </Link>
-                  </motion.li>
+                  </li>
                 );
               })}
+              <div className="pt-2 border-t border-border mt-1 flex items-center justify-between">
+                <span className="text-xs text-text-muted">Socials</span>
+                <a
+                  href="https://github.com/Kz-Himel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono text-accent flex items-center gap-1.5"
+                >
+                  <FiGithub size={14} /> @Kz-Himel
+                </a>
+              </div>
             </ul>
           </motion.div>
         )}

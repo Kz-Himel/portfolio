@@ -1,247 +1,80 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import {
-  FiZap,
-  FiTarget,
-  FiAward,
-  FiCalendar,
-  FiBookOpen,
-  FiTerminal,
-  FiCode,
-  FiCpu,
-} from "react-icons/fi";
-import SectionHeader from "./ui/SectionHeader";
 import Reveal from "./ui/Reveal";
-
-const highlights = [
-  {
-    icon: <FiZap size={18} />,
-    title: "Performance First",
-    desc: "Optimized bundle sizes, 60fps animations, and perfect Core Web Vitals.",
-    badge: "Fast",
-  },
-  {
-    icon: <FiTarget size={18} />,
-    title: "Pixel-Precision UI",
-    desc: "Design-system grade layouts built with Framer Motion & Tailwind CSS.",
-    badge: "Design",
-  },
-  {
-    icon: <FiCpu size={18} />,
-    title: "AI & Fullstack",
-    desc: "Integrating LLM APIs into robust Next.js and Node.js architectures.",
-    badge: "Architecture",
-  },
-  {
-    icon: <FiAward size={18} />,
-    title: "Clean Code",
-    desc: "Modular structure, strict typing principles, and component reusability.",
-    badge: "Quality",
-  },
-];
-
-const educationAndJourney = [
-  {
-    year: "2022 — Present",
-    title: "Diploma in Computer Technology",
-    org: "Rangpur Polytechnic Institute",
-    tag: "Education",
-    desc: "Building engineering fundamentals in algorithms, data structures, and architecture.",
-    icon: <FiBookOpen size={14} />,
-  },
-  {
-    year: "2025 — Present",
-    title: "1+ Year Independent Development",
-    org: "Self-Driven & Project-Based",
-    tag: "Hands-on",
-    desc: "1+ year of intense hands-on building — crafting full-stack apps, auth flows, and AI tools.",
-    icon: <FiCode size={14} />,
-  },
-];
+import { FiUser, FiMapPin, FiBriefcase, FiBookOpen, FiCompass } from "react-icons/fi";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-20 md:py-28 overflow-hidden">
+    <section id="about" className="section-wrap">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          tag="about"
-          subtitle="Engineered with precision, designed with taste — building production-ready web applications that balance technical complexity with sleek user experiences."
-        />
+        
+        {/* Section Header Tag */}
+        <div className="mb-4">
+          <span className="section-tag">
+            <span className="w-2 h-2 rounded-full bg-accent" />
+            02. About Me
+          </span>
+        </div>
 
-        {/* EQUAL HEIGHT BENTO GRID LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">
           
-          {/* LEFT COLUMN */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            
-            {/* Portrait Card */}
-            <Reveal delay={0.05} blur={false} className="flex-1">
-              <div className="box relative w-full h-full min-h-[380px] overflow-hidden rounded-2xl border border-accent/20 group flex flex-col justify-end p-4">
-                <Image
-                  src="/profile.png"
-                  alt="Khayruzzaman Himel"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 40vw, 420px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-transparent to-transparent opacity-80" />
-                
-                {/* Float Badge */}
-                <div className="relative z-10 p-3 rounded-xl bg-bg/80 backdrop-blur-md border border-accent/20 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
-                    <span className="font-mono text-xs font-semibold text-text-main">
-                      Fullstack & AI Crafter
-                    </span>
-                  </div>
-                  <span className="font-mono text-[10px] text-text-muted px-2 py-0.5 rounded bg-accent/10 text-accent">
-                    Rangpur, BD
-                  </span>
-                </div>
-              </div>
-            </Reveal>
+          {/* LEFT: Detailed Bio & Description */}
+          <div className="lg:col-span-7 space-y-6">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-main leading-tight">
+              Crafting digital experiences at the intersection of engineering and design.
+            </h2>
 
-            {/* Developer Spec Card */}
-            <Reveal delay={0.1} blur={false}>
-              <div className="box p-5 rounded-2xl border border-accent/15 bg-accent/5 h-full flex flex-col justify-center">
-                <div className="flex items-center gap-2 mb-3">
-                  <FiTerminal size={16} className="text-accent" />
-                  <span className="font-mono text-xs uppercase tracking-wider text-text-main font-bold">
-                    Developer Spec
-                  </span>
-                </div>
-
-                <div className="space-y-2 text-xs font-mono text-text-soft">
-                  <div className="flex justify-between py-1 border-b border-border/50">
-                    <span className="text-text-muted">Focus:</span>
-                    <span className="text-text-main font-semibold">MERN & Next.js</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-border/50">
-                    <span className="text-text-muted">Core Strength:</span>
-                    <span className="text-text-main font-semibold">Interactive UI + APIs</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span className="text-text-muted">Experience:</span>
-                    <span className="text-accent font-semibold">1+ Year Hands-On</span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
+            <div className="space-y-4 text-text-soft text-sm sm:text-base leading-relaxed">
+              <p>
+                I am a passionate Full-Stack Developer specializing in the MERN stack and modern web technologies. My approach combines clean, maintainable code architecture with polished, fluid user interfaces that leave a lasting impression.
+              </p>
+              <p>
+                Over the past few years, I’ve worked on a diverse range of projects—from dynamic SaaS platforms and AI-driven workflow tools to high-performance marketing sites. I thrive in environments that challenge me to solve complex state-management, performance, and scaling problems.
+              </p>
+              <p>
+                When I&apos;m not pushing code, you&apos;ll find me exploring emerging AI capabilities, contributing to open-source developer tools, or refining UI animation curves.
+              </p>
+            </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            
-            {/* Background & Narrative */}
-            <Reveal delay={0.15} blur={false}>
-              <div className="box p-6 rounded-2xl border border-accent/20 h-full flex flex-col justify-center">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="w-2 h-2 rounded-full bg-accent" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted font-bold">
-                    Background & Philosophy
+          {/* RIGHT: "At a Glance" Info Panel (Matching Image Sidebar) */}
+          <div className="lg:col-span-5">
+            <div className="box p-6 sm:p-7 rounded-2xl bg-panel border border-border shadow-sm">
+              <h3 className="text-base font-bold text-text-main font-mono mb-5 pb-3 border-b border-border flex items-center gap-2">
+                <FiCompass className="text-accent" />
+                At a Glance
+              </h3>
+
+              <ul className="space-y-4 text-sm">
+                <li className="flex items-center justify-between">
+                  <span className="text-text-muted flex items-center gap-2">
+                    <FiBriefcase size={15} className="text-accent" /> Role
                   </span>
-                </div>
+                  <span className="font-semibold text-text-main">Fullstack Developer</span>
+                </li>
 
-                <div className="space-y-3 text-text-soft text-xs md:text-sm leading-relaxed">
-                  <p>
-                    I&apos;m <span className="text-text-main font-semibold">Khayruzzaman Himel</span>, a Full-Stack Developer specializing in <span className="text-accent font-semibold">MERN Stack, Next.js, and AI integrations</span>. I build web applications that feel fast, intuitive, and visually intentional.
-                  </p>
-                  <p>
-                    With <span className="text-text-main font-medium">1+ year of intensive hands-on development</span>, I have built full-featured web apps — engineering dynamic interfaces, secure auth systems, and AI workflows.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
+                <li className="flex items-center justify-between">
+                  <span className="text-text-muted flex items-center gap-2">
+                    <FiMapPin size={15} className="text-accent" /> Location
+                  </span>
+                  <span className="font-semibold text-text-main">Bangladesh</span>
+                </li>
 
-            {/* Highlights 2x2 Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
-              {highlights.map((h, i) => (
-                <Reveal key={h.title} delay={0.18 + i * 0.04} blur={false} className="h-full">
-                  <div className="box p-4 rounded-xl border border-accent/10 hover:border-accent/40 transition-all duration-300 group h-full flex flex-col justify-between">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="p-1.5 rounded-lg bg-accent/10 text-accent group-hover:scale-110 transition-transform">
-                        {h.icon}
-                      </div>
-                      <span className="font-mono text-[9px] px-2 py-0.5 rounded bg-accent/10 text-accent">
-                        {h.badge}
-                      </span>
-                    </div>
-                    <div>
-                      <h3 className="font-mono font-bold text-xs text-text-main mb-1">
-                        {h.title}
-                      </h3>
-                      <p className="text-[11px] text-text-soft leading-snug">
-                        {h.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
+                <li className="flex items-center justify-between">
+                  <span className="text-text-muted flex items-center gap-2">
+                    <FiUser size={15} className="text-accent" /> Focus
+                  </span>
+                  <span className="font-semibold text-text-main">MERN & Next.js Ecosystem</span>
+                </li>
+
+                <li className="flex items-center justify-between">
+                  <span className="text-text-muted flex items-center gap-2">
+                    <FiBookOpen size={15} className="text-accent" /> Experience
+                  </span>
+                  <span className="font-semibold text-text-main">04+ Years Building</span>
+                </li>
+              </ul>
             </div>
-
-            {/* Education & Journey Card */}
-            <Reveal delay={0.25} blur={false}>
-              <div className="box p-5 rounded-2xl border border-accent/20 h-full flex flex-col justify-center">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-accent" />
-                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted font-bold">
-                      Education & Timeline
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[10px] font-mono text-text-muted">
-                    <FiCalendar size={11} className="text-accent" />
-                    Academic & Self-Growth
-                  </div>
-                </div>
-
-                <div className="relative pl-5 space-y-4">
-                  <div
-                    aria-hidden
-                    className="absolute left-[6px] top-1 bottom-1 w-px bg-border"
-                  />
-
-                  {educationAndJourney.map((t, i) => (
-                    <motion.div
-                      key={t.title}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-10% 0px" }}
-                      transition={{ delay: i * 0.08, duration: 0.5 }}
-                      className="relative"
-                    >
-                      <span
-                        aria-hidden
-                        className="absolute -left-5 top-1 w-3 h-3 flex items-center justify-center text-accent"
-                        style={{ background: "var(--bg)" }}
-                      >
-                        {t.icon}
-                      </span>
-
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-accent font-semibold px-1.5 py-0.5 rounded bg-accent/10">
-                          {t.tag}
-                        </span>
-                        <span className="font-mono text-[10px] text-text-muted">
-                          {t.year}
-                        </span>
-                      </div>
-
-                      <h4 className="font-mono font-bold text-xs text-text-main">
-                        {t.title}
-                      </h4>
-                      <p className="text-[11px] text-text-soft leading-tight mt-0.5">
-                        {t.desc}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
           </div>
 
         </div>

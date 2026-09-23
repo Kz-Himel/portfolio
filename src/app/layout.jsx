@@ -8,12 +8,12 @@ import Background3D from "@/components/Background3D";
 import CustomCursor from "@/components/CustomCursor";
 
 export const metadata = {
-  title: "Kz Himel | MERN & Frontend Developer",
+  title: "Khayruzzaman Himel | Crafted digital experiences at the intersection of engineering and design.",
   description:
     "Junior MERN Developer crafting modern, animated, and scalable web experiences using Next.js, React, and modern UI technologies.",
-  keywords: ["MERN Developer", "Front End Developer", "Next.js", "React", "Kz Himel", "Web Developer"],
+  keywords: ["MERN Developer", "Front End Developer", "Next.js", "React", "Khayruzzaman Himel", "Web Developer"],
   openGraph: {
-    title: "Kz Himel | MERN Developer",
+    title: "Khayruzzaman Himel | MERN Developer",
     description: "Frontend Developer crafting modern web experiences.",
     type: "website",
   },
@@ -24,8 +24,8 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
         <ThemeProvider>
-          <Background3D />
-          <CustomCursor />
+          {/* <Background3D /> */}
+          {/* <CustomCursor /> */}
           <SmoothScroll>
             <Navbar />
             <SideRail />
