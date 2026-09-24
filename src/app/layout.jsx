@@ -24,8 +24,6 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
         <ThemeProvider>
-          {/* <Background3D /> */}
-          {/* <CustomCursor /> */}
           <SmoothScroll>
             <Navbar />
             <SideRail />
