@@ -1,6 +1,6 @@
 "use client";
+"use no memo";
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
 import { MONO } from "./materials";
 
 export default function Lighting() {

@@ -1,8 +1,10 @@
 "use client";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
+import { Environment } from "@react-three/drei";
 import Lighting from "./Lighting";
 import CameraRig from "./CameraRig";
+import HeroWorld from "./HeroWorld";
 import { MONO } from "./materials";
 
 export default function SceneCanvas() {
@@ -15,9 +17,11 @@ export default function SceneCanvas() {
         style={{ background: MONO.voidBlack }}
       >
         <Suspense fallback={null}>
+          <Environment preset="studio" />
           <Lighting />
           <CameraRig />
-          {/* Phase 2+ mounts each section's world here: <HeroWorld />, <AboutWorld />, ... */}
+          <HeroWorld />
+          {/* Phase 3+ mounts each next section's world here */}
         </Suspense>
       </Canvas>
     </div>
