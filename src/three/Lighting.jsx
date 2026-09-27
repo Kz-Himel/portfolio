@@ -1,6 +1,8 @@
 "use client";
 "use no memo";
+
 import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import { MONO } from "./materials";
 
 export default function Lighting() {
@@ -8,7 +10,6 @@ export default function Lighting() {
 
   useFrame(({ clock }) => {
     if (rimRef.current) {
-      // Slow drift so the rim highlight never feels static.
       rimRef.current.intensity = 1.4 + Math.sin(clock.elapsedTime * 0.3) * 0.15;
     }
   });
