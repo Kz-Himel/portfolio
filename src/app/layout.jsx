@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import SideRail from "@/components/SideRail";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
-import Background3D from "@/components/Background3D";
+import SceneCanvas from "@/three/SceneCanvas";
 import CustomCursor from "@/components/CustomCursor";
 
 export const metadata = {
@@ -25,11 +25,11 @@ export default function RootLayout({ children }) {
       <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
         <ThemeProvider>
           <SmoothScroll>
+            <SceneCanvas />
+            <CustomCursor />
             <Navbar />
             <SideRail />
-            <main className="relative z-[2]">
-              {children}
-            </main>
+            <main className="relative z-[2]">{children}</main>
             <Footer />
           </SmoothScroll>
         </ThemeProvider>

@@ -35,17 +35,16 @@
 }
 
 .dark {
-  /* ---- DARK MODE ---- */
-  --bg: #0A0A0C;
-  --bg-elevated: #121216;
-  --panel: #121216;
-  --accent: #818CF8;
-  --accent-soft: rgba(129, 140, 248, 0.12);
-  --text-main: #F8FAFC;
-  --text-soft: #94A3B8;
-  --text-muted: #64748B;
-  --border: #27272A;
-  --dot-color: #27272A;
+  --bg: #08080a;
+  --bg-elevated: #0f0f12;
+  --panel: #0f0f12;
+  --accent: #c8c9cc;
+  --accent-soft: rgba(200, 201, 204, 0.1);
+  --text-main: #f4f5f6;
+  --text-soft: #9a9ba0;
+  --text-muted: #6b6c70;
+  --border: #232326;
+  --dot-color: #232326;
 }
 
 /* ========== BASE SETUP ========== */
