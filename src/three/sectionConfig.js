@@ -1,18 +1,43 @@
 import { MONO } from "./materials";
 
-/**
- * One entry per "world" in the cinematic journey.
- * `id` MUST match the corresponding section's DOM id in the page markup.
- * Camera keyframes are placeholders — each phase will tune its own entry
- * once that section's real 3D content exists.
- */
+// Each section owns a "stage" along -Z, AND its own multi-waypoint
+// camera path (keyframes, keyed by local progress `at` 0..1 through
+// that section's own scroll range). This is what makes "camera
+// approaches, text grows huge, camera passes through, next world
+// emerges" possible within a single section, not just a straight
+// lerp between two fixed points.
+const STEP = 9;
+const stage = (index) => -index * STEP;
+
 export const SECTIONS = [
-  { id: "hero", camera: { pos: [0, 0.4, 6], look: [0, 0.2, 0] }, fog: { color: MONO.voidBlack, near: 6, far: 18 } },
-  { id: "about", camera: { pos: [-1.6, 0.5, 4.2], look: [1.0, 0.1, -1.8] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
-  { id: "skills", camera: { pos: [2.4, 0.3, 5.5], look: [-1.4, 0.2, -3] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
-  { id: "projects", camera: { pos: [0, 0.8, 7], look: [0, 0, -1] }, fog: { color: MONO.voidBlack, near: 7, far: 20 } },
-  { id: "experience", camera: { pos: [-2, 0.4, 5.5], look: [0, 0, 0] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
-  { id: "services", camera: { pos: [1.6, 0.3, 5.5], look: [0, 0, 0] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
-  { id: "achievements", camera: { pos: [-1.6, 0.5, 5.5], look: [0, 0, 0] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
-  { id: "contact", camera: { pos: [0, 0.3, 4.5], look: [0, 0, 0] }, fog: { color: MONO.voidBlack, near: 4, far: 14 } },
+  {
+    id: "hero",
+    stageZ: stage(0),
+    keyframes: [
+      { at: 0, pos: [0, 0.3, stage(0) + 14], look: [0, 0.3, stage(0)], fov: 32 },
+      { at: 0.4, pos: [0, 0.3, stage(0) + 3], look: [0, 0.3, stage(0) - 1], fov: 46 },
+      { at: 0.75, pos: [0, 0.25, stage(0) - 2], look: [0, 0.2, stage(0) - 7], fov: 54 },
+      { at: 1, pos: [0, 0.2, stage(0) - 8], look: [0, 0.1, stage(1)], fov: 42 },
+    ],
+    fog: { color: MONO.voidBlack, near: 4, far: 14 },
+  },
+  {
+    id: "about",
+    stageZ: stage(1),
+    keyframes: [
+      { at: 0, pos: [-0.4, 0.4, stage(1) + 6], look: [-0.2, 0.1, stage(1)], fov: 42 },
+      { at: 1, pos: [-0.4, 0.3, stage(1) - 3], look: [0.1, 0.1, stage(2)], fov: 42 },
+    ],
+    fog: { color: MONO.softBlack, near: 4, far: 12 },
+  },
+  {
+    id: "skills",
+    stageZ: stage(2),
+    keyframes: [
+      { at: 0, pos: [0.4, 0.3, stage(2) + 6], look: [0.1, 0.1, stage(2)], fov: 42 },
+      { at: 1, pos: [0.4, 0.3, stage(2) - 3], look: [0, 0.1, stage(3)], fov: 42 },
+    ],
+    fog: { color: MONO.softBlack, near: 4, far: 12 },
+  },
+  // Phase 6+ appends further stages here: projects at stage(3), etc.
 ];

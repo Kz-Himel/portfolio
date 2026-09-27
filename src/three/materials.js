@@ -1,4 +1,3 @@
-// ---- Monochrome palette. These are the ONLY colors used anywhere in the 3D world. ----
 export const MONO = {
   voidBlack: "#08080a",
   softBlack: "#0f0f12",
@@ -9,7 +8,6 @@ export const MONO = {
   lightGray: "#9a9ba0",
 };
 
-// Reusable JSX material presets — spread these onto <meshStandardMaterial {...brushedSilver} />
 export const brushedSilver = {
   color: MONO.silver,
   metalness: 0.9,

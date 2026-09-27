@@ -1,6 +1,5 @@
 "use client";
 "use no memo";
-
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { MONO } from "./materials";
@@ -16,7 +15,7 @@ export default function Lighting() {
 
   return (
     <>
-      <fog attach="fog" args={[MONO.voidBlack, 6, 20]} />
+      <fog attach="fog" args={[MONO.voidBlack, 4, 12]} />
       <ambientLight intensity={0.25} color={MONO.lightGray} />
       <directionalLight position={[4, 6, 4]} intensity={1.1} color={MONO.brightSilver} />
       <directionalLight ref={rimRef} position={[-5, 2, -4]} intensity={1.4} color={MONO.silver} />
