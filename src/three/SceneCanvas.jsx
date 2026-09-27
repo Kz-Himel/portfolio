@@ -5,6 +5,7 @@ import { Environment } from "@react-three/drei";
 import Lighting from "./Lighting";
 import CameraRig from "./CameraRig";
 import HeroWorld from "./HeroWorld";
+import AboutWorld from "./AboutWorld";
 import { MONO } from "./materials";
 
 export default function SceneCanvas() {
@@ -21,6 +22,7 @@ export default function SceneCanvas() {
           <Lighting />
           <CameraRig />
           <HeroWorld />
+          <AboutWorld />
           {/* Phase 3+ mounts each next section's world here */}
         </Suspense>
       </Canvas>
