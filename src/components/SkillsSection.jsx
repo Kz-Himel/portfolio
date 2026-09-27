@@ -80,8 +80,8 @@ export default function SkillsSection() {
                   key={c.id}
                   onClick={() => setActiveCat(c.id)}
                   className={`relative font-mono text-xs px-3 py-1.5 rounded-md transition-all ${
-                    active 
-                      ? "text-accent bg-accent/10 font-medium" 
+                    active
+                      ? "text-accent bg-accent/10 font-medium"
                       : "text-text-soft hover:text-text-main hover:bg-border/30"
                   }`}
                 >
@@ -96,7 +96,7 @@ export default function SkillsSection() {
           {/* LEFT: Clean Radial Cluster */}
           <div className="lg:col-span-7">
             <Reveal delay={0.12} blur={false}>
-              <div className="p-6 md:p-8 relative rounded-2xl bg-panel border border-border/80 shadow-xs">
+              <div className="p-6 md:p-8 relative rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm">
                 <div className="flex items-center justify-between mb-6">
                   <span className="font-mono text-[11px] uppercase tracking-widest text-text-muted">
                     Tech Cluster Map
@@ -109,7 +109,7 @@ export default function SkillsSection() {
                 <div className="relative aspect-square w-full max-w-[440px] mx-auto">
                   {/* CORE STACK CENTER */}
                   <div
-                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-28 md:h-28 flex flex-col items-center justify-center z-10 bg-bg rounded-full border border-accent/40 shadow-sm"
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-28 md:h-28 flex flex-col items-center justify-center z-10 bg-black/50 backdrop-blur-sm rounded-full border border-accent/40"
                   >
                     <span className="font-mono text-[9px] uppercase tracking-widest text-text-muted mb-0.5">
                       Core
@@ -158,14 +158,14 @@ export default function SkillsSection() {
                       >
                         <div className="group relative flex items-center justify-center cursor-default">
                           <div
-                            className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-bg border border-border/80 flex items-center justify-center font-mono text-[10px] md:text-xs font-medium text-text-main shadow-xs group-hover:border-accent group-hover:text-accent transition-all"
+                            className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center font-mono text-[10px] md:text-xs font-medium text-text-main group-hover:border-accent group-hover:text-accent transition-all"
                           >
                             <span className="text-center px-1 truncate">{s.name}</span>
                           </div>
 
                           {/* Tooltip */}
                           <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-[60]">
-                            <div className="bg-panel border border-border px-2.5 py-1.5 rounded-lg shadow-md whitespace-nowrap">
+                            <div className="bg-black/70 backdrop-blur-sm border border-white/10 px-2.5 py-1.5 rounded-lg whitespace-nowrap">
                               <div className="font-mono text-[9px] uppercase tracking-wider text-accent">
                                 {s.cat}
                               </div>
@@ -187,7 +187,7 @@ export default function SkillsSection() {
           <div className="lg:col-span-5 space-y-4">
             {categoryBoxes.map((box, i) => (
               <Reveal key={box.label} delay={0.15 + i * 0.04} blur={false}>
-                <div className="p-5 rounded-xl bg-panel border border-border/80 hover:border-accent/40 transition-all">
+                <div className="p-5 rounded-xl border border-white/10 bg-black/30 backdrop-blur-sm hover:border-accent/40 transition-all">
                   <div className="mb-3 flex items-center justify-between">
                     <span className="font-mono font-semibold text-xs uppercase tracking-wider text-accent">
                       {box.label}
@@ -197,7 +197,7 @@ export default function SkillsSection() {
                     {box.items.map((item) => (
                       <span
                         key={item}
-                        className="px-2.5 py-1 text-xs font-mono bg-bg text-text-main border border-border/60 rounded-md"
+                        className="px-2.5 py-1 text-xs font-mono bg-black/40 text-text-main border border-white/10 rounded-md"
                       >
                         {item}
                       </span>

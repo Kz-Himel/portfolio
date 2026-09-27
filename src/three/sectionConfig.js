@@ -9,7 +9,7 @@ import { MONO } from "./materials";
 export const SECTIONS = [
   { id: "hero", camera: { pos: [0, 0.4, 6], look: [0, 0.2, 0] }, fog: { color: MONO.voidBlack, near: 6, far: 18 } },
   { id: "about", camera: { pos: [-1.6, 0.5, 4.2], look: [1.0, 0.1, -1.8] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
-  { id: "skills", camera: { pos: [2.4, 0.2, 5.5], look: [0, 0, 0] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
+  { id: "skills", camera: { pos: [2.4, 0.3, 5.5], look: [-1.4, 0.2, -3] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
   { id: "projects", camera: { pos: [0, 0.8, 7], look: [0, 0, -1] }, fog: { color: MONO.voidBlack, near: 7, far: 20 } },
   { id: "experience", camera: { pos: [-2, 0.4, 5.5], look: [0, 0, 0] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
   { id: "services", camera: { pos: [1.6, 0.3, 5.5], look: [0, 0, 0] }, fog: { color: MONO.softBlack, near: 5, far: 16 } },
