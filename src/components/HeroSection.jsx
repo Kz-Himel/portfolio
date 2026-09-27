@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function HeroSection() {
   const [copied, setCopied] = useState(false);
-  const email = "himel.dev@gmail.com"; // Apnar email ekhane dite paren
+  const email = "himel.dev@gmail.com";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -16,46 +16,44 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative pt-28 pb-16 md:pt-36 md:pb-24">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          
-          {/* LEFT COLUMN: Intro, Name, Bio, CTAs, Stats */}
+    <section id="hero" className="relative min-h-[92vh] flex items-center pt-28 pb-16 md:pt-36 md:pb-24">
+      <div className="max-w-6xl mx-auto px-6 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+          {/* LEFT COLUMN */}
           <div className="lg:col-span-7 space-y-6">
-            
-            {/* Top Status Tag */}
             <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-accent">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <span>01. Available for new opportunities</span>
             </div>
 
-            {/* Main Name Heading */}
-            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-text-main leading-[1.1]">
-              Khayruzzaman Himel
-            </h1>
+            {/* Real name stays in the DOM for accessibility/SEO — the
+                dominant visual name now lives as 3D metallic type in the
+                canvas behind this section. */}
+            <h1 className="sr-only">Khayruzzaman Himel</h1>
+            <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] text-text-muted">
+              Fullstack Developer
+            </p>
 
-            {/* Bio Description */}
             <p className="text-text-soft text-sm sm:text-base leading-relaxed max-w-xl">
               I&apos;m a fullstack developer and creative technologist based in Bangladesh, passionate about building robust, accessible web applications that bridge design and engineering.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link href="/#contact" className="btn-primary flex items-center gap-2">
                 <span>Available for hire</span>
                 <FiArrowRight size={15} />
               </Link>
-              
-              <button 
+
+              <button
                 onClick={handleCopyEmail}
                 className="btn-ghost flex items-center gap-2"
               >
-                {copied ? <FiCheck size={15} className="text-emerald-500" /> : <FiCopy size={15} />}
+                {copied ? <FiCheck size={15} className="text-text-main" /> : <FiCopy size={15} />}
                 <span>{copied ? "Copied Email!" : "Copy email"}</span>
               </button>
             </div>
 
-            {/* Stats Row */}
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border mt-8 max-w-lg">
               <div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-text-main">04+</h3>
@@ -70,19 +68,19 @@ export default function HeroSection() {
                 <p className="text-xs text-text-muted mt-1 uppercase tracking-wider">Client Satisfaction</p>
               </div>
             </div>
-
           </div>
 
-          {/* RIGHT COLUMN: Profile Card Image Box */}
+          {/* RIGHT COLUMN */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="w-full max-w-[340px]">
-              <div className="box p-3 bg-panel shadow-sm rounded-2xl border border-border">
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-bg">
+            <div className="w-full max-w-[320px]">
+              <div className="p-3 rounded-2xl border border-white/10 bg-black/30 backdrop-blur-sm">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl">
                   <Image
                     src="/profile.png"
                     alt="Khayruzzaman Himel"
                     fill
-                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 320px, 320px"
+                    className="object-cover object-top grayscale contrast-110"
                     priority
                   />
                 </div>
