@@ -11,11 +11,11 @@ import { MONO } from "./materials";
 
 export default function SceneCanvas() {
   return (
-    <div className="fixed inset-0 z-0" aria-hidden="true">
+    <div className="fixed inset-0 z-0">
       <Canvas
         dpr={[1, 1.75]}
         gl={{ antialias: true, powerPreference: "high-performance" }}
-        camera={{ fov: 42, position: [0, 0.4, 6] }}
+        camera={{ fov: 42, position: [0, 0.3, 6] }}
         style={{ background: MONO.voidBlack }}
       >
         <Suspense fallback={null}>
@@ -25,7 +25,6 @@ export default function SceneCanvas() {
           <HeroWorld />
           <AboutWorld />
           <SkillsWorld />
-          {/* Phase 3+ mounts each next section's world here */}
         </Suspense>
       </Canvas>
     </div>
