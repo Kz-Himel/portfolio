@@ -55,7 +55,7 @@ function HeroTitle() {
           bevelSize={0.015}
           position={[-3.4, 0, 0]}
         >
-          HIMEL
+          Kz Himel
           <meshStandardMaterial {...brushedSilver} />
         </Text3D>
       </group>
