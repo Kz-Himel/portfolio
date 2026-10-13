@@ -22,7 +22,7 @@ export const personalInfo = {
   location: "Rangpur, Bangladesh · GMT+6",
   availabilityNotice: "Open for freelance & full-time roles · Accepting new projects from Q3 2026 · Reply within 24h",
   stats: [
-    { value: "04+", label: "Years Exp." },
+    { value: "02+", label: "Years Exp." },
     { value: "35+", label: "Projects" },
     { value: "100%", label: "Satisfaction" },
   ],

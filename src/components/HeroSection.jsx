@@ -1,20 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import { FiArrowRight, FiDownload, FiMail, FiCheck, FiCopy } from "react-icons/fi";
 import { personalInfo } from "@/data/portfolioData";
-
-// Dynamic client import for subtle 3D interactive hero centerpiece
-const Hero3DVisual = dynamic(() => import("./Hero3DVisual"), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full aspect-square max-w-[380px] mx-auto flex items-center justify-center">
-      <div className="w-32 h-32 rounded-full border border-indigo-500/20 animate-pulse" />
-    </div>
-  ),
-});
 
 export default function HeroSection() {
   const [copied, setCopied] = useState(false);
@@ -116,14 +107,73 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Visual Column (Interactive Subtle 3D Graphic) */}
+          {/* Right Visual Column (Animated Profile Image) */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            <div className="card-surface p-6 sm:p-8 w-full max-w-md bg-white dark:bg-[#0F172A]/70 backdrop-blur-sm border-slate-200 dark:border-white/[0.08]">
-              {/* Subtle 3D interaction */}
-              <Hero3DVisual />
+            <div className="card-surface p-5 sm:p-7 w-full max-w-md bg-white dark:bg-[#0F172A]/70 backdrop-blur-sm border-slate-200 dark:border-white/[0.08]">
+              
+              {/* Animated Profile Image Centerpiece */}
+              <div className="relative w-full max-w-[340px] sm:max-w-[360px] mx-auto py-3">
+                {/* Ambient glowing backdrop aura */}
+                <div
+                  className="absolute -inset-2 bg-gradient-to-tr from-indigo-500/25 via-purple-500/20 to-emerald-500/20 rounded-3xl blur-2xl opacity-75 pointer-events-none"
+                  aria-hidden="true"
+                />
+
+                {/* Floating motion container */}
+                <motion.div
+                  animate={{ y: [-4, 4, -4] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative group"
+                >
+                  {/* Subtle animated border glow on hover */}
+                  <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-indigo-500/40 via-purple-500/30 to-emerald-500/40 opacity-40 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
+
+                  {/* Main Image Frame */}
+                  <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.1] shadow-xl">
+                    <Image
+                      src={personalInfo.profileImage}
+                      alt={personalInfo.name}
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 340px, 360px"
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+
+                    {/* Gentle gradient overlay for contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-60 pointer-events-none" />
+                  </div>
+
+                  {/* Floating Micro Badge - Status */}
+                  <motion.div
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -top-3 -right-2 sm:-right-3 z-10 px-3 py-1.5 rounded-full bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border border-emerald-500/30 dark:border-emerald-400/30 shadow-lg flex items-center gap-2"
+                  >
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    </span>
+                    <span className="text-[11px] font-mono font-medium text-slate-800 dark:text-slate-200">
+                      Available for hire
+                    </span>
+                  </motion.div>
+
+                  {/* Floating Micro Badge - Role / Tech */}
+                  <motion.div
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    className="absolute -bottom-3 -left-2 sm:-left-3 z-10 px-3 py-1.5 rounded-full bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border border-indigo-500/30 dark:border-indigo-400/30 shadow-lg flex items-center gap-2"
+                  >
+                    <span className="text-xs text-indigo-500 dark:text-indigo-400">⚡</span>
+                    <span className="text-[11px] font-mono font-medium text-slate-800 dark:text-slate-200">
+                      MERN &amp; Next.js
+                    </span>
+                  </motion.div>
+                </motion.div>
+              </div>
 
               {/* Core stack tags under visual */}
-              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-white/[0.06] text-center space-y-2">
+              <div className="mt-5 pt-4 border-t border-slate-200 dark:border-white/[0.06] text-center space-y-2">
                 <p className="font-mono text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Primary Technology Stack
                 </p>
@@ -138,6 +188,7 @@ export default function HeroSection() {
                   ))}
                 </div>
               </div>
+
             </div>
           </div>
 
