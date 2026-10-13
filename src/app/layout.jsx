@@ -1,37 +1,40 @@
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
-import Navbar from "@/components/Navbar";
-import SideRail from "@/components/SideRail";
-import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
-import SceneCanvas from "@/three/SceneCanvas";
-import CustomCursor from "@/components/CustomCursor";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Khayruzzaman Himel | Crafted digital experiences at the intersection of engineering and design.",
+  title: "Khayruzzaman Himel | Fullstack MERN & Frontend Developer",
   description:
-    "Junior MERN Developer crafting modern, animated, and scalable web experiences using Next.js, React, and modern UI technologies.",
-  keywords: ["MERN Developer", "Front End Developer", "Next.js", "React", "Khayruzzaman Himel", "Web Developer"],
+    "Fullstack MERN and Frontend Developer crafting production-ready web applications, AI-integrated platforms, and responsive user experiences.",
+  keywords: [
+    "Khayruzzaman Himel",
+    "Fullstack Developer",
+    "MERN Stack",
+    "React Developer",
+    "Next.js Developer",
+    "Frontend Engineer",
+    "Tailwind CSS",
+    "Node.js",
+  ],
+  authors: [{ name: "Khayruzzaman Himel" }],
   openGraph: {
-    title: "Khayruzzaman Himel | MERN Developer",
-    description: "Frontend Developer crafting modern web experiences.",
+    title: "Khayruzzaman Himel | Fullstack MERN & Frontend Developer",
+    description:
+      "Fullstack MERN and Frontend Developer crafting production-ready web applications, AI-integrated platforms, and responsive user experiences.",
     type: "website",
+    locale: "en_US",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className="bg-bg text-text-main antialiased selection:bg-accent/20 selection:text-accent">
-        <ThemeProvider>
-          <SmoothScroll>
-            <SceneCanvas />
-            <CustomCursor />
-            <Navbar />
-            <SideRail />
-            <main className="relative z-[2]">{children}</main>
-            <Footer />
-          </SmoothScroll>
+      <body className="bg-bg text-text-main antialiased min-h-screen selection:bg-indigo-500 selection:text-white flex flex-col transition-colors duration-200">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
+          <Navbar />
+          <main className="flex-1 w-full">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

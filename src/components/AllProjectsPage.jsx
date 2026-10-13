@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import projects from "@/data/projects";
+import { FiArrowLeft, FiArrowRight, FiFileText } from "react-icons/fi";
+import { projects, personalInfo } from "@/data/portfolioData";
 import ProjectCard from "./ProjectCard";
-import PageHero from "./ui/PageHero";
-import MagneticButton from "./ui/MagneticButton";
 
 const categories = [
   "All",
@@ -18,148 +18,157 @@ const categories = [
 ];
 
 export default function AllProjectsPage() {
-  const [cat, setCat] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("All");
 
   const filtered =
-    cat === "All"
+    activeCategory === "All"
       ? projects
-      : projects.filter((p) =>
-          (p.category || p.type || "").toLowerCase().includes(cat.toLowerCase())
-        );
+      : projects.filter((p) => {
+          const text = [
+            p.category || "",
+            p.type || "",
+            ...(p.tags || []),
+            p.description || "",
+          ].join(" ").toLowerCase();
+          return text.includes(activeCategory.toLowerCase());
+        });
 
   return (
-    <main className="relative">
-      <PageHero
-        eyebrow="// Works · Case Studies"
-        title="All of my"
-        highlight="projects, together"
-        subtitle="11+ production apps — from SaaS dashboards and landing pages to AI copilots and fullstack MERN products. Filter by category, explore freely."
-        stats={[
-          { value: "11", label: "Total projects", color: "#22D3EE" },
-          { value: "6", label: "MERN / Fullstack", color: "#8B5CF6" },
-          { value: "3", label: "AI + LLM products", color: "#EC4899" },
-          { value: "12+", label: "Happy clients", color: "#4ADE80" },
-        ]}
-      />
+    <div className="relative pt-28 pb-24 min-h-screen">
+      <div className="container-custom">
+        {/* Navigation Breadcrumb */}
+        <div className="mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors py-1.5"
+          >
+            <FiArrowLeft size={14} />
+            <span>Back to Home</span>
+          </Link>
+        </div>
 
-      <section className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pb-24">
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8 md:mb-10">
+        {/* Page Header */}
+        <header className="mb-12 pb-8 border-b border-slate-200 dark:border-white/[0.08]">
+          <span className="badge-subtle mb-3 inline-block">
+            Project Archive · {projects.length} Works
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
+            All Projects &amp; Systems
+          </h1>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+            A comprehensive catalog of production applications spanning fullstack platforms,
+            SaaS tools, AI prompt engines, e-commerce marketplaces, and client products.
+          </p>
+
+          {/* Quick Metrics */}
+          <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 mt-6 border-t border-slate-200 dark:border-white/[0.06] max-w-md">
+            <div className="card-surface p-3.5 sm:p-4 text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{projects.length}</div>
+              <div className="text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-0.5">Total Works</div>
+            </div>
+            <div className="card-surface p-3.5 sm:p-4 text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                {projects.filter((p) => (p.tags || []).includes("MongoDB") || (p.tags || []).includes("PostgreSQL")).length}
+              </div>
+              <div className="text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-0.5">Fullstack / DB</div>
+            </div>
+            <div className="card-surface p-3.5 sm:p-4 text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                {projects.filter((p) => (p.tags || []).some((t) => t.toLowerCase().includes("ai"))).length}
+              </div>
+              <div className="text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-0.5">AI Integrated</div>
+            </div>
+          </div>
+        </header>
+
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-4 border-b border-slate-200 dark:border-white/[0.06]">
           <div className="flex flex-wrap gap-2">
             {categories.map((c) => {
-              const active = cat === c;
+              const active = activeCategory === c;
               return (
                 <button
                   key={c}
-                  onClick={() => setCat(c)}
-                  className="relative rounded-full px-3.5 md:px-4 py-2 font-mono text-[10.5px] md:text-[11px] uppercase tracking-[0.18em] transition-colors"
-                  style={{
-                    color: active ? "#020617" : "#94A3B8",
-                  }}
+                  type="button"
+                  onClick={() => setActiveCategory(c)}
+                  className={`px-3.5 py-1.5 text-xs font-medium rounded-lg transition-all ${
+                    active
+                      ? "bg-indigo-600 text-white font-semibold shadow-sm"
+                      : "bg-slate-100 dark:bg-[#0F172A] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/[0.12]"
+                  }`}
                 >
-                  {active && (
-                    <motion.span
-                      layoutId="projectFilterPill"
-                      className="absolute inset-0 rounded-full"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, #22D3EE, #8B5CF6)",
-                        boxShadow:
-                          "0 0 22px rgba(34,211,238,0.45), inset 0 -2px 0 rgba(255,255,255,0.35)",
-                      }}
-                      transition={{ type: "spring", stiffness: 220, damping: 22 }}
-                    />
-                  )}
-                  <span className="relative z-10">{c}</span>
+                  {c}
                 </button>
               );
             })}
           </div>
 
-          <div className="flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.22em] text-text-muted">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-neon shadow-[0_0_6px_var(--cyan-glow)] animate-pulse" />
-            {filtered.length} case studies
+          <div className="text-xs font-medium text-slate-500 dark:text-slate-400">
+            Showing {filtered.length} of {projects.length} projects
           </div>
         </div>
 
+        {/* Projects Grid */}
         <AnimatePresence mode="wait">
-  <motion.div
-    key={cat}
-    initial={{ opacity: 0, y: 18 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -14 }}
-    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-  >
-    {filtered.map((p) => (
-      <ProjectCard key={p.id} project={p} />
-    ))}
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {filtered.map((p) => (
+              <ProjectCard key={p.id} project={p} />
+            ))}
 
-    {filtered.length === 0 && (
-      <div className="sm:col-span-2 lg:col-span-3 text-center py-20">
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted mb-2">
-          No projects in {cat} yet
-        </p>
-        <button
-          onClick={() => setCat("All")}
-          className="text-cyan-neon hover:underline text-sm"
-        >
-          View all projects →
-        </button>
-      </div>
-    )}
-  </motion.div>
-</AnimatePresence>
+            {filtered.length === 0 && (
+              <div className="col-span-full text-center py-24 card-surface rounded-2xl">
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
+                  No projects found in category &quot;{activeCategory}&quot;.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setActiveCategory("All")}
+                  className="btn-secondary text-xs"
+                >
+                  Show all projects
+                </button>
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Bottom CTA */}
-        <div className="relative mt-16 md:mt-24 text-center">
-          <div
-            aria-hidden
-            className="absolute inset-0 -z-10 pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle at center, rgba(139,92,246,0.12), transparent 60%)",
-              filter: "blur(20px)",
-            }}
-          />
-          <div className="hud-panel rounded-3xl border border-white/8 p-8 md:p-12 relative overflow-hidden">
-            <div
-              aria-hidden
-              className="absolute -top-16 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-[100px] opacity-50"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(34,211,238,0.45), rgba(139,92,246,0.3) 50%, transparent 70%)",
-              }}
-            />
-            <div className="relative">
-              <div className="font-mono text-[10.5px] uppercase tracking-[0.3em] text-cyan-neon mb-3 flex items-center justify-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-cyan-neon animate-pulse shadow-[0_0_6px_var(--cyan-glow)]" />
-                Got an idea?
-              </div>
-              <h3 className="font-display font-bold text-text-main text-[26px] md:text-[36px] leading-tight max-w-2xl mx-auto mb-5">
-                Let's make the <span className="gradient-text">next one</span> yours.
-              </h3>
-              <p className="text-text-soft text-[13.5px] md:text-[14.5px] max-w-xl mx-auto mb-7 leading-relaxed">
-                From concept to production — I'll handle the frontend, fullstack,
-                animations, and deploy. All you need to bring is the brief.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <MagneticButton
-                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm"
-                  href="/#contact"
-                >
-                  Start a project
-                </MagneticButton>
-                <MagneticButton
-                  className="btn-ghost inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm"
-                  href="/Khayruzzaman_Himel_CV.pdf"
-                >
-                  Download Resume
-                </MagneticButton>
-              </div>
-            </div>
+        {/* Bottom Call to Action */}
+        <div className="mt-20 card-surface p-8 sm:p-12 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="space-y-2 max-w-xl">
+            <span className="badge-subtle">
+              Have a Project in Mind?
+            </span>
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Ready to construct your next digital platform?
+            </h3>
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Available for fullstack product development, design system implementation, and performance optimization.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link href="/#contact" className="btn-primary">
+              <span>Start Discussion</span>
+              <FiArrowRight size={14} />
+            </Link>
+            <a
+              href={personalInfo.resumeUrl}
+              download
+              className="btn-secondary"
+            >
+              <FiFileText size={14} className="text-indigo-600 dark:text-indigo-400" />
+              <span>Resume</span>
+            </a>
           </div>
         </div>
-      </section>
-    </main>
+
+      </div>
+    </div>
   );
 }

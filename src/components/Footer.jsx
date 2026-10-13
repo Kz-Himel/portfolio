@@ -1,115 +1,154 @@
 "use client";
 
 import Link from "next/link";
-import { FiGithub, FiMail, FiHeart } from "react-icons/fi";
-import { FaLinkedin, FaDiscord } from "react-icons/fa";
+import { FiGithub, FiMail, FiArrowUp, FiFileText } from "react-icons/fi";
+import { FaLinkedin, FaDiscord, FaWhatsapp } from "react-icons/fa";
 import Logo from "./Logo";
+import { personalInfo } from "@/data/portfolioData";
 
-const navCols = [
-  {
-    title: "Navigate",
-    links: [
-      { href: "/#hero", label: "Home" },
-      { href: "/#about", label: "About" },
-      { href: "/#skills", label: "Skills" },
-      { href: "/#projects", label: "Projects" },
-      { href: "/#experience", label: "Experience" },
-      { href: "/#achievements", label: "Achievements" },
-      { href: "/#contact", label: "Contact" },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { href: "/#services", label: "MERN Development" },
-      { href: "/#services", label: "Frontend · UI/UX" },
-      { href: "/#services", label: "AI & LLM Integrations" },
-      { href: "/#services", label: "Performance · SEO" },
-      { href: "/#services", label: "DevOps · Deploy" },
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      { href: "mailto:kzhimel129@gmail.com", label: "kzhimel129@gmail.com" },
-      { href: "https://github.com/Kz-Himel", label: "GitHub · @Kz-Himel" },
-      { href: "https://www.linkedin.com/in/khayruzzaman-himel/", label: "LinkedIn" },
-      { href: "/Khayruzzaman_Himel_CV.pdf", label: "Download Resume" },
-    ],
-  },
-];
-
-const socialIcons = [
-  { icon: <FiGithub size={14} />, href: "https://github.com/Kz-Himel" },
-  { icon: <FaLinkedin size={14} />, href: "https://www.linkedin.com/in/khayruzzaman-himel/" },
-  { icon: <FaDiscord size={14} />, href: "https://discord.com/channels/1495450778364678285/1495450779220312116" },
-  { icon: <FiMail size={14} />, href: "mailto:kzhimel129@gmail.com" },
+const footerNavLinks = [
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Services", href: "/#services" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Credentials", href: "/#achievements" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="relative border-t border-border mt-10">
-      <div className="max-w-6xl mx-auto px-6 pt-14 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-10">
-          <div className="md:col-span-4 space-y-4">
+    <footer className="relative border-t border-slate-200/90 dark:border-white/[0.08] bg-white dark:bg-[#060911] mt-20 transition-colors">
+      <div className="container-custom pt-16 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 mb-12">
+          {/* Identity & Socials */}
+          <div className="md:col-span-5 space-y-4">
             <Logo />
-            <p className="text-[13px] text-text-soft leading-relaxed max-w-sm">
-              Crafting modern, motion-rich web products — engineered for
-              performance, built to last.
+            <p className="text-sm text-slate-600 dark:text-slate-400 max-w-sm leading-relaxed">
+              Fullstack MERN and Frontend developer building production-grade web applications, interactive interfaces, and scalable digital solutions.
             </p>
-            <div className="flex items-center gap-2">
-              {socialIcons.map((s, i) => (
-                <a
-                  key={i}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="social link"
-                  className="box w-9 h-9 flex items-center justify-center text-text-soft hover:text-accent hover:border-accent transition-colors"
+            <div className="flex items-center gap-2.5 pt-2">
+              <a
+                href={personalInfo.socials[0].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white hover:border-indigo-300 dark:hover:border-white/[0.2] hover:bg-indigo-50 dark:hover:bg-white/[0.08] transition-all shadow-2xs"
+              >
+                <FiGithub size={15} />
+              </a>
+              <a
+                href={personalInfo.socials[1].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+                className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white hover:border-indigo-300 dark:hover:border-white/[0.2] hover:bg-indigo-50 dark:hover:bg-white/[0.08] transition-all shadow-2xs"
+              >
+                <FaLinkedin size={15} />
+              </a>
+              <a
+                href={personalInfo.socials[2].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord Profile"
+                className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white hover:border-indigo-300 dark:hover:border-white/[0.2] hover:bg-indigo-50 dark:hover:bg-white/[0.08] transition-all shadow-2xs"
+              >
+                <FaDiscord size={15} />
+              </a>
+              <a
+                href={personalInfo.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp Contact"
+                className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white hover:border-indigo-300 dark:hover:border-white/[0.2] hover:bg-indigo-50 dark:hover:bg-white/[0.08] transition-all shadow-2xs"
+              >
+                <FaWhatsapp size={15} />
+              </a>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                aria-label="Email Address"
+                className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white hover:border-indigo-300 dark:hover:border-white/[0.2] hover:bg-indigo-50 dark:hover:bg-white/[0.08] transition-all shadow-2xs"
+              >
+                <FiMail size={15} />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Navigation */}
+          <div className="md:col-span-4 space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+              Navigation
+            </h4>
+            <div className="grid grid-cols-2 gap-2.5">
+              {footerNavLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors"
                 >
-                  {s.icon}
-                </a>
+                  {item.label}
+                </Link>
               ))}
             </div>
           </div>
 
-          {navCols.map((col) => (
-            <div key={col.title} className="md:col-span-4 lg:col-span-2">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent mb-3.5">
-                {col.title}
-              </div>
-              <ul className="space-y-2.5">
-                {col.links.map((l) => (
-                  <li key={l.label}>
-                    <Link
-                      href={l.href}
-                      target={l.href.startsWith("http") || l.href.startsWith("mailto:") ? "_blank" : undefined}
-                      rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="text-[12.5px] text-text-soft hover:text-text-main transition-colors"
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Direct Resources */}
+          <div className="md:col-span-3 space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+              Resources &amp; Resume
+            </h4>
+            <ul className="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+              <li>
+                <a
+                  href={personalInfo.resumeUrl}
+                  download
+                  className="hover:text-indigo-600 dark:hover:text-white transition-colors flex items-center gap-2"
+                >
+                  <FiFileText size={14} className="text-indigo-500 dark:text-indigo-400" />
+                  <span>Download Resume (PDF)</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={personalInfo.cvUrl}
+                  download
+                  className="hover:text-indigo-600 dark:hover:text-white transition-colors flex items-center gap-2"
+                >
+                  <FiFileText size={14} className="text-indigo-500 dark:text-indigo-400" />
+                  <span>Download CV (PDF)</span>
+                </a>
+              </li>
+              <li>
+                <Link href="/projects" className="hover:text-indigo-600 dark:hover:text-white transition-colors">
+                  All Projects Directory ({12})
+                </Link>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="hover:text-indigo-600 dark:hover:text-white transition-colors break-all"
+                >
+                  {personalInfo.email}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-mono text-[11px] text-text-muted">
-            © {new Date().getFullYear()} Khayruzzaman Himel. All rights reserved.
-          </p>
-          <p className="flex items-center gap-1.5 text-[11.5px] text-text-soft">
-            Built with <FiHeart size={12} className="text-accent" />
-            <span className="text-text-main font-medium">Himel</span> · Next.js
-          </p>
+        {/* Bottom Colophon */}
+        <div className="border-t border-slate-200 dark:border-white/[0.06] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+          <p>© {new Date().getFullYear()} {personalInfo.name}. All rights reserved.</p>
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            aria-label="Back to top"
-            className="font-mono text-[11px] uppercase tracking-wider text-text-soft hover:text-accent transition-colors"
+            type="button"
+            onClick={scrollToTop}
+            className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white flex items-center gap-1.5 transition-colors focus:outline-none cursor-pointer"
           >
-            Back to top ↑
+            <span>Back to top</span>
+            <FiArrowUp size={13} />
           </button>
         </div>
       </div>

@@ -2,24 +2,6 @@
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-  const origError = console.error;
-  console.error = (...args) => {
-    if (typeof args[0] === "string" && args[0].includes("Encountered a script tag")) {
-      return;
-    }
-    origError.apply(console, args);
-  };
-}
-
-export default function ThemeProvider({ children }) {
-  return (
-    <NextThemesProvider 
-      attribute="class" 
-      defaultTheme="dark" 
-      enableSystem={false}
-    >
-      {children}
-    </NextThemesProvider>
-  );
+export default function ThemeProvider({ children, ...props }) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
