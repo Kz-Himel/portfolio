@@ -23,7 +23,7 @@ export default function AboutSection() {
             <div className="card-surface p-4 bg-white dark:bg-[#0F172A] max-w-sm mx-auto lg:mx-0">
               <div className="relative aspect-[4/5] w-full rounded-lg overflow-hidden bg-slate-100 dark:bg-[#090D16] border border-slate-200 dark:border-white/[0.08]">
                 <Image
-                  src={personalInfo.profileImage}
+                  src={personalInfo.aboutImage}
                   alt={personalInfo.name}
                   fill
                   sizes="(max-width: 1024px) 100vw, 360px"

@@ -12,6 +12,7 @@ export const personalInfo = {
     "Over the past few years, I've worked on a diverse range of projects—from dynamic SaaS platforms and AI-driven workflow tools to high-performance marketing sites.",
   ],
   profileImage: "/profile.png",
+  aboutImage: "/profileImage.jpeg",
   resumeUrl: "/Khayruzzaman_Himel_Resume.pdf",
   cvUrl: "/Khayruzzaman_Himel_CV.pdf",
   email: "kzhimel129@gmail.com",
